@@ -29,6 +29,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions CI"
+
       - name: Create test directory
         run: |
           mkdir -p test-project
@@ -109,6 +114,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configure Git
+        shell: pwsh
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions CI"
 
       - name: Create test directory
         shell: pwsh
