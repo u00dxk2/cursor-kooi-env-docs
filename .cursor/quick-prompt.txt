@@ -1,0 +1,50 @@
+COPY-PASTE THIS TO ANOTHER AI ASSISTANT:
+================================================================================
+
+Please create a `.cursor/project-environment.md` file documenting this development environment. Include:
+
+1. **Directory Structure** - Absolute project root path and path format (Windows/Unix)
+
+2. **Shell Environment** - Shell type for YOU (PowerShell/Bash/Zsh) and critical syntax differences
+   - If this is a team project with multiple platforms, document ALL platforms
+   - Example: "Team uses: Windows (PowerShell), macOS (Zsh), Linux (Bash)"
+   - Show examples of commands that fail vs work (e.g., `&&` vs `;` in PowerShell)
+   
+3. **Common Commands** - Git workflow, package manager, build/test/dev commands
+   - For single-platform projects: Use correct syntax for your shell
+   - For multi-platform teams: Document commands for ALL team platforms side-by-side
+   - Label each: "PowerShell:", "Bash/Zsh:", or "All Platforms:"
+
+4. **Tech Stack** - Framework, language versions, key dependencies, databases, external APIs
+
+5. **Environment Gotchas** - Mistakes to avoid, line endings, path issues, quirks you've encountered
+
+6. **Development Workflow** - How to start dev server, run tests, build, lint/format
+
+Optional: API keys needed (no values!), external services, IDE recommendations, links to other `.cursor/rules/` docs
+
+Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practical.
+
+**IMPORTANT: Add maintenance tracking at the top:**
+```
+> **Last Updated:** YYYY-MM-DD  
+> **Review Frequency:** Check every 7 days  
+> **Next Review:** YYYY-MM-DD
+
+## 📋 Maintenance Log
+| Date | Change | Updated By |
+```
+
+**Add AI instructions at the bottom:**
+```
+## 🤖 AI Assistant Instructions
+When starting a new session:
+1. Check the "Last Updated" date at the top
+2. If >7 days old, offer to review and update
+3. Update this doc when you discover environment changes
+```
+
+After creating it, commit the file to the repository so it's preserved for future sessions.
+
+================================================================================
+

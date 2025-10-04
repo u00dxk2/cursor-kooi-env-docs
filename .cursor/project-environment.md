@@ -1,0 +1,475 @@
+# Project Environment Documentation
+
+> **Last Updated:** 2025-10-04  
+> **Review Frequency:** Check every conversation, update when environment changes  
+> **Next Review:** 2025-10-11
+
+## 📋 Maintenance Log
+
+| Date | Change | Updated By |
+|------|--------|------------|
+| 2025-10-04 | Initial documentation for cursor-kooi-env-docs repository | AI Assistant |
+
+---
+
+## 📂 Directory Structure
+
+**Absolute Project Root:**
+```
+C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs
+```
+
+**Path Format:** Windows (backslashes in shell, forward slashes in Git)
+
+**Repository Structure:**
+```
+cursor-kooi-env-docs/
+├── .cursor/                      # Our own dogfooding - we use our product!
+│   ├── project-environment.md    # This file
+│   ├── rules/
+│   │   └── environment-maintenance.mdc
+│   ├── check-env-docs.ps1 / .sh
+│   ├── validate-install.ps1 / .sh
+│   ├── quick-prompt.txt
+│   └── README.md
+├── docs/                         # Comprehensive documentation
+│   ├── FAQ.md
+│   ├── TROUBLESHOOTING.md
+│   ├── SETUP-GUIDE.md
+│   ├── QUICK-SETUP.md
+│   ├── TEAM-COLLABORATION.md
+│   ├── IMPROVEMENT-PLAN.md
+│   ├── LAUNCH-READINESS-REPORT.md
+│   └── PROJECT-REVIEW-FOR-SENIOR-AGENT.md
+├── examples/                     # Example projects
+│   ├── nodejs-express/
+│   └── python-flask/
+├── template/                     # Template files for installer
+│   ├── project-environment.md
+│   ├── rules/environment-maintenance.mdc
+│   ├── check-env-docs.ps1 / .sh
+│   ├── validate-install.ps1 / .sh
+│   ├── quick-prompt.txt
+│   └── README.md
+├── install.ps1                   # Windows installer
+├── install.sh                    # Unix/Mac installer
+├── .gitattributes               # Critical for line endings!
+├── README.md
+├── LICENSE
+├── CHANGELOG.md
+└── CONTRIBUTING.md
+```
+
+---
+
+## 💻 Shell Environment
+
+**Primary Development Environment:**
+- **Developer:** David (Windows 11)
+- **Shell:** PowerShell (Windows default)
+- **Path Style:** Backslashes in shell (`C:\path\to\file`), forward slashes in Git
+
+**Team Considerations:**
+- Contributors may use macOS (Zsh/Bash) or Linux (Bash)
+- All scripts have both `.ps1` (PowerShell) and `.sh` (Bash) versions
+- Line endings enforced by `.gitattributes` (CRLF for `.ps1`, LF for `.sh`)
+
+**Shell Syntax Differences:**
+
+| Task | PowerShell | Bash/Zsh |
+|------|------------|----------|
+| Command chaining | `cmd1; cmd2` | `cmd1 && cmd2` |
+| Path separator | `\` | `/` |
+| Environment vars | `$env:VAR = "value"` | `export VAR=value` |
+| Home directory | `$HOME` or `~` | `$HOME` or `~` |
+
+---
+
+## 🔧 Tech Stack
+
+**This is a documentation/scripting project - no runtime dependencies!**
+
+**Components:**
+- **Documentation:** Markdown (`.md`, `.mdc`)
+- **Windows Scripts:** PowerShell 5.1+ (`.ps1`)
+- **Unix/Mac Scripts:** Bash 3.2+ (`.sh`)
+- **Version Control:** Git + GitHub
+- **Distribution:** GitHub raw URLs for installer
+
+**No package managers needed** - pure shell scripts and markdown!
+
+**Development Tools:**
+- **Editor:** Cursor (obviously! 😄)
+- **Git Client:** Git for Windows / Git CLI
+- **Testing:** Manual testing + real-world dogfooding
+
+---
+
+## 🔄 Common Commands
+
+### Git Workflow
+
+**All Platforms:**
+```bash
+# Stage all changes
+git add -A
+
+# Commit with descriptive message
+git commit -m "type: description" -m "detailed explanation"
+
+# Push to main
+git push origin main
+
+# Check status
+git status --short
+
+# View recent commits
+git log --oneline -10
+```
+
+### Testing the Installer
+
+**PowerShell (Windows - Local):**
+```powershell
+# Test local installer (requires proper line endings!)
+.\install.ps1
+
+# Test from GitHub (production)
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+
+# Test with --force flag
+.\install.ps1 --force
+```
+
+**Bash/Zsh (Unix/Mac - From GitHub):**
+```bash
+# Test from GitHub
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh | bash
+
+# Test with --force flag
+bash <(curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh) --force
+```
+
+### Editing Documentation
+
+**All Platforms:**
+```bash
+# Open specific docs
+code docs/README.md
+cursor docs/FAQ.md
+
+# Search for text across all docs
+git grep "pattern" docs/
+
+# Count lines in all markdown
+find . -name "*.md" | xargs wc -l   # Unix/Mac
+Get-ChildItem -Recurse -Filter *.md | Get-Content | Measure-Object -Line  # PowerShell
+```
+
+### Validation Scripts
+
+**PowerShell:**
+```powershell
+# Check environment doc staleness
+.\.cursor\check-env-docs.ps1
+
+# Validate installation
+.\.cursor\validate-install.ps1
+```
+
+**Bash/Zsh:**
+```bash
+# Check environment doc staleness
+./.cursor/check-env-docs.sh
+
+# Validate installation
+./.cursor/validate-install.sh
+```
+
+---
+
+## ⚠️ Environment Gotchas
+
+### 1. Line Endings Are CRITICAL
+
+**Problem:** PowerShell scripts with Unix line endings (LF) will fail with parse errors.
+
+**Solution:**
+- ✅ We have `.gitattributes` that enforces:
+  - `*.ps1` → CRLF (Windows)
+  - `*.sh` → LF (Unix/Mac)
+- ✅ Git automatically converts on checkout
+- ❌ Don't disable `.gitattributes` or line ending auto-conversion
+
+**Symptoms if broken:**
+```powershell
+Unexpected token ')' in expression or statement.
+```
+
+**Testing:**
+```powershell
+# Check if .ps1 files have correct line endings
+Get-Content .\install.ps1 -Raw | Select-String "`r`n"  # Should match (CRLF)
+```
+
+### 2. Local vs GitHub Installer Testing
+
+**Local Testing:**
+- ❌ Running `.\install.ps1` locally may fail if line endings are mixed
+- ✅ Better to test from GitHub: `irm ... | iex`
+
+**Why:**
+- Local files might have pending Git conversions
+- GitHub raw always serves committed version with correct line endings
+
+**Best Practice:**
+```powershell
+# After making installer changes:
+git add install.ps1
+git commit -m "fix: Update installer"
+git push origin main
+
+# Then test from GitHub (give it 30 seconds to propagate):
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+```
+
+### 3. PowerShell Command Chaining
+
+**Issue:** PowerShell's `&&` operator requires PowerShell 7+, but we support 5.1+
+
+**Solutions:**
+```powershell
+# ❌ Don't use && in our scripts (requires PS7+)
+git add -A && git commit -m "msg"
+
+# ✅ Use semicolon (works in PS5.1+)
+git add -A; git commit -m "msg"
+
+# ✅ Or use separate commands
+git add -A
+git commit -m "msg"
+```
+
+### 4. Path Quoting
+
+**Windows paths with spaces:**
+```powershell
+# ✅ Correct - use quotes
+cd "C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs"
+
+# ❌ Wrong - breaks on spaces
+cd C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs
+```
+
+### 5. Testing in Another Project
+
+**Before testing installer elsewhere:**
+```powershell
+# 1. Commit and push changes
+git add -A
+git commit -m "fix: Update installer"
+git push origin main
+
+# 2. Wait ~30 seconds for GitHub cache
+
+# 3. Test in another directory
+cd ..\other-project
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+```
+
+### 6. .cursor/ Directory Structure
+
+**We have TWO .cursor/ setups here:**
+
+1. **Root `.cursor/`** - For THIS repository (dogfooding)
+   - Contains docs about maintaining this project
+   
+2. **`examples/*/. cursor/`** - Example implementations
+   - nodejs-express example
+   - python-flask example
+
+**Don't confuse them!**
+- When editing the **template**, edit `template/`
+- When editing **our own docs**, edit `.cursor/` (root)
+- When editing **example docs**, edit `examples/*/.cursor/`
+
+---
+
+## 🚀 Development Workflow
+
+### Making Documentation Changes
+
+1. **Edit files** (docs/, README.md, etc.)
+2. **Preview locally** (Cursor's markdown preview or GitHub preview)
+3. **Commit with semantic commit message:**
+   ```bash
+   git add -A
+   git commit -m "docs: Add troubleshooting for X"
+   git push origin main
+   ```
+
+### Making Installer Changes
+
+1. **Edit script** (`install.ps1` or `install.sh`)
+2. **Test from GitHub** (not locally - see gotchas!)
+3. **Commit and push:**
+   ```bash
+   git add install.ps1 install.sh
+   git commit -m "fix: Improve error handling in installer"
+   git push origin main
+   ```
+4. **Wait 30 seconds** for GitHub cache
+5. **Test in a different project:**
+   ```powershell
+   cd ..\test-project
+   irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+   ```
+
+### Adding Examples
+
+1. **Create new directory:** `examples/new-framework/`
+2. **Add complete project:**
+   - Source code
+   - `.cursor/` directory
+   - `README.md`
+3. **Update main README** to list the example
+4. **Test the example** by running its setup
+5. **Commit:**
+   ```bash
+   git add examples/new-framework/
+   git commit -m "feat: Add new-framework example"
+   git push origin main
+   ```
+
+### Updating Environment Docs (This File!)
+
+**When to update:**
+- ✅ Discovered new gotcha
+- ✅ Added new documentation
+- ✅ Changed development workflow
+- ✅ Updated tech stack
+- ✅ Added new scripts or tools
+
+**How to update:**
+1. Edit this file
+2. Update "Last Updated" date (top of file)
+3. Update "Next Review" date (+7 days)
+4. Add entry to Maintenance Log table
+5. Commit:
+   ```bash
+   git add .cursor/project-environment.md
+   git commit -m "docs: Update environment docs - [what changed]"
+   git push origin main
+   ```
+
+---
+
+## 🔍 Troubleshooting
+
+### Problem: Installer fails with parse errors
+
+**Check line endings:**
+```powershell
+# Verify .gitattributes exists
+Get-Content .gitattributes
+
+# Re-normalize all files
+git add --renormalize .
+git commit -m "fix: Normalize line endings"
+```
+
+### Problem: Changes not reflected on GitHub raw
+
+**Wait for cache:** GitHub raw URLs cache for ~5 minutes
+
+**Force refresh:**
+- Wait 30-60 seconds after push
+- Or add cache-busting query: `?cache=$(date +%s)`
+- Or use `curl -H "Cache-Control: no-cache" ...`
+
+### Problem: Testing installer locally fails
+
+**Don't test locally!** Use GitHub raw instead:
+```powershell
+# Instead of:
+.\install.ps1  # ❌ May have mixed line endings
+
+# Do this:
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex  # ✅
+```
+
+---
+
+## 📚 Links to Other Documentation
+
+### Internal Documentation
+- [Rules: Environment Maintenance](./.cursor/rules/environment-maintenance.mdc) - AI behavior rules
+- [Contributing](../CONTRIBUTING.md) - How to contribute to this project
+- [Troubleshooting](../docs/TROUBLESHOOTING.md) - Solutions to common problems
+- [FAQ](../docs/FAQ.md) - Frequently asked questions
+- [Team Collaboration](../docs/TEAM-COLLABORATION.md) - Multi-platform team workflows
+
+### External Resources
+- [GitHub Repository](https://github.com/u00dxk2/cursor-kooi-env-docs)
+- [Cursor AI Documentation](https://docs.cursor.com/)
+- [PowerShell Documentation](https://learn.microsoft.com/en-us/powershell/)
+- [Bash Scripting Guide](https://www.gnu.org/software/bash/manual/)
+
+---
+
+## 🎯 Project Goals
+
+**Primary Mission:**
+Create a self-updating documentation system that keeps Cursor AI assistants informed about project environments across all conversations.
+
+**Key Principles:**
+1. **Zero Dependencies** - Pure shell scripts and markdown
+2. **Cross-Platform** - Works on Windows, macOS, Linux
+3. **Self-Documenting** - Captures gotchas automatically
+4. **Real-Time Updates** - AI checks every conversation
+5. **Dogfooding** - We use our own product (this file!)
+
+**Current Status:**
+- ✅ v1.0.0 released
+- ✅ Installer working on all platforms
+- ✅ Documentation comprehensive
+- ✅ Examples complete (Node.js, Python)
+- ✅ Dogfooding our own system
+- 🔄 Gathering user feedback for v1.1.0
+
+---
+
+## 🤖 AI Assistant Instructions
+
+**When starting a new session:**
+
+1. **Check Staleness:**
+   - Look at "Last Updated" date at top of this file
+   - If **>7 days old**: Offer to review and update
+   - If **>14 days old**: Strongly recommend immediate review
+
+2. **During Development:**
+   - Update this doc **immediately** when discovering:
+     - New gotchas or quirks
+     - Changed workflows
+     - New scripts or documentation
+     - Installation issues
+     - Line ending problems
+
+3. **Update Process:**
+   - Edit relevant sections
+   - Update "Last Updated" to current date
+   - Update "Next Review" to +7 days
+   - Add entry to Maintenance Log table
+   - Commit with descriptive message
+
+4. **Maintenance Frequency:**
+   - Check: Every conversation start
+   - Update: When changes discovered (real-time)
+   - Review: If >7 days since last update
+
+**Remember:** This documentation makes YOU (the AI) more effective across all future conversations about this project!
+
+---
+
+**End of Documentation** • Last Updated: 2025-10-04 • Next Review: 2025-10-11

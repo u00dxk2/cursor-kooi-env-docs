@@ -1,0 +1,73 @@
+---
+title: Environment Documentation Maintenance
+description: Instructions for keeping project environment documentation current
+---
+
+# Environment Documentation Maintenance Rule
+
+## Purpose
+
+Keep `.cursor/project-environment.md` accurate and up-to-date so AI assistants have current context about the development environment.
+
+## When to Check
+
+**At Every Session Start (highest priority):**
+- Read `.cursor/project-environment.md` immediately
+- Check the "Last Updated" date
+- Offer to review and update if stale (>7 days = review, >14 days = urgent)
+
+**During Development (update in real-time):**
+- Update **immediately** when you discover:
+  - New shell/command syntax issues
+  - Changed directory paths  
+  - New dependencies or services
+  - Updated development workflows
+  - Environment quirks or gotchas
+  - Package manager changes
+  - Build/test command changes
+
+**Key principle:** Documentation should always reflect the current state of the project.
+
+## How to Update
+
+1. **Read the current document** to understand existing content
+2. **Identify changes** needed based on:
+   - Recent package.json changes
+   - New environment variables
+   - Modified git workflow
+   - Discovered issues during the session
+3. **Update the document** with:
+   - New "Last Updated" date (current date)
+   - New "Next Review" date (+7 days)
+   - Entry in the Maintenance Log table
+   - Any substantive changes needed
+4. **Commit the changes** with a descriptive message
+
+## Update Format
+
+When updating the Maintenance Log:
+```markdown
+| 2025-10-04 | Added Redis configuration notes | AI Assistant |
+```
+
+When updating the timestamp:
+```markdown
+> **Last Updated:** 2025-10-04  
+> **Next Review:** 2025-10-11
+```
+
+## Offer Format
+
+When offering to review (if stale):
+> "I noticed the project environment documentation hasn't been updated in X days. Would you like me to review and update `.cursor/project-environment.md` to ensure it's current?"
+
+## What NOT to Do
+
+- ❌ Don't update the doc for trivial changes (typos in code, minor bug fixes)
+- ❌ Don't nag every single session if user declines
+- ❌ Don't make assumptions - ask for confirmation on major changes
+- ✅ DO update proactively when you discover environment mismatches
+
+## Priority
+
+**Medium** - Check at start of session, update when relevant, but don't interrupt critical work.
