@@ -98,6 +98,47 @@ All are plain text files that work anywhere.
 
 **Absolutely!** Install it in every project where you use AI assistants. Each project gets its own environment documentation tailored to that specific stack.
 
+### What if I already have a .cursor/ directory?
+
+**The installer is safe!** By default, it **preserves all existing files**:
+
+✅ **What happens:**
+- Installer detects existing `.cursor/` directory
+- Checks each file before downloading
+- Skips files that already exist
+- Only installs missing files
+- Shows summary of what was installed vs. skipped
+
+**Example output:**
+```
+⚠️  Existing .cursor/ setup detected
+Existing files will be preserved (use --force to overwrite)
+
+📥 Downloading template files...
+  ✓ quick-prompt.txt
+  ⚠ README.md (exists - skipped)
+  ✓ environment-maintenance.mdc
+  ⚠ check-env-docs.sh (exists - skipped)
+
+✅ Installation complete!
+📊 Summary:
+  ✓ Installed: 2 file(s)
+  ⚠ Skipped: 2 existing file(s)
+```
+
+**Need a clean reinstall?** Use the `--force` flag:
+```bash
+# Download installer first
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh -o install.sh
+
+# Run with --force to overwrite everything
+bash install.sh --force
+
+# Or PowerShell:
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 -OutFile install.ps1
+.\install.ps1 --force
+```
+
 ### Should I commit .cursor/ to git?
 
 **YES! Commit the entire `.cursor/` directory.** This is project documentation, not personal IDE settings.

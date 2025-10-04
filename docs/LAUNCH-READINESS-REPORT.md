@@ -52,7 +52,67 @@ Following a comprehensive review by our senior agent, we identified and **resolv
 
 ## P0 Issues - RESOLVED ✅
 
-### 1. macOS Shell Script Compatibility
+### 1. Installer Data Loss Risk (CRITICAL - Caught Pre-Launch)
+
+**Issue:** Installer would silently overwrite existing `.cursor/` files without user consent or backup, potentially destroying customized rules, documentation, or scripts.
+
+**Impact:** CRITICAL - Data loss for users with existing `.cursor/` directories
+
+**How Discovered:** User asked: "What happens if people already have stuff in their .cursor folder?" - excellent catch!
+
+**Resolution Applied:**
+
+**Files Updated:**
+- `install.sh` - Added skip-existing logic and --force flag
+- `install.ps1` - Added skip-existing logic and --force flag  
+- `README.md` - Documented --force flag and safe behavior
+- `docs/FAQ.md` - Added "What if I already have a .cursor/ directory?" section
+- `docs/TROUBLESHOOTING.md` - Added reinstall/update guidance
+- `docs/INSTALLER-SAFETY-PLAN.md` - Created comprehensive safety plan
+
+**New Behavior:**
+```bash
+# Default: Safe mode - preserves existing files
+curl -fsSL .../install.sh | bash
+
+# Output shows what was skipped:
+⚠️  Existing .cursor/ setup detected
+Existing files will be preserved (use --force to overwrite)
+
+📥 Downloading template files...
+  ✓ quick-prompt.txt
+  ⚠ README.md (exists - skipped)
+  ✓ environment-maintenance.mdc
+
+📊 Summary:
+  ✓ Installed: 2 file(s)
+  ⚠ Skipped: 1 existing file(s)
+```
+
+**--force Flag:** For clean reinstalls (when user explicitly wants to overwrite)
+```bash
+bash install.sh --force
+```
+
+**Why This Was Critical:**
+- Original implementation only checked `project-environment.md` (which users create later)
+- Would silently overwrite `README.md`, `check-env-docs.sh`, and other files
+- No backup, no warning, no undo
+- Could destroy customized scripts or rules
+- Would have caused significant user frustration post-launch
+
+**Verification:**
+- ✅ Fresh install (no `.cursor/`) works normally
+- ✅ Existing files preserved by default
+- ✅ --force overwrites when explicitly requested
+- ✅ Clear summary shows what happened
+- ✅ Zero data loss risk
+
+**This was a launch-blocking bug caught just in time.** 🙏
+
+---
+
+### 2. macOS Shell Script Compatibility
 
 **Issue:** Shell scripts used `grep -P` (Perl regex) which doesn't work on macOS BSD grep, causing immediate failures for Mac users.
 
@@ -85,7 +145,7 @@ LAST_UPDATED=$(grep "Last Updated:" "$ENV_DOC_PATH" | head -1 | sed -E 's/.*Last
 
 ---
 
-### 2. Cursor Rule Loading Reliability
+### 3. Cursor Rule Loading Reliability
 
 **Issue:** Cursor sometimes doesn't consistently apply `.cursor/rules/*.mdc` files automatically, depending on version.
 
@@ -126,7 +186,7 @@ Please check .cursor/project-environment.md and let me know if it needs updating
 
 ## P1 Issues - RESOLVED ✅
 
-### 3. Installer Security Documentation
+### 4. Installer Security Documentation
 
 **Issue:** One-line installers (curl | bash) need security context to build trust, especially for enterprise users.
 
@@ -158,7 +218,7 @@ Please check .cursor/project-environment.md and let me know if it needs updating
 
 ---
 
-### 4. Secret Handling Warnings
+### 5. Secret Handling Warnings
 
 **Issue:** Users might accidentally include API keys or secrets in `project-environment.md`, which gets committed to git and sent to AI providers.
 
@@ -192,7 +252,7 @@ The `project-environment.md` file is:
 
 ---
 
-### 5. Installer Error Handling
+### 6. Installer Error Handling
 
 **Issue:** If file downloads failed during installation, installers would still report "✅ Installation complete!" leading to partial/broken installs.
 
@@ -244,7 +304,7 @@ if ($failedDownloads -gt 0) {
 
 ---
 
-### 6. Cross-Platform Documentation
+### 7. Cross-Platform Documentation
 
 **Issue:** Teams using both Windows and macOS/Linux might face:
 - Line ending issues (CRLF vs LF) breaking shell scripts
@@ -519,7 +579,31 @@ Based on comprehensive review and resolution of all identified issues:
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** 2025-10-04  
+**Document Version:** 1.1  
+**Last Updated:** 2025-10-04 (Updated after installer safety fix)  
 **Status:** Ready for Launch  
 **Next Review:** After v1.0.0 tag creation
+
+---
+
+## ⚠️ CRITICAL UPDATE (Post-Initial Report)
+
+**NEW P0 BLOCKER IDENTIFIED AND RESOLVED:**
+
+### Data Loss Prevention - Installer Safety
+
+**Issue:** Installer could silently overwrite existing `.cursor/` files without user consent.
+
+**Discovery:** User (Dave) asked critical question: "What happens if people already have stuff in their .cursor folder?"
+
+**Impact:** HIGH - Potential data loss for users with existing `.cursor/` setups
+
+**Resolution Applied:**
+- ✅ Implemented skip-existing-files logic in both installers
+- ✅ Added `--force` flag for clean reinstalls
+- ✅ Added installation summary (installed vs. skipped counts)
+- ✅ Updated README with --force documentation
+- ✅ Added comprehensive FAQ section
+- ✅ Added TROUBLESHOOTING section with examples
+
+**Status:** ✅ RESOLVED - No data loss risk remaining

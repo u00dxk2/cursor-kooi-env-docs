@@ -1,6 +1,9 @@
 # Cursor Environment Docs System - Installer (Windows)
 # https://github.com/u00dxk2/cursor-kooi-env-docs
 
+# Parse command line arguments
+$forceInstall = $args -contains "--force"
+
 Write-Host "`n🚀 Installing Cursor Environment Docs System...`n" -ForegroundColor Cyan
 
 # Check if in a git repo (warning, not error)
@@ -21,13 +24,22 @@ New-Item -ItemType Directory -Force -Path ".cursor\rules" | Out-Null
 # Base URL for downloading files
 $baseUrl = "https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/template"
 
-# Check if files already exist
-if (Test-Path ".cursor\project-environment.md") {
-    Write-Host "⚠️  .cursor\project-environment.md already exists" -ForegroundColor Yellow
-    $overwrite = Read-Host "Overwrite? (y/n)"
-    if ($overwrite -ne "y") {
-        Write-Host "Skipping overwrite. Installation cancelled."
-        exit 1
+# Arrays to track installation results
+$installedFiles = @()
+$skippedFiles = @()
+$failedDownloads = 0
+
+# Check if .cursor/ directory has existing files
+if ((Test-Path ".cursor") -and ((Get-ChildItem ".cursor" -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)) {
+    if (-not $forceInstall) {
+        Write-Host "⚠️  Existing .cursor\ setup detected" -ForegroundColor Yellow
+        Write-Host "Existing files will be preserved (use --force to overwrite)" -ForegroundColor Yellow
+        Write-Host ""
+    }
+    else {
+        Write-Host "⚠️  Existing .cursor\ setup detected" -ForegroundColor Yellow
+        Write-Host "--force flag detected: will overwrite existing files" -ForegroundColor Yellow
+        Write-Host ""
     }
 }
 
@@ -38,9 +50,18 @@ function Download-File {
     param($url, $dest)
     $filename = Split-Path $dest -Leaf
     
+    # Check if file exists and we're not in force mode
+    if ((Test-Path $dest) -and (-not $forceInstall)) {
+        Write-Host "  ⚠ $filename (exists - skipped)" -ForegroundColor Yellow
+        $script:skippedFiles += $filename
+        return $true
+    }
+    
+    # Download the file
     try {
         Invoke-WebRequest -Uri $url -OutFile $dest -ErrorAction Stop
         Write-Host "  ✓ $filename" -ForegroundColor Green
+        $script:installedFiles += $filename
         return $true
     }
     catch {
@@ -48,9 +69,6 @@ function Download-File {
         return $false
     }
 }
-
-# Track download failures
-$failedDownloads = 0
 
 if (!(Download-File "$baseUrl/quick-prompt.txt" ".cursor\quick-prompt.txt")) { $failedDownloads++ }
 if (!(Download-File "$baseUrl/rules/environment-maintenance.mdc" ".cursor\rules\environment-maintenance.mdc")) { $failedDownloads++ }
@@ -66,7 +84,23 @@ if ($failedDownloads -gt 0) {
 }
 
 Write-Host "`n✅ Installation complete!" -ForegroundColor Green
-Write-Host "`n📝 Next steps:" -ForegroundColor Cyan
+Write-Host ""
+
+# Show summary
+if ($installedFiles.Count -gt 0 -or $skippedFiles.Count -gt 0) {
+    Write-Host "📊 Summary:" -ForegroundColor Cyan
+    if ($installedFiles.Count -gt 0) {
+        Write-Host "  ✓ Installed: $($installedFiles.Count) file(s)" -ForegroundColor Green
+    }
+    if ($skippedFiles.Count -gt 0) {
+        Write-Host "  ⚠ Skipped: $($skippedFiles.Count) existing file(s)" -ForegroundColor Yellow
+        Write-Host "    Tip: Use 'irm ... | iex' with --force to overwrite existing files" -ForegroundColor Yellow
+        Write-Host "    Or download and run: .\install.ps1 --force" -ForegroundColor Yellow
+    }
+    Write-Host ""
+}
+
+Write-Host "📝 Next steps:" -ForegroundColor Cyan
 Write-Host "1. Verify installation (optional):"
 Write-Host "   .\.cursor\validate-install.ps1" -ForegroundColor Yellow
 Write-Host ""

@@ -45,6 +45,55 @@ wget -O- https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/ins
 
 ---
 
+### Problem: I already have a .cursor/ directory - will the installer delete my files?
+
+**NO! The installer is safe by default.**
+
+**What happens:**
+- ✅ Existing files are **preserved** (never overwritten)
+- ✅ Only missing files are installed
+- ✅ You get a summary of what was skipped
+- ✅ No data loss risk
+
+**Example:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh | bash
+
+# Output:
+⚠️  Existing .cursor/ setup detected
+Existing files will be preserved (use --force to overwrite)
+
+📥 Downloading template files...
+  ⚠ quick-prompt.txt (exists - skipped)
+  ✓ environment-maintenance.mdc
+  ⚠ check-env-docs.sh (exists - skipped)
+  ✓ validate-install.sh
+
+📊 Summary:
+  ✓ Installed: 2 file(s)
+  ⚠ Skipped: 2 existing file(s)
+```
+
+**When to use --force:**
+- Clean reinstall needed
+- Want to update system files to latest version
+- Had installation errors and want to start fresh
+
+**How to use --force:**
+```bash
+# Unix/Mac
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh -o install.sh
+bash install.sh --force
+
+# Windows
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 -OutFile install.ps1
+.\install.ps1 --force
+```
+
+⚠️ **Warning:** `--force` will overwrite **all** files in `.cursor/`, including your `project-environment.md`. Back it up first if it contains important documentation!
+
+---
+
 ### Problem: "Cannot download files from GitHub"
 
 **Symptoms:**

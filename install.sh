@@ -7,7 +7,14 @@ set -e
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
+
+# Parse command line arguments
+FORCE_INSTALL=false
+if [[ "$1" == "--force" ]]; then
+    FORCE_INSTALL=true
+fi
 
 echo -e "${BLUE}🚀 Installing Cursor Environment Docs System...${NC}"
 echo ""
@@ -31,14 +38,21 @@ mkdir -p .cursor/rules
 # Base URL for downloading files
 BASE_URL="https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/template"
 
-# Check if files already exist
-if [ -f ".cursor/project-environment.md" ]; then
-    echo -e "${YELLOW}⚠️  .cursor/project-environment.md already exists${NC}"
-    read -p "Overwrite? (y/n) " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Skipping overwrite. Installation cancelled."
-        exit 1
+# Arrays to track installation results
+installed_files=()
+skipped_files=()
+failed_downloads=0
+
+# Check if .cursor/ directory has existing files
+if [ -d ".cursor" ] && [ "$(ls -A .cursor 2>/dev/null)" ]; then
+    if [ "$FORCE_INSTALL" = false ]; then
+        echo -e "${YELLOW}⚠️  Existing .cursor/ setup detected${NC}"
+        echo -e "${YELLOW}Existing files will be preserved (use --force to overwrite)${NC}"
+        echo ""
+    else
+        echo -e "${YELLOW}⚠️  Existing .cursor/ setup detected${NC}"
+        echo -e "${YELLOW}--force flag detected: will overwrite existing files${NC}"
+        echo ""
     fi
 fi
 
@@ -50,17 +64,23 @@ download_file() {
     local dest=$2
     local filename=$(basename "$dest")
     
+    # Check if file exists and we're not in force mode
+    if [ -f "$dest" ] && [ "$FORCE_INSTALL" = false ]; then
+        echo -e "  ${YELLOW}⚠${NC} $filename (exists - skipped)"
+        skipped_files+=("$filename")
+        return 0
+    fi
+    
+    # Download the file
     if curl -fsSL "$url" -o "$dest" 2>/dev/null; then
         echo -e "  ${GREEN}✓${NC} $filename"
+        installed_files+=("$filename")
         return 0
     else
         echo -e "  ${RED}✗${NC} Failed to download $filename"
         return 1
     fi
 }
-
-# Track download failures
-failed_downloads=0
 
 download_file "$BASE_URL/quick-prompt.txt" ".cursor/quick-prompt.txt" || ((failed_downloads++))
 download_file "$BASE_URL/rules/environment-maintenance.mdc" ".cursor/rules/environment-maintenance.mdc" || ((failed_downloads++))
@@ -83,6 +103,18 @@ chmod +x .cursor/validate-install.sh 2>/dev/null || true
 echo ""
 echo -e "${GREEN}✅ Installation complete!${NC}"
 echo ""
+
+# Show summary
+if [ ${#installed_files[@]} -gt 0 ] || [ ${#skipped_files[@]} -gt 0 ]; then
+    echo -e "${BLUE}📊 Summary:${NC}"
+    [ ${#installed_files[@]} -gt 0 ] && echo -e "  ${GREEN}✓${NC} Installed: ${#installed_files[@]} file(s)"
+    if [ ${#skipped_files[@]} -gt 0 ]; then
+        echo -e "  ${YELLOW}⚠${NC} Skipped: ${#skipped_files[@]} existing file(s)"
+        echo -e "    ${YELLOW}Tip: Use 'bash install.sh --force' to overwrite existing files${NC}"
+    fi
+    echo ""
+fi
+
 echo -e "${BLUE}📝 Next steps:${NC}"
 echo "1. Verify installation (optional):"
 echo -e "   ${YELLOW}./.cursor/validate-install.sh${NC}"
