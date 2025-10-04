@@ -1,0 +1,100 @@
+name: 🐛 Bug Report
+description: File a bug report to help us improve
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the information below to help us diagnose and fix the issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Clear description of the bug. What did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this? Please provide detailed steps.
+      placeholder: |
+        1. Run installer with command...
+        2. Open Cursor and...
+        3. Try to...
+        4. See error...
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: shell
+    attributes:
+      label: Shell Environment
+      description: What shell are you using?
+      placeholder: e.g., PowerShell 7.4, Bash 5.2, Zsh 5.9
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of this project are you using?
+      placeholder: e.g., v1.0.0, commit hash, or "latest from main"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Log Output
+      description: Please copy and paste any relevant log output or error messages
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context about the problem here.
+        - Screenshots
+        - Related issues
+        - Possible solutions you've tried
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before Submitting
+      description: Please confirm you've done the following
+      options:
+        - label: I have searched existing issues to ensure this bug hasn't been reported yet
+          required: true
+        - label: I have checked the [Troubleshooting guide](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/docs/TROUBLESHOOTING.md)
+          required: false
+        - label: I have checked the [FAQ](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/docs/FAQ.md)
+          required: false

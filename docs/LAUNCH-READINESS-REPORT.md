@@ -199,7 +199,7 @@ Please check .cursor/project-environment.md and let me know if it needs updating
 **Content Added:**
 ```markdown
 > **Security Note:** The installer downloads and runs scripts from GitHub. You can 
-> [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh) 
+> [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.0.0/install.sh) 
 > before running. It only creates a `.cursor/` directory in your current project—no 
 > system-level changes, no admin/root privileges required.
 ```

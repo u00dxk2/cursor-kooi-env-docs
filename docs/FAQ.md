@@ -65,12 +65,12 @@ Cursor has built-in support for reading the `.cursor/` directory and applying ru
 
 macOS/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.0/install.sh | bash
 ```
 
 Windows PowerShell:
 ```powershell
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.0/install.ps1 | iex
 ```
 
 **Manual install:**
@@ -184,13 +184,13 @@ Existing files will be preserved (use --force to overwrite)
 **Need a clean reinstall?** Use the `--force` flag:
 ```bash
 # Download installer first
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.0/install.sh -o install.sh
 
 # Run with --force to overwrite everything
 bash install.sh --force
 
 # Or PowerShell:
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 -OutFile install.ps1
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.0/install.ps1 -OutFile install.ps1
 .\install.ps1 --force
 ```
 
@@ -330,8 +330,8 @@ Required `.env` variables:
 - Uses HTTPS for all downloads
 
 🔍 **Review before running:**
-- [Bash installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh)
-- [PowerShell installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.ps1)
+- [Bash installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.0.0/install.sh)
+- [PowerShell installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.0.0/install.ps1)
 
 **For security-conscious environments:**
 - Clone the repository and review all files

@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Ask a Question
+    url: https://github.com/u00dxk2/cursor-kooi-env-docs/discussions/categories/q-a
+    about: Ask questions and get help from the community
+  - name: 💡 Share an Idea
+    url: https://github.com/u00dxk2/cursor-kooi-env-docs/discussions/categories/ideas
+    about: Share ideas and brainstorm with the community
+  - name: 📚 Documentation
+    url: https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/docs/FAQ.md
+    about: Check the FAQ and documentation first
+  - name: 🛠️ Troubleshooting Guide
+    url: https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/docs/TROUBLESHOOTING.md
+    about: Solutions to common problems

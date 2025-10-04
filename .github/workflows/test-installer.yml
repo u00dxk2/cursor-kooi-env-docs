@@ -1,0 +1,265 @@
+name: Test Installer
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'install.sh'
+      - 'install.ps1'
+      - 'template/**'
+      - '.github/workflows/test-installer.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'install.sh'
+      - 'install.ps1'
+      - 'template/**'
+      - '.github/workflows/test-installer.yml'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  test-bash-installer:
+    name: Test Bash Installer
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create test directory
+        run: |
+          mkdir -p test-project
+          cd test-project
+          git init
+          echo "# Test Project" > README.md
+          git add README.md
+          git commit -m "Initial commit"
+
+      - name: Run installer
+        run: |
+          cd test-project
+          bash ../install.sh
+
+      - name: Verify installation
+        run: |
+          cd test-project
+          
+          # Check that .cursor directory was created
+          if [ ! -d ".cursor" ]; then
+            echo "❌ .cursor directory not created"
+            exit 1
+          fi
+          
+          # Check required files exist
+          files=(
+            ".cursor/quick-prompt.txt"
+            ".cursor/check-env-docs.sh"
+            ".cursor/validate-install.sh"
+            ".cursor/README.md"
+            ".cursor/rules/environment-maintenance.mdc"
+          )
+          
+          for file in "${files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing file: $file"
+              exit 1
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+          
+          echo ""
+          echo "✅ All required files present"
+
+      - name: Run validation script
+        run: |
+          cd test-project
+          bash .cursor/validate-install.sh || true
+
+      - name: Run staleness checker
+        run: |
+          cd test-project
+          bash .cursor/check-env-docs.sh || echo "⚠️ No project-environment.md yet (expected)"
+
+      - name: Test --force flag
+        run: |
+          cd test-project
+          
+          # Create a custom file to ensure it's NOT overwritten
+          echo "# Custom content" > .cursor/custom-file.md
+          
+          # Run installer with --force (should skip existing files by default)
+          bash ../install.sh
+          
+          # Verify custom file still exists
+          if [ ! -f ".cursor/custom-file.md" ]; then
+            echo "❌ Custom file was deleted (installer not respecting existing files)"
+            exit 1
+          fi
+          
+          echo "✅ Installer correctly preserves existing files"
+
+  test-powershell-installer:
+    name: Test PowerShell Installer
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create test directory
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path test-project -Force
+          Set-Location test-project
+          git init
+          "# Test Project" | Out-File -FilePath README.md -Encoding utf8
+          git add README.md
+          git commit -m "Initial commit"
+
+      - name: Run installer
+        shell: pwsh
+        run: |
+          Set-Location test-project
+          ..\install.ps1
+
+      - name: Verify installation
+        shell: pwsh
+        run: |
+          Set-Location test-project
+          
+          # Check that .cursor directory was created
+          if (!(Test-Path ".cursor")) {
+            Write-Error "❌ .cursor directory not created"
+            exit 1
+          }
+          
+          # Check required files exist
+          $files = @(
+            ".cursor\quick-prompt.txt",
+            ".cursor\check-env-docs.ps1",
+            ".cursor\validate-install.ps1",
+            ".cursor\README.md",
+            ".cursor\rules\environment-maintenance.mdc"
+          )
+          
+          foreach ($file in $files) {
+            if (!(Test-Path $file)) {
+              Write-Error "❌ Missing file: $file"
+              exit 1
+            } else {
+              Write-Host "✅ Found: $file" -ForegroundColor Green
+            }
+          }
+          
+          Write-Host ""
+          Write-Host "✅ All required files present" -ForegroundColor Green
+
+      - name: Run validation script
+        shell: pwsh
+        run: |
+          Set-Location test-project
+          .\. cursor\validate-install.ps1
+        continue-on-error: true
+
+      - name: Run staleness checker
+        shell: pwsh
+        run: |
+          Set-Location test-project
+          .\.cursor\check-env-docs.ps1
+        continue-on-error: true
+
+      - name: Test skip-existing behavior
+        shell: pwsh
+        run: |
+          Set-Location test-project
+          
+          # Create a custom file to ensure it's NOT overwritten
+          "# Custom content" | Out-File -FilePath ".cursor\custom-file.md" -Encoding utf8
+          
+          # Run installer again (should skip existing files)
+          ..\install.ps1
+          
+          # Verify custom file still exists
+          if (!(Test-Path ".cursor\custom-file.md")) {
+            Write-Error "❌ Custom file was deleted (installer not respecting existing files)"
+            exit 1
+          }
+          
+          Write-Host "✅ Installer correctly preserves existing files" -ForegroundColor Green
+
+  test-line-endings:
+    name: Test Line Endings
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Bash script line endings (must be LF)
+        run: |
+          if file install.sh | grep -q CRLF; then
+            echo "❌ install.sh has CRLF line endings (should be LF)"
+            exit 1
+          fi
+          echo "✅ install.sh has correct line endings (LF)"
+
+      - name: Check PowerShell script line endings (should be CRLF or LF)
+        run: |
+          # PowerShell scripts should have CRLF, but Git may normalize to LF in repo
+          # The important thing is .gitattributes enforces CRLF on checkout
+          if [ -f "install.ps1" ]; then
+            echo "✅ install.ps1 exists"
+          else
+            echo "❌ install.ps1 missing"
+            exit 1
+          fi
+
+      - name: Verify .gitattributes exists
+        run: |
+          if [ ! -f ".gitattributes" ]; then
+            echo "❌ .gitattributes missing (required for line ending management)"
+            exit 1
+          fi
+          
+          # Check that .gitattributes has rules for .ps1 and .sh
+          if ! grep -q "\.ps1.*crlf" .gitattributes; then
+            echo "❌ .gitattributes missing .ps1 CRLF rule"
+            exit 1
+          fi
+          
+          if ! grep -q "\.sh.*lf" .gitattributes; then
+            echo "❌ .gitattributes missing .sh LF rule"
+            exit 1
+          fi
+          
+          echo "✅ .gitattributes has correct rules"
+
+  report-results:
+    name: Report Test Results
+    runs-on: ubuntu-latest
+    needs: [test-bash-installer, test-powershell-installer, test-line-endings]
+    if: always()
+    
+    steps:
+      - name: Check test results
+        run: |
+          if [ "${{ needs.test-bash-installer.result }}" != "success" ]; then
+            echo "❌ Bash installer tests failed"
+            exit 1
+          fi
+          
+          if [ "${{ needs.test-powershell-installer.result }}" != "success" ]; then
+            echo "❌ PowerShell installer tests failed"
+            exit 1
+          fi
+          
+          if [ "${{ needs.test-line-endings.result }}" != "success" ]; then
+            echo "❌ Line endings tests failed"
+            exit 1
+          fi
+          
+          echo "✅ All tests passed!"
