@@ -5,10 +5,15 @@ Please create a `.cursor/project-environment.md` file documenting this developme
 
 1. **Directory Structure** - Absolute project root path and path format (Windows/Unix)
 
-2. **Shell Environment** - Shell type (PowerShell/Bash/Zsh) and critical syntax differences
+2. **Shell Environment** - Shell type for YOU (PowerShell/Bash/Zsh) and critical syntax differences
+   - If this is a team project with multiple platforms, document ALL platforms
+   - Example: "Team uses: Windows (PowerShell), macOS (Zsh), Linux (Bash)"
    - Show examples of commands that fail vs work (e.g., `&&` vs `;` in PowerShell)
    
-3. **Common Commands** - Git workflow, package manager, build/test/dev commands with correct syntax for this shell
+3. **Common Commands** - Git workflow, package manager, build/test/dev commands
+   - For single-platform projects: Use correct syntax for your shell
+   - For multi-platform teams: Document commands for ALL team platforms side-by-side
+   - Label each: "PowerShell:", "Bash/Zsh:", or "All Platforms:"
 
 4. **Tech Stack** - Framework, language versions, key dependencies, databases, external APIs
 

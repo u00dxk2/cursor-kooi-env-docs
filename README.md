@@ -140,6 +140,41 @@ your-project/
         └── environment-maintenance.mdc  # AI behavior rules
 ```
 
+## 🤝 Team Collaboration
+
+**Multi-platform teams?** No problem! The `.cursor/project-environment.md` file should document ALL team members' platforms:
+
+```markdown
+## Shell Environment
+
+**Team Setup:**
+- Windows developers: PowerShell 7+
+- macOS developers: Zsh (default)
+- Linux developers: Bash
+
+## Common Commands
+
+### Start Dev Server
+
+**PowerShell:**
+```powershell
+npm run dev
+```
+
+**Bash/Zsh:**
+```bash
+npm run dev
+```
+```
+
+**Key principles:**
+- 📚 **One document, all platforms** - Don't overwrite, add alongside
+- 🏷️ **Label everything** - Make platform requirements explicit  
+- ➕ **Add, don't replace** - Each platform's commands coexist
+- 💬 **Document gotchas** - Platform differences help everyone
+
+See [docs/TEAM-COLLABORATION.md](./docs/TEAM-COLLABORATION.md) for complete guide.
+
 ## 🎓 Examples
 
 See the `/examples` directory for complete implementations:

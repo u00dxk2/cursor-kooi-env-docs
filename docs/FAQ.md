@@ -98,6 +98,61 @@ All are plain text files that work anywhere.
 
 **Absolutely!** Install it in every project where you use AI assistants. Each project gets its own environment documentation tailored to that specific stack.
 
+### How does this work for multi-platform teams?
+
+**Perfect for teams!** The key is documenting ALL platforms in a single shared document.
+
+**The Problem (if done wrong):**
+- Mac user documents Mac commands → commits
+- Windows user replaces with Windows commands → commits
+- Constant overwrites → frustration
+
+**The Solution (do it right):**
+Document all platforms side-by-side in `.cursor/project-environment.md`:
+
+```markdown
+## Shell Environment
+
+**Team Setup:**
+- Windows developers (2 people): PowerShell 7+
+- macOS developers (3 people): Zsh
+- Linux developers (1 person): Bash
+
+## Common Commands
+
+### Start Dev Server
+
+**PowerShell (Windows):**
+```powershell
+npm run dev
+```
+
+**Bash/Zsh (macOS/Linux):**
+```bash
+npm run dev
+```
+
+### Set Environment Variables
+
+**PowerShell:**
+```powershell
+$env:NODE_ENV = "production"
+```
+
+**Bash/Zsh:**
+```bash
+export NODE_ENV=production
+```
+```
+
+**Benefits:**
+- ✅ No overwrites - all platforms coexist
+- ✅ AI knows which syntax to use for each person
+- ✅ New team members see all platforms
+- ✅ Platform differences become valuable documentation
+
+**See the complete guide:** [docs/TEAM-COLLABORATION.md](./TEAM-COLLABORATION.md)
+
 ### What if I already have a .cursor/ directory?
 
 **The installer is safe!** By default, it **preserves all existing files**:
