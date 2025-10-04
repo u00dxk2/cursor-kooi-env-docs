@@ -41,29 +41,31 @@ function Download-File {
     try {
         Invoke-WebRequest -Uri $url -OutFile $dest -ErrorAction Stop
         Write-Host "  ✓ $filename" -ForegroundColor Green
+        return $true
     }
     catch {
         Write-Host "  ⚠ Failed to download $filename" -ForegroundColor Yellow
         return $false
     }
-    return $true
 }
 
-Download-File "$baseUrl/quick-prompt.txt" ".cursor\quick-prompt.txt"
-Download-File "$baseUrl/rules/environment-maintenance.mdc" ".cursor\rules\environment-maintenance.mdc"
-Download-File "$baseUrl/check-env-docs.ps1" ".cursor\check-env-docs.ps1"
-Download-File "$baseUrl/README.md" ".cursor\README.md"
+$null = Download-File "$baseUrl/quick-prompt.txt" ".cursor\quick-prompt.txt"
+$null = Download-File "$baseUrl/rules/environment-maintenance.mdc" ".cursor\rules\environment-maintenance.mdc"
+$null = Download-File "$baseUrl/check-env-docs.ps1" ".cursor\check-env-docs.ps1"
+$null = Download-File "$baseUrl/README.md" ".cursor\README.md"
+$null = Download-File "$baseUrl/validate-install.ps1" ".cursor\validate-install.ps1"
 
 Write-Host "`n✅ Installation complete!" -ForegroundColor Green
 Write-Host "`n📝 Next steps:" -ForegroundColor Cyan
-Write-Host "1. Open this project with your AI assistant (Cursor, Claude, etc.)"
-Write-Host "2. Run this command or view the file .cursor\quick-prompt.txt:"
+Write-Host "1. Verify installation (optional):"
+Write-Host "   .\.cursor\validate-install.ps1" -ForegroundColor Yellow
 Write-Host ""
+Write-Host "2. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "3. Ask your AI to create .cursor\project-environment.md"
-Write-Host "4. Commit the files:"
-Write-Host ""
+Write-Host "3. Open this project with your AI assistant (Cursor, Claude, etc.)"
+Write-Host "4. Ask your AI to create .cursor\project-environment.md"
+Write-Host "5. Commit the files:"
 Write-Host "   git add .cursor\" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow
 Write-Host ""

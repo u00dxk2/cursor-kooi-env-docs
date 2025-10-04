@@ -52,8 +52,9 @@ download_file() {
     
     if curl -fsSL "$url" -o "$dest" 2>/dev/null; then
         echo -e "  ${GREEN}✓${NC} $filename"
+        return 0
     else
-        echo -e "  ${YELLOW}⚠${NC} Failed to download $filename (using local fallback)"
+        echo -e "  ${YELLOW}⚠${NC} Failed to download $filename"
         return 1
     fi
 }
@@ -62,22 +63,25 @@ download_file "$BASE_URL/quick-prompt.txt" ".cursor/quick-prompt.txt"
 download_file "$BASE_URL/rules/environment-maintenance.mdc" ".cursor/rules/environment-maintenance.mdc"
 download_file "$BASE_URL/check-env-docs.sh" ".cursor/check-env-docs.sh"
 download_file "$BASE_URL/README.md" ".cursor/README.md"
+download_file "$BASE_URL/validate-install.sh" ".cursor/validate-install.sh"
 
-# Make check script executable
+# Make scripts executable
 chmod +x .cursor/check-env-docs.sh 2>/dev/null || true
+chmod +x .cursor/validate-install.sh 2>/dev/null || true
 
 echo ""
 echo -e "${GREEN}✅ Installation complete!${NC}"
 echo ""
 echo -e "${BLUE}📝 Next steps:${NC}"
-echo "1. Open this project with your AI assistant (Cursor, Claude, etc.)"
-echo "2. Run this command or paste the content from .cursor/quick-prompt.txt:"
+echo "1. Verify installation (optional):"
+echo -e "   ${YELLOW}./.cursor/validate-install.sh${NC}"
 echo ""
+echo "2. View the quick prompt:"
 echo -e "   ${YELLOW}cat .cursor/quick-prompt.txt${NC}"
 echo ""
-echo "3. Ask your AI to create .cursor/project-environment.md"
-echo "4. Commit the files:"
-echo ""
+echo "3. Open this project with your AI assistant (Cursor, Claude, etc.)"
+echo "4. Ask your AI to create .cursor/project-environment.md"
+echo "5. Commit the files:"
 echo -e "   ${YELLOW}git add .cursor/${NC}"
 echo -e "   ${YELLOW}git commit -m 'feat: Add environment documentation system'${NC}"
 echo ""
