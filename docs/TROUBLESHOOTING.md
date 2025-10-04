@@ -165,6 +165,46 @@ mkdir: cannot create directory '.cursor': Permission denied
 
 ## Script Execution Problems
 
+### Problem: validate-install.ps1 fails with "Unexpected token ')'"
+
+**Symptoms:**
+```powershell
+PS> .\.cursor\validate-install.ps1
+Unexpected token ')' in expression or statement.
+```
+
+**Root Cause:**
+The PowerShell script may have Unix line endings (LF) instead of Windows line endings (CRLF), causing parsing errors.
+
+**Solutions:**
+
+**Option 1: Just skip it** (Recommended)
+- The validation script is a **troubleshooting tool**, not required for normal operation
+- If the installer completed successfully and files exist, you're good to go!
+- Validation is only useful if you suspect something went wrong
+
+**Option 2: Fix line endings manually**
+```powershell
+# Convert line endings
+$content = Get-Content .\.cursor\validate-install.ps1 -Raw
+$content = $content -replace "`r?`n", "`r`n"
+Set-Content .\.cursor\validate-install.ps1 -Value $content -NoNewline
+```
+
+**Option 3: Re-download after line ending fix**
+Wait for the next release (post-v1.0.0) which includes `.gitattributes` to enforce correct line endings.
+
+**Prevention:**
+This is fixed in versions after v1.0.0 with proper `.gitattributes` configuration.
+
+---
+
+### Problem: check-env-docs.sh won't run on macOS - "grep: invalid option -- 'P'"
+
+**Already fixed in current version!** If you installed before 2025-10-04, update your scripts.
+
+---
+
 ### Problem: PowerShell "execution policy" error
 
 **Symptoms:**

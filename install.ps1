@@ -101,15 +101,12 @@ if ($installedFiles.Count -gt 0 -or $skippedFiles.Count -gt 0) {
 }
 
 Write-Host "📝 Next steps:" -ForegroundColor Cyan
-Write-Host "1. Verify installation (optional):"
-Write-Host "   .\.cursor\validate-install.ps1" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "2. View the quick prompt:"
+Write-Host "1. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "3. Open this project with Cursor"
-Write-Host "4. Ask Cursor to create .cursor\project-environment.md using the prompt"
-Write-Host "5. Commit the files:"
+Write-Host "2. Open this project with Cursor"
+Write-Host "3. Ask Cursor to create .cursor\project-environment.md using the prompt"
+Write-Host "4. Commit the files:"
 Write-Host "   git add .cursor\" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow
 Write-Host ""

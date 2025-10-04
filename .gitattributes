@@ -1,0 +1,28 @@
+# Cursor Environment Docs - Git Attributes
+# Ensures proper line endings across platforms
+
+# Auto-detect text files and normalize to LF in repository
+* text=auto
+
+# Force LF for shell scripts (Unix/Mac)
+*.sh text eol=lf
+
+# Force CRLF for PowerShell scripts (Windows)
+*.ps1 text eol=crlf
+
+# Markdown files (LF in repo, platform-specific on checkout)
+*.md text
+
+# Cursor-specific files
+*.mdc text
+
+# Ensure consistent line endings for template files
+template/** text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
