@@ -327,6 +327,48 @@ pwd
 
 ## Git & Version Control
 
+### Problem: Should I add .cursor/ to .gitignore?
+
+**NO! Do NOT add `.cursor/` to `.gitignore`!**
+
+**Common Mistake:**
+Some people think `.cursor/` is like `.vscode/settings.json` (personal IDE settings) and should be ignored. **This is wrong for our system!**
+
+**Correct Approach:**
+```bash
+# Commit the entire .cursor/ directory
+git add .cursor/
+git commit -m "feat: Add environment documentation system"
+git push
+```
+
+**Why commit it:**
+- This is **shared project documentation**, not personal settings
+- Team members need these files for consistent AI behavior
+- Documentation should be version-controlled
+- Scripts and rules should be shared
+
+**What's in `.cursor/` that should be shared:**
+- `project-environment.md` - Project documentation
+- `rules/*.mdc` - AI behavior rules
+- `check-env-docs.ps1/.sh` - Utility scripts
+- `validate-install.ps1/.sh` - Validation scripts
+- `quick-prompt.txt` - Template
+- `README.md` - System overview
+
+**Exception:** If Cursor adds personal settings later (like cache files), you can selectively ignore those:
+```gitignore
+# Ignore personal Cursor settings (if they appear)
+.cursor/cache/
+.cursor/.local
+
+# Keep our documentation system (everything else)
+```
+
+But **by default, commit everything in `.cursor/`** for this system to work properly.
+
+---
+
 ### Problem: Git tracking `.env` file
 
 **Symptoms:**

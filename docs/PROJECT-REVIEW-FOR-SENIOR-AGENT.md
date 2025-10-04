@@ -309,6 +309,13 @@ cursor-kooi-env-docs/
 **Impact:** Medium - users must manually reinstall  
 **Recommendation:** Add `update` command in future
 
+#### 13. Git Strategy Confusion (ADDRESSED)
+**Issue:** Users might think `.cursor/` should be in `.gitignore` (like personal IDE settings)  
+**Reality:** Our `.cursor/` is **shared project documentation**, not personal settings  
+**Impact:** Medium - users might not commit it, breaking team sharing  
+**Status:** ✅ ADDRESSED - Added clear FAQ and troubleshooting sections  
+**Key Point:** Entire `.cursor/` directory should be committed to git
+
 ---
 
 ## 🔍 Critical Analysis Questions

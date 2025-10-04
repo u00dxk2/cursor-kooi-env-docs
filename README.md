@@ -48,7 +48,10 @@ After installation:
    ```bash
    git add .cursor/
    git commit -m "feat: Add environment documentation system"
+   git push
    ```
+
+**Important:** Commit the entire `.cursor/` directory! This is shared project documentation, not personal IDE settings. Your team needs these files.
 
 **Done!** 🎉 Your AI assistants will now have consistent, up-to-date context about your project.
 

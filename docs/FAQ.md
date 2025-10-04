@@ -97,6 +97,27 @@ All are plain text files that work anywhere.
 
 **Absolutely!** Install it in every project where you use AI assistants. Each project gets its own environment documentation tailored to that specific stack.
 
+### Should I commit .cursor/ to git?
+
+**YES! Commit the entire `.cursor/` directory.** This is project documentation, not personal IDE settings.
+
+**What to commit:**
+```bash
+git add .cursor/
+git commit -m "feat: Add environment documentation system"
+git push
+```
+
+**Why commit it:**
+- Team members need these files
+- Documentation should be version-controlled
+- Scripts should be shared
+- AI rules should be consistent across team
+
+**Common mistake:** Some people think `.cursor/` is personal IDE settings (like `.vscode/settings.json`). It's not! Our `.cursor/` directory contains shared project documentation that benefits the entire team.
+
+**Note:** If Cursor ever adds personal settings to `.cursor/` in the future, you can selectively ignore those files. But our documentation system files should always be committed.
+
 ### How do I uninstall?
 
 Simply delete the `.cursor/` directory:
