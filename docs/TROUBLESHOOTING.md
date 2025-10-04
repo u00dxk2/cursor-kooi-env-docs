@@ -311,29 +311,17 @@ pwd
 
 ---
 
-### Problem: Claude/ChatGPT doesn't use the documentation
+### Note: Using with Other AI Tools (Claude, ChatGPT, etc.)
 
-**These AI tools don't auto-read files like Cursor does.**
+**This tool is designed specifically for Cursor.** The automatic date checking and maintenance system relies on Cursor's built-in support for the `.cursor/` directory and `.mdc` rule files.
 
-**Solution:**
+**If you want to use the documentation with other AI tools:**
+- You'll need to manually upload or paste the `project-environment.md` file each session
+- The automatic "check if >7 days old" feature won't work
+- You'll need to manually remind the AI to check and update the documentation
+- It becomes a static reference document rather than an auto-maintaining system
 
-**Option 1: Upload the file**
-- In Claude/ChatGPT interface
-- Use file upload feature
-- Upload `.cursor/project-environment.md`
-
-**Option 2: Paste content**
-```
-Here's my project environment documentation:
-
-[paste entire content of project-environment.md]
-
-Please use this context when helping me with this project.
-```
-
-**Option 3: Reference in each conversation**
-- Start each session by sharing the file
-- Or keep it uploaded in Claude Projects feature
+**For automatic maintenance, use Cursor.** That's what this tool was built for.
 
 ---
 

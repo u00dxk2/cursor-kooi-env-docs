@@ -55,7 +55,7 @@ cp "$source/README.md" "$dest/"  # optional
 
 ### Step 2: Generate Project-Specific Documentation
 
-Open your target project in your AI assistant and paste this prompt:
+Open your target project in Cursor and paste this prompt:
 
 ```
 Please create a `.cursor/project-environment.md` file documenting this development environment. Include:
@@ -207,8 +207,8 @@ After setup, verify everything works:
 - [ ] `.cursor/project-environment.md` exists with current date
 - [ ] `.cursor/rules/environment-maintenance.mdc` exists
 - [ ] Check script runs without errors
-- [ ] AI assistant reads the doc at session start
-- [ ] AI offers to update when doc is >7 days old
+- [ ] Cursor reads the doc at session start
+- [ ] Cursor offers to update when doc is >7 days old
 - [ ] All files are committed to git
 
 ---
@@ -238,9 +238,9 @@ After setup, verify everything works:
    - Deployment procedures
 
 3. **Share with team** - The `.cursor` directory benefits everyone:
-   - Human developers
-   - AI assistants
-   - New team members
+   - Human developers using Cursor
+   - All team members' Cursor instances
+   - New team members onboarding
 
 4. **Keep it updated** - The system only works if you let AI update it:
    - Don't decline every update offer

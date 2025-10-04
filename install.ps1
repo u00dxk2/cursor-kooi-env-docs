@@ -63,8 +63,8 @@ Write-Host ""
 Write-Host "2. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "3. Open this project with your AI assistant (Cursor, Claude, etc.)"
-Write-Host "4. Ask your AI to create .cursor\project-environment.md"
+Write-Host "3. Open this project with Cursor"
+Write-Host "4. Ask Cursor to create .cursor\project-environment.md using the prompt"
 Write-Host "5. Commit the files:"
 Write-Host "   git add .cursor\" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow

@@ -1,14 +1,14 @@
 # Cursor Environment Docs 📚
 
-> Auto-updating environment documentation that keeps AI assistants smart about your project.
+> Auto-updating environment documentation that keeps Cursor smart about your project.
 
-Stop wasting time explaining your environment setup to AI assistants in every conversation. This system automatically maintains fresh documentation about your development environment, ensuring AI tools always have the context they need.
+Stop wasting time explaining your environment setup to Cursor in every conversation. This system automatically maintains fresh documentation about your development environment, ensuring Cursor always has the context it needs.
 
 ## ✨ Features
 
-- 🤖 **Auto-updating**: AI checks and updates documentation every 7 days
+- 🤖 **Auto-updating**: Cursor checks and updates documentation every 7 days
 - 📝 **Self-documenting**: Captures gotchas and mistakes automatically
-- 🔄 **Cross-session**: Works across all AI conversations (Cursor, Claude, GitHub Copilot, ChatGPT)
+- 🔄 **Cross-session**: Works across all Cursor conversations
 - ⚡ **5-minute setup**: One command to install, minimal configuration
 - 🔍 **Staleness checker**: Know when your docs need attention
 - 🎯 **Framework agnostic**: Works with any tech stack
@@ -141,19 +141,16 @@ See the `/examples` directory for complete implementations:
 3. **Use**: AI automatically reads it in every session
 4. **Update**: AI offers to update when stale
 
-### With Different AI Tools
+### How Cursor Uses It
 
-**Cursor:**
-- System reads `.cursor/` directory automatically
-- AI checks docs at conversation start
+**Automatic Integration:**
+- Cursor automatically reads `.cursor/` directory at session start
+- AI checks "Last Updated" date and offers to update if stale
+- Maintenance rules are automatically applied
+- No manual work required - it just works!
 
-**Claude / ChatGPT:**
-- Upload `.cursor/project-environment.md` to conversation
-- Reference it when asking questions
-
-**GitHub Copilot:**
-- Documentation improves code suggestions
-- Better context for inline completions
+**Using with Other AI Tools:**
+While designed for Cursor, you can manually share the `project-environment.md` file with other AI assistants (Claude, ChatGPT, etc.), but automatic date checking and maintenance won't work.
 
 ### Validation
 
@@ -200,11 +197,9 @@ MIT License - see [LICENSE](./LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-Born from real frustrations with AI pair programming workflows. Designed to work with:
-- [Cursor](https://cursor.sh/)
-- [GitHub Copilot](https://github.com/features/copilot)
-- [Claude](https://claude.ai/)
-- [ChatGPT](https://chat.openai.com/)
+Born from real frustrations with AI pair programming workflows in [Cursor](https://cursor.sh/).
+
+**Note:** This tool is specifically designed for Cursor, which automatically reads the `.cursor/` directory and applies maintenance rules. While you can manually share the documentation with other AI assistants, the automatic update system is Cursor-specific.
 
 ## ⭐ Show Your Support
 

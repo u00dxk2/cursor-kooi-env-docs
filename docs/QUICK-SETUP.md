@@ -12,7 +12,7 @@ Step 1: Copy Files
 
 Step 2: Generate Docs
 ──────────────────────
-Open the project with an AI assistant and paste:
+Open the project with Cursor and paste:
    ✓ Content from .cursor/quick-prompt.txt
 
 Step 3: Commit
@@ -35,7 +35,7 @@ cp -r /path/to/decomposer/.cursor ./your-new-project/
 
 Step 2: Generate Docs
 ──────────────────────
-Open with AI and paste prompt from quick-prompt.txt
+Open with Cursor and paste prompt from quick-prompt.txt
 ```
 
 **Total time:** ~3 minutes
@@ -57,11 +57,11 @@ Open with AI and paste prompt from quick-prompt.txt
 
 ## ✨ What You Get
 
-✅ AI knows your environment immediately  
+✅ Cursor knows your environment immediately  
 ✅ No time wasted on syntax errors  
 ✅ Auto-updated every 7 days  
 ✅ Documents gotchas so you never repeat them  
-✅ Works across all AI sessions  
+✅ Works across all Cursor sessions  
 
 ---
 

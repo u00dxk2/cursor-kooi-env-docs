@@ -20,15 +20,15 @@ Common questions about the Cursor Environment Docs system.
 
 ### What is Cursor Environment Docs?
 
-A system that maintains auto-updating documentation about your development environment for AI assistants. It helps AI tools understand your shell syntax, tech stack, common commands, and project-specific gotchas without you having to explain them repeatedly.
+A system that maintains auto-updating documentation about your development environment for Cursor. It helps Cursor understand your shell syntax, tech stack, common commands, and project-specific gotchas without you having to explain them repeatedly.
 
 ### Why do I need this?
 
-If you use AI coding assistants (Cursor, Claude, GitHub Copilot, ChatGPT), you've probably:
-- Wasted time explaining the same environment details repeatedly
-- Had AI suggest commands that don't work in your shell (PowerShell vs Bash)
+If you use Cursor for AI-assisted development, you've probably:
+- Wasted time explaining the same environment details repeatedly in new conversations
+- Had Cursor suggest commands that don't work in your shell (PowerShell vs Bash)
 - Hit the same environment gotchas across multiple sessions
-- Seen inconsistent behavior between different AI conversations
+- Seen inconsistent behavior between different Cursor conversations
 
 This system solves all of that.
 
@@ -41,18 +41,18 @@ README.md is for humans and focuses on "what" and "why". Environment docs are fo
 - Maintenance tracking with automatic staleness checking
 - AI-specific instructions for keeping docs current
 
-### Does this work with all AI tools?
+### Does this work with other AI tools besides Cursor?
 
-**Yes!** It works with:
-- **Cursor**: Reads `.cursor/` directory automatically
-- **Claude**: Upload the markdown file to conversations
-- **ChatGPT**: Upload or paste the documentation
-- **GitHub Copilot**: Improves context for suggestions
-- **Any AI tool**: Just share the `project-environment.md` file
+**Designed for Cursor specifically.** The automatic features only work in Cursor:
+- Cursor automatically reads `.cursor/` directory at session start
+- Cursor automatically checks the "Last Updated" date
+- Cursor automatically applies the maintenance rules
 
-### Is this only for Cursor?
+**Manual use with other tools:** You can share the `project-environment.md` file with other AI assistants (Claude, ChatGPT, etc.) by uploading or pasting it, but the automatic date checking and update system won't work. You'd need to manually remind them to check and update.
 
-No! While it uses `.cursor/` directory (recognized by Cursor), the system works with any AI assistant. The documentation is plain markdown that any tool can read.
+### Why is this Cursor-specific?
+
+Cursor has built-in support for reading the `.cursor/` directory and applying rules from `.cursor/rules/*.mdc` files. Other AI tools don't have this directory convention or rule system, so they can't automatically maintain the documentation the way Cursor does.
 
 ---
 
@@ -126,11 +126,9 @@ After installation:
   - New gotchas discovered
   - Development workflow changes
 
-### Do I need to tell AI to read the docs?
+### Do I need to tell Cursor to read the docs?
 
-**In Cursor**: No, it automatically reads `.cursor/` files  
-**In Claude/ChatGPT**: Yes, upload or reference the file  
-**In GitHub Copilot**: Docs improve context automatically  
+**No!** Cursor automatically reads files in the `.cursor/` directory at the start of each conversation. The maintenance rules in `.cursor/rules/environment-maintenance.mdc` tell Cursor to check the date and offer updates automatically.  
 
 ### What if I forget to update the docs?
 

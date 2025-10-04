@@ -43,9 +43,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Setup guides (QUICK-SETUP.md, SETUP-GUIDE.md)
 
 ### Features
-- 🤖 Auto-updating environment docs every 7 days
+- 🤖 Auto-updating environment docs every 7 days (in Cursor)
 - 📝 Self-documenting system that captures gotchas
-- 🔄 Cross-session consistency across all AI tools
+- 🔄 Cross-session consistency across Cursor conversations
 - ⚡ 5-minute setup process
 - 🔍 Staleness checker scripts
 - 🎯 Framework-agnostic design
@@ -66,11 +66,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This is the first public release of Cursor Environment Docs, a system designed to maintain fresh, accurate environment documentation for AI coding assistants.
 
 **Key Highlights:**
-- Solves the problem of repeatedly explaining environment setup to AI assistants
-- Works with Cursor, Claude, ChatGPT, GitHub Copilot, and other AI tools
+- Solves the problem of repeatedly explaining environment setup to Cursor
+- Designed specifically for Cursor with automatic directory reading and rule application
 - Automatic staleness checking and update prompts
 - Simple one-line installation
-- Cross-platform compatibility
+- Cross-platform compatibility (Windows, macOS, Linux)
 
 **Quick Start:**
 ```bash
