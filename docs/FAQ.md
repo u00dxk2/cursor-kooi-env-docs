@@ -9,6 +9,7 @@ Common questions about the Cursor Environment Docs system.
 - [General Questions](#general-questions)
 - [Installation & Setup](#installation--setup)
 - [Usage & Workflow](#usage--workflow)
+- [Security & Best Practices](#security--best-practices)
 - [Compatibility](#compatibility)
 - [Troubleshooting](#troubleshooting)
 - [Customization](#customization)
@@ -168,6 +169,91 @@ Yes! In `project-environment.md`, change:
 ```
 
 Update to `3 days`, `14 days`, or whatever suits your project.
+
+---
+
+## Security & Best Practices
+
+### Should I store API keys or secrets in the environment documentation?
+
+**❌ NEVER store actual secret values in the documentation!**
+
+The `project-environment.md` file is:
+- Committed to git (visible to all team members)
+- Read by Cursor and sent to AI model providers (OpenAI, Anthropic, etc.)
+- Potentially included in AI conversation logs
+
+**✅ DO THIS instead:**
+```markdown
+## Environment Variables
+
+Required `.env` variables:
+- `API_KEY` - Your API key (get from dashboard)
+- `DATABASE_URL` - Database connection string
+- `SECRET_TOKEN` - Authentication secret
+
+⚠️ **Never commit `.env` file to git!**
+```
+
+**❌ DON'T DO THIS:**
+```markdown
+## Environment Variables
+
+- API_KEY=sk-abc123xyz789  ← NEVER DO THIS!
+- DATABASE_URL=postgres://user:password@host/db  ← NEVER DO THIS!
+```
+
+### What information is safe to document?
+
+**✅ SAFE to document:**
+- Shell type (PowerShell, Bash, Zsh)
+- Framework versions (Node 18, Python 3.11)
+- Directory structure and paths
+- Common commands and workflows
+- Environment gotchas and mistakes
+- Package manager commands
+- Development server ports
+
+**❌ NOT SAFE to document:**
+- API keys, tokens, passwords
+- Database credentials
+- Private URLs or endpoints
+- Personal information
+- Team member names or emails (unless public)
+
+### Is the installer script safe to run?
+
+**Yes, with these security considerations:**
+
+✅ **What makes it safe:**
+- Downloads from official GitHub repository
+- Creates only a `.cursor/` directory (project-level)
+- Requires no admin/root privileges
+- No system-level modifications
+- Source code is visible and reviewable
+- Uses HTTPS for all downloads
+
+🔍 **Review before running:**
+- [Bash installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh)
+- [PowerShell installer source](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.ps1)
+
+**For security-conscious environments:**
+- Clone the repository and review all files
+- Run installer from local copy
+- Or manually copy `template/` files to `.cursor/`
+
+### What data does this system send to AI providers?
+
+**What gets sent:**
+- Contents of `.cursor/project-environment.md` (your environment docs)
+- Contents of `.cursor/rules/*.mdc` (behavior rules for AI)
+
+**What does NOT get sent:**
+- Your actual code files (unless you share them separately)
+- Your `.env` file
+- Anything outside `.cursor/` directory
+
+**Key point:** Treat `.cursor/` files like documentation - only include information you'd be comfortable in a public README.
 
 ---
 

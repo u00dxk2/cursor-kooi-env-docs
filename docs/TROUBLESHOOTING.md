@@ -224,6 +224,114 @@ fi
 
 ---
 
+### Problem: Shell scripts fail with "illegal option" on macOS
+
+**Symptoms:**
+```bash
+grep: illegal option -- P
+```
+
+**Cause:**
+macOS uses BSD versions of command-line tools, not GNU versions. BSD grep doesn't support `-P` (Perl regex).
+
+**Solution:**
+The latest version of our scripts uses portable regex (grep -E and sed) that works on both platforms. Update your scripts:
+
+```bash
+# Redownload the latest scripts
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/template/check-env-docs.sh -o .cursor/check-env-docs.sh
+chmod +x .cursor/check-env-docs.sh
+```
+
+---
+
+### Problem: Cross-platform team (Windows + macOS/Linux) issues
+
+**Symptoms:**
+- Scripts fail on different platforms
+- Documentation only covers one shell type
+- Line ending problems in Git
+
+**Solutions:**
+
+**1. Line Endings**
+
+Create a `.gitattributes` file in your project root:
+
+```gitattributes
+# Ensure shell scripts always use LF (Unix) line endings
+*.sh text eol=lf
+
+# Let Git handle line endings for text files
+* text=auto
+```
+
+**Why:** Windows uses CRLF (`\r\n`) line endings, but shell scripts need LF (`\n`) to execute on Unix/macOS. This ensures scripts work everywhere.
+
+**2. Document Both Shells**
+
+In your `project-environment.md`, include examples for both shells:
+
+```markdown
+## Common Commands
+
+### Start Development Server
+
+**PowerShell (Windows):**
+```powershell
+npm run dev
+```
+
+**Bash (macOS/Linux):**
+```bash
+npm run dev
+```
+
+### Chaining Commands
+
+**PowerShell:**
+```powershell
+npm install; npm run build
+```
+
+**Bash:**
+```bash
+npm install && npm run build
+```
+```
+
+**3. Shell Detection**
+
+When documenting commands, always note which shell:
+
+```markdown
+## Shell Environment
+
+**Team Setup:**
+- Windows developers: PowerShell 7+
+- macOS developers: Zsh (default)
+- Linux developers: Bash
+
+## Environment Gotchas
+
+1. **Command Chaining:**
+   - ✅ PowerShell: Use `;` (always continues)
+   - ✅ Bash/Zsh: Use `&&` (stops on error)
+
+2. **Environment Variables:**
+   - ✅ PowerShell: `$env:NODE_ENV = "development"`
+   - ✅ Bash/Zsh: `export NODE_ENV=development`
+```
+
+**4. Test on Both Platforms**
+
+If possible, test scripts on all platforms your team uses:
+- Use WSL on Windows to test Bash scripts
+- Use PowerShell Core on macOS/Linux to test PowerShell scripts
+- Run validation: `.cursor/validate-install.sh` or `.cursor\validate-install.ps1`
+
+---
+
 ## AI Integration Issues
 
 ### Problem: AI doesn't offer to update documentation
@@ -267,7 +375,31 @@ Last Updated: 2025-10-04
 - Close and restart your AI conversation
 - In Cursor: Start a new conversation in a new tab
 
-**4. File not in expected location**
+**4. Cursor rule loading inconsistency**
+
+⚠️ **Known issue:** Cursor sometimes doesn't consistently apply `.cursor/rules/*.mdc` files automatically. This is a Cursor behavior that varies by version.
+
+**Workaround:**
+If the AI doesn't mention checking the documentation after 7 days, manually remind it:
+
+```
+Please check .cursor/project-environment.md and let me know if it needs updating (check the Last Updated date).
+```
+
+You can also explicitly reference the rule:
+
+```
+Please follow the maintenance rule in .cursor/rules/environment-maintenance.mdc
+```
+
+**What we're doing:**
+- Monitoring Cursor updates for rule-loading improvements
+- Documenting workarounds as needed
+- Investigating backup mechanisms for rule application
+
+**Your feedback helps!** If you experience inconsistent rule loading, please report your Cursor version in our [GitHub issues](https://github.com/u00dxk2/cursor-kooi-env-docs/issues).
+
+**5. File not in expected location**
 ```bash
 # Must be at:
 .cursor/project-environment.md

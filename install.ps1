@@ -44,16 +44,26 @@ function Download-File {
         return $true
     }
     catch {
-        Write-Host "  ⚠ Failed to download $filename" -ForegroundColor Yellow
+        Write-Host "  ✗ Failed to download $filename" -ForegroundColor Red
         return $false
     }
 }
 
-$null = Download-File "$baseUrl/quick-prompt.txt" ".cursor\quick-prompt.txt"
-$null = Download-File "$baseUrl/rules/environment-maintenance.mdc" ".cursor\rules\environment-maintenance.mdc"
-$null = Download-File "$baseUrl/check-env-docs.ps1" ".cursor\check-env-docs.ps1"
-$null = Download-File "$baseUrl/README.md" ".cursor\README.md"
-$null = Download-File "$baseUrl/validate-install.ps1" ".cursor\validate-install.ps1"
+# Track download failures
+$failedDownloads = 0
+
+if (!(Download-File "$baseUrl/quick-prompt.txt" ".cursor\quick-prompt.txt")) { $failedDownloads++ }
+if (!(Download-File "$baseUrl/rules/environment-maintenance.mdc" ".cursor\rules\environment-maintenance.mdc")) { $failedDownloads++ }
+if (!(Download-File "$baseUrl/check-env-docs.ps1" ".cursor\check-env-docs.ps1")) { $failedDownloads++ }
+if (!(Download-File "$baseUrl/README.md" ".cursor\README.md")) { $failedDownloads++ }
+if (!(Download-File "$baseUrl/validate-install.ps1" ".cursor\validate-install.ps1")) { $failedDownloads++ }
+
+# Check if any critical files failed
+if ($failedDownloads -gt 0) {
+    Write-Host "`n❌ Installation failed: $failedDownloads file(s) could not be downloaded" -ForegroundColor Red
+    Write-Host "Please check your internet connection and try again." -ForegroundColor Yellow
+    exit 1
+}
 
 Write-Host "`n✅ Installation complete!" -ForegroundColor Green
 Write-Host "`n📝 Next steps:" -ForegroundColor Cyan

@@ -54,16 +54,27 @@ download_file() {
         echo -e "  ${GREEN}✓${NC} $filename"
         return 0
     else
-        echo -e "  ${YELLOW}⚠${NC} Failed to download $filename"
+        echo -e "  ${RED}✗${NC} Failed to download $filename"
         return 1
     fi
 }
 
-download_file "$BASE_URL/quick-prompt.txt" ".cursor/quick-prompt.txt"
-download_file "$BASE_URL/rules/environment-maintenance.mdc" ".cursor/rules/environment-maintenance.mdc"
-download_file "$BASE_URL/check-env-docs.sh" ".cursor/check-env-docs.sh"
-download_file "$BASE_URL/README.md" ".cursor/README.md"
-download_file "$BASE_URL/validate-install.sh" ".cursor/validate-install.sh"
+# Track download failures
+failed_downloads=0
+
+download_file "$BASE_URL/quick-prompt.txt" ".cursor/quick-prompt.txt" || ((failed_downloads++))
+download_file "$BASE_URL/rules/environment-maintenance.mdc" ".cursor/rules/environment-maintenance.mdc" || ((failed_downloads++))
+download_file "$BASE_URL/check-env-docs.sh" ".cursor/check-env-docs.sh" || ((failed_downloads++))
+download_file "$BASE_URL/README.md" ".cursor/README.md" || ((failed_downloads++))
+download_file "$BASE_URL/validate-install.sh" ".cursor/validate-install.sh" || ((failed_downloads++))
+
+# Check if any critical files failed
+if [ $failed_downloads -gt 0 ]; then
+    echo ""
+    echo -e "${RED}❌ Installation failed: $failed_downloads file(s) could not be downloaded${NC}"
+    echo -e "${YELLOW}Please check your internet connection and try again.${NC}"
+    exit 1
+fi
 
 # Make scripts executable
 chmod +x .cursor/check-env-docs.sh 2>/dev/null || true

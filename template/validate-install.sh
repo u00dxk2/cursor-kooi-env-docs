@@ -62,12 +62,12 @@ echo -e "\n${CYAN}[Document Format]${NC}"
 if [ -f ".cursor/project-environment.md" ]; then
     content=$(cat .cursor/project-environment.md)
     
-    # Check for Last Updated
-    if echo "$content" | grep -qP '>\s*\*\*Last Updated:\*\*\s*\d{4}-\d{2}-\d{2}'; then
+    # Check for Last Updated (using grep -E for cross-platform compatibility)
+    if echo "$content" | grep -qE 'Last Updated:.*[0-9]{4}-[0-9]{2}-[0-9]{2}'; then
         echo -e "  ${GREEN}✓${NC} 'Last Updated' date format correct"
         
-        # Extract and check date
-        LAST_UPDATED=$(echo "$content" | grep -oP '>\s*\*\*Last Updated:\*\*\s*\K\d{4}-\d{2}-\d{2}' | head -1)
+        # Extract and check date (using sed for cross-platform compatibility)
+        LAST_UPDATED=$(echo "$content" | grep "Last Updated:" | head -1 | sed -E 's/.*Last Updated:.*([0-9]{4}-[0-9]{2}-[0-9]{2}).*/\1/')
         
         if [ -n "$LAST_UPDATED" ]; then
             # Calculate days since last update
@@ -102,7 +102,7 @@ if [ -f ".cursor/project-environment.md" ]; then
     fi
     
     # Check for Next Review
-    if echo "$content" | grep -qP '>\s*\*\*Next Review:\*\*\s*\d{4}-\d{2}-\d{2}'; then
+    if echo "$content" | grep -qE 'Next Review:.*[0-9]{4}-[0-9]{2}-[0-9]{2}'; then
         echo -e "  ${GREEN}✓${NC} 'Next Review' date present"
     else
         echo -e "  ${YELLOW}⚠${NC} 'Next Review' date missing"

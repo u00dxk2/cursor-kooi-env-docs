@@ -20,7 +20,8 @@ fi
 
 # Read the file and extract the Last Updated date
 if grep -q "Last Updated:" "$ENV_DOC_PATH"; then
-    LAST_UPDATED=$(grep -oP '>\s*\*\*Last Updated:\*\*\s*\K\d{4}-\d{2}-\d{2}' "$ENV_DOC_PATH" | head -1)
+    # Use sed for cross-platform compatibility (works on both GNU and BSD)
+    LAST_UPDATED=$(grep "Last Updated:" "$ENV_DOC_PATH" | head -1 | sed -E 's/.*Last Updated:.*([0-9]{4}-[0-9]{2}-[0-9]{2}).*/\1/')
     
     if [ -z "$LAST_UPDATED" ]; then
         echo -e "${YELLOW}WARNING: Could not parse 'Last Updated' date in the document${NC}"

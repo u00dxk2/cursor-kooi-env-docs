@@ -28,6 +28,8 @@ curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/i
 irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
 ```
 
+> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
+
 ### What It Does
 
 1. Creates `.cursor/` directory in your project
