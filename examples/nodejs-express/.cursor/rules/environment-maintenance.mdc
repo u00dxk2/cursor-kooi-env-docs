@@ -11,19 +11,22 @@ Keep `.cursor/project-environment.md` accurate and up-to-date so AI assistants h
 
 ## When to Check
 
-**At Session Start (every new conversation thread):**
-- Read `.cursor/project-environment.md`
+**At Every Session Start (highest priority):**
+- Read `.cursor/project-environment.md` immediately
 - Check the "Last Updated" date
-- If **>7 days old**: Offer to review and update the document
-- If **>14 days old**: Strongly recommend immediate review
+- Offer to review and update if stale (>7 days = review, >14 days = urgent)
 
-**During Development:**
-- Update immediately when you discover:
+**During Development (update in real-time):**
+- Update **immediately** when you discover:
   - New shell/command syntax issues
-  - Changed directory paths
+  - Changed directory paths  
   - New dependencies or services
   - Updated development workflows
   - Environment quirks or gotchas
+  - Package manager changes
+  - Build/test command changes
+
+**Key principle:** Documentation should always reflect the current state of the project.
 
 ## How to Update
 

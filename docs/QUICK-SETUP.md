@@ -59,7 +59,7 @@ Open with Cursor and paste prompt from quick-prompt.txt
 
 ✅ Cursor knows your environment immediately  
 ✅ No time wasted on syntax errors  
-✅ Auto-updated every 7 days  
+✅ Auto-checked every conversation, updated in real-time  
 ✅ Documents gotchas so you never repeat them  
 ✅ Works across all Cursor sessions  
 

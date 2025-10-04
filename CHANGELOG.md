@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Setup guides (QUICK-SETUP.md, SETUP-GUIDE.md)
 
 ### Features
-- 🤖 Auto-updating environment docs every 7 days (in Cursor)
+- 🤖 Auto-updating environment docs (checks every conversation, updates in real-time)
 - 📝 Self-documenting system that captures gotchas
 - 🔄 Cross-session consistency across Cursor conversations
 - ⚡ 5-minute setup process

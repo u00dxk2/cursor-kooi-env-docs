@@ -6,7 +6,7 @@ Stop wasting time explaining your environment setup to Cursor in every conversat
 
 ## ✨ Features
 
-- 🤖 **Auto-updating**: Cursor checks and updates documentation every 7 days
+- 🤖 **Auto-updating**: AI checks every conversation, updates in real-time as you develop
 - 📝 **Self-documenting**: Captures gotchas and mistakes automatically
 - 🔄 **Cross-session**: Works across all Cursor conversations
 - ⚡ **5-minute setup**: One command to install, minimal configuration
@@ -102,16 +102,28 @@ The system captures:
 
 ## 🔄 How It Stays Current
 
-### Automatic Updates
+### Automatic Updates (The Smart Way)
 
-1. **At Session Start**: AI checks the "Last Updated" date
-2. **If >7 days old**: AI offers to review and update
-3. **If >14 days old**: AI strongly recommends update
-4. **During Work**: AI updates when discovering environment changes
+**Every new Cursor conversation:**
+1. ✅ AI reads `.cursor/project-environment.md` immediately
+2. ✅ Checks "Last Updated" date automatically
+3. ✅ Offers to review and update if stale
+
+**During development:**
+- ✅ AI updates **in real-time** when discovering changes:
+  - New dependencies installed
+  - Command syntax issues found
+  - Environment gotchas discovered
+  - Tech stack changes
+
+**Staleness thresholds** (safety net for busy projects):
+- **< 7 days**: Current, no action needed
+- **7-14 days**: Review recommended
+- **14+ days**: Update strongly recommended
 
 ### Manual Check
 
-Run anytime to see status:
+Want to check staleness yourself? Run anytime:
 ```bash
 # Unix/Mac
 ./.cursor/check-env-docs.sh
@@ -119,11 +131,6 @@ Run anytime to see status:
 # Windows
 .\.cursor\check-env-docs.ps1
 ```
-
-Output:
-- ✅ **CURRENT** - No action needed (< 7 days)
-- ⚠️ **WARNING** - Review recommended (7-13 days)
-- 🔴 **CRITICAL** - Update immediately (14+ days)
 
 ## 📁 File Structure
 
