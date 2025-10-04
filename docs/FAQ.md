@@ -1,0 +1,359 @@
+# Frequently Asked Questions (FAQ)
+
+Common questions about the Cursor Environment Docs system.
+
+---
+
+## 📋 Table of Contents
+
+- [General Questions](#general-questions)
+- [Installation & Setup](#installation--setup)
+- [Usage & Workflow](#usage--workflow)
+- [Compatibility](#compatibility)
+- [Troubleshooting](#troubleshooting)
+- [Customization](#customization)
+- [Contributing](#contributing)
+
+---
+
+## General Questions
+
+### What is Cursor Environment Docs?
+
+A system that maintains auto-updating documentation about your development environment for AI assistants. It helps AI tools understand your shell syntax, tech stack, common commands, and project-specific gotchas without you having to explain them repeatedly.
+
+### Why do I need this?
+
+If you use AI coding assistants (Cursor, Claude, GitHub Copilot, ChatGPT), you've probably:
+- Wasted time explaining the same environment details repeatedly
+- Had AI suggest commands that don't work in your shell (PowerShell vs Bash)
+- Hit the same environment gotchas across multiple sessions
+- Seen inconsistent behavior between different AI conversations
+
+This system solves all of that.
+
+### How is this different from just using README.md?
+
+README.md is for humans and focuses on "what" and "why". Environment docs are for AI assistants and focus on "how" - specifically:
+- Exact shell syntax that works in YOUR environment
+- Platform-specific command differences
+- Common mistakes and gotchas
+- Maintenance tracking with automatic staleness checking
+- AI-specific instructions for keeping docs current
+
+### Does this work with all AI tools?
+
+**Yes!** It works with:
+- **Cursor**: Reads `.cursor/` directory automatically
+- **Claude**: Upload the markdown file to conversations
+- **ChatGPT**: Upload or paste the documentation
+- **GitHub Copilot**: Improves context for suggestions
+- **Any AI tool**: Just share the `project-environment.md` file
+
+### Is this only for Cursor?
+
+No! While it uses `.cursor/` directory (recognized by Cursor), the system works with any AI assistant. The documentation is plain markdown that any tool can read.
+
+---
+
+## Installation & Setup
+
+### How do I install this?
+
+**One-line install:**
+
+macOS/Linux:
+```bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh | bash
+```
+
+Windows PowerShell:
+```powershell
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
+```
+
+**Manual install:**
+Copy the `template/` directory contents to your project's `.cursor/` directory.
+
+### What if I don't have a git repository?
+
+The installer warns but allows you to continue. However, this system works best with git because:
+- Documentation should be version controlled
+- Team members benefit from shared environment docs
+- Changes are tracked over time
+
+You can use it without git, but you'll lose these benefits.
+
+### Do I need to install anything on my system?
+
+No system dependencies! The system consists of:
+- Markdown files (documentation)
+- Shell scripts (optional staleness checkers)
+- AI rules (text files)
+
+All are plain text files that work anywhere.
+
+### Can I install this in multiple projects?
+
+**Absolutely!** Install it in every project where you use AI assistants. Each project gets its own environment documentation tailored to that specific stack.
+
+### How do I uninstall?
+
+Simply delete the `.cursor/` directory:
+```bash
+rm -rf .cursor  # Unix/macOS
+Remove-Item -Recurse .cursor  # PowerShell
+```
+
+---
+
+## Usage & Workflow
+
+### How do I generate the initial documentation?
+
+After installation:
+1. Open project with your AI assistant
+2. Paste the content from `.cursor/quick-prompt.txt`
+3. AI generates `project-environment.md` specific to your project
+4. Review and commit: `git add .cursor && git commit -m "feat: add environment docs"`
+
+### How often should I update the docs?
+
+- **Automatically**: AI offers to update when >7 days old
+- **Manually**: Update immediately when:
+  - Major dependency changes
+  - Environment/shell changes
+  - New gotchas discovered
+  - Development workflow changes
+
+### Do I need to tell AI to read the docs?
+
+**In Cursor**: No, it automatically reads `.cursor/` files  
+**In Claude/ChatGPT**: Yes, upload or reference the file  
+**In GitHub Copilot**: Docs improve context automatically  
+
+### What if I forget to update the docs?
+
+The AI assistant will:
+- Check the "Last Updated" date at session start
+- Offer to review if >7 days old
+- Strongly recommend update if >14 days old
+
+You can also run the check script manually: `.cursor/check-env-docs.sh` (or `.ps1`)
+
+### Can I customize the review frequency?
+
+Yes! In `project-environment.md`, change:
+```markdown
+> **Review Frequency:** Check every 7 days
+```
+
+Update to `3 days`, `14 days`, or whatever suits your project.
+
+---
+
+## Compatibility
+
+### Does this work on Windows?
+
+**Yes!** Fully supported. The installer includes PowerShell versions of all scripts, and the documentation covers PowerShell-specific syntax.
+
+### Does this work on macOS?
+
+**Yes!** Works on both Intel and Apple Silicon Macs.
+
+### Does this work on Linux?
+
+**Yes!** Tested on Ubuntu, Debian, and other major distributions.
+
+### Does this work with WSL (Windows Subsystem for Linux)?
+
+**Yes!** WSL is treated as a Linux environment. Use the Bash installer and scripts.
+
+### Does this work in Docker containers?
+
+**Yes!** Install it in your project before containerizing. The `.cursor/` directory will be included in your container image.
+
+### Does this work with monorepos?
+
+**Yes!** Install in the monorepo root. You can also create project-specific docs in subdirectories:
+```
+monorepo/
+├── .cursor/                    # Monorepo-level docs
+├── packages/
+│   ├── frontend/
+│   │   └── .cursor/           # Frontend-specific docs
+│   └── backend/
+│       └── .cursor/            # Backend-specific docs
+```
+
+### What shells are supported?
+
+- **Unix:** Bash, Zsh, Fish
+- **Windows:** PowerShell, Command Prompt
+- **Others:** Any shell - just document its specific syntax
+
+### What programming languages does this support?
+
+**All of them!** This system is language-agnostic. We have examples for:
+- Node.js/JavaScript
+- Python
+- *(More coming)*
+
+But it works with any language or framework.
+
+---
+
+## Troubleshooting
+
+### The installer fails to download files
+
+**Causes:**
+- No internet connection
+- GitHub is down
+- Firewall blocking downloads
+- SSL/TLS issues
+
+**Solutions:**
+1. Check internet connection
+2. Try manual installation (copy `template/` files)
+3. Check firewall settings
+4. Use a VPN if needed
+
+### PowerShell says "execution policy" error
+
+**Error:**
+```
+cannot be loaded because running scripts is disabled on this system
+```
+
+**Solution:**
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+This allows running scripts you've downloaded.
+
+### Check script says "command not found"
+
+**On Unix/macOS:**
+```bash
+chmod +x .cursor/check-env-docs.sh
+./.cursor/check-env-docs.sh
+```
+
+Make sure the script is executable.
+
+**On Windows:**
+Run from PowerShell, not Command Prompt.
+
+### AI doesn't offer to update the docs
+
+**Possible causes:**
+1. **Last Updated format wrong**: Must be `> **Last Updated:** YYYY-MM-DD`
+2. **Doc is current**: Less than 7 days old
+3. **Rule file missing**: Check `.cursor/rules/environment-maintenance.mdc` exists
+4. **AI session restart needed**: Start a fresh conversation
+
+### Date parsing fails on macOS
+
+**Cause:** BSD date vs GNU date syntax  
+**Solution:** The check script handles both. If you modified it, see `template/check-env-docs.sh` for the correct conditional logic.
+
+### Documentation file not found
+
+**Error:**
+```
+ERROR: Environment documentation not found at .cursor/project-environment.md
+```
+
+**Solution:**
+You haven't generated the docs yet. Run the quick-prompt to have AI create it, or create it manually based on the template.
+
+---
+
+## Customization
+
+### Can I change the directory name from `.cursor`?
+
+**Technically yes**, but not recommended because:
+- Cursor automatically recognizes `.cursor/` directory
+- Examples and docs assume this location
+- Consistency helps with troubleshooting
+
+If you must change it, update all paths in scripts and documentation.
+
+### Can I add custom sections to the docs?
+
+**Absolutely!** The `project-environment.md` is YOUR documentation. Add sections for:
+- Deployment procedures
+- Database migration steps
+- API integration notes
+- Team conventions
+- Anything AI assistants should know
+
+### Can I use this for non-code projects?
+
+**Sure!** While designed for code projects, you could use it for:
+- Documentation projects
+- Configuration management
+- Infrastructure as code
+- Any project where environment context helps
+
+### Can I create templates for specific frameworks?
+
+**Yes!** See `template/project-environment.md` for the generic template. You can create framework-specific templates:
+- `template-nextjs.md`
+- `template-django.md`
+- `template-rust.md`
+
+Share them with the community!
+
+---
+
+## Contributing
+
+### How can I contribute?
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines. Ways to help:
+- Report bugs
+- Suggest features
+- Add example projects
+- Improve documentation
+- Submit pull requests
+
+### Can I add examples for my favorite framework?
+
+**Please do!** We need examples for more frameworks. See `examples/` directory for structure. Requirements:
+- Complete `.cursor/` directory
+- Working minimal code example
+- Comprehensive `project-environment.md`
+- Clear README explaining the example
+
+### How do I report bugs?
+
+Open an issue on GitHub: https://github.com/u00dxk2/cursor-kooi-env-docs/issues
+
+Include:
+- OS and shell
+- Steps to reproduce
+- Expected vs actual behavior
+- Error messages
+
+### Can I fork this and modify it?
+
+**Yes!** MIT License - use however you want. If you make improvements, consider contributing back!
+
+---
+
+## Still Have Questions?
+
+- 📖 [Read the main README](../README.md)
+- 📝 [Check the Setup Guide](SETUP-GUIDE.md)
+- 🐛 [Search existing issues](https://github.com/u00dxk2/cursor-kooi-env-docs/issues)
+- 💬 [Start a discussion](https://github.com/u00dxk2/cursor-kooi-env-docs/discussions)
+
+---
+
+**Last Updated:** 2025-10-04
+

@@ -1,0 +1,28 @@
+{
+  "name": "nodejs-express-example",
+  "version": "1.0.0",
+  "description": "Example Node.js/Express project with Cursor Environment Docs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Run: npm install --save-dev eslint\" to set up linting"
+  },
+  "keywords": [
+    "example",
+    "express",
+    "cursor-env-docs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

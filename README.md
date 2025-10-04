@@ -128,10 +128,9 @@ your-project/
 
 See the `/examples` directory for complete implementations:
 
-- [Next.js + TypeScript](./examples/nextjs/)
-- [Python + Django](./examples/python-django/)
-- [React + Vite](./examples/react/)
-- [Node.js + Express](./examples/nodejs/)
+- [Node.js + Express](./examples/nodejs-express/) ✅ - Complete working example
+- [Python + Flask](./examples/python-flask/) ✅ - Complete working example
+- More coming soon! (Contributions welcome)
 
 ## 🛠️ Usage
 
@@ -156,6 +155,24 @@ See the `/examples` directory for complete implementations:
 - Documentation improves code suggestions
 - Better context for inline completions
 
+### Validation
+
+Verify your installation is correct:
+
+```bash
+# Unix/Mac
+./.cursor/validate-install.sh
+
+# Windows
+.\.cursor\validate-install.ps1
+```
+
+This checks:
+- All required files exist
+- Documentation format is correct
+- Git integration is working
+- Scripts are executable
+
 ### Customization
 
 Edit `.cursor/project-environment.md` to:
@@ -163,6 +180,8 @@ Edit `.cursor/project-environment.md` to:
 - Add project-specific sections
 - Document unique gotchas
 - Add team-specific conventions
+
+See the [FAQ](./docs/FAQ.md) for common customization questions.
 
 ## 🤝 Contributing
 
@@ -195,23 +214,45 @@ If this tool helps your workflow:
 - 📝 Write a blog post
 - 💬 Tell your team
 
-## 📞 Support
+## 📞 Support & Documentation
 
+### 📚 Documentation
+- **[FAQ](./docs/FAQ.md)** - Frequently asked questions
+- **[Troubleshooting Guide](./docs/TROUBLESHOOTING.md)** - Solutions to common problems
+- **[Setup Guide](./docs/SETUP-GUIDE.md)** - Detailed installation instructions
+- **[Quick Setup](./docs/QUICK-SETUP.md)** - Fast setup cheat sheet
+- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute
+- **[Changelog](./CHANGELOG.md)** - Version history
+
+### 💬 Get Help
 - 🐛 [Report bugs](https://github.com/u00dxk2/cursor-kooi-env-docs/issues)
 - 💡 [Request features](https://github.com/u00dxk2/cursor-kooi-env-docs/issues)
 - 💬 [Discussions](https://github.com/u00dxk2/cursor-kooi-env-docs/discussions)
+- ❓ [FAQ](./docs/FAQ.md)
 
 ## 🗺️ Roadmap
 
+### ✅ Completed (v1.0.0)
 - [x] Basic system with auto-updates
 - [x] Staleness checker script
 - [x] Unix/Windows installers
+- [x] Complete example projects (Node.js, Python)
+- [x] Comprehensive documentation (FAQ, Troubleshooting)
+- [x] Validation scripts
+- [x] Contributing guidelines
+- [x] CHANGELOG
+
+### 🔄 In Progress
+- [ ] GitHub Actions CI/CD
+- [ ] Improved error handling in installers
+
+### 📅 Planned
 - [ ] NPM package version
+- [ ] More framework examples (Rust, Go, Ruby, Java, etc.)
 - [ ] VSCode extension
-- [ ] GitHub Action for CI integration
-- [ ] More framework examples
 - [ ] Video tutorials
 - [ ] Documentation website
+- [ ] Homebrew/Chocolatey packages
 
 ---
 
