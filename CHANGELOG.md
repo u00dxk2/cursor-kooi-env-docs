@@ -9,19 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Comprehensive improvement plan document
-- CONTRIBUTING.md with contribution guidelines
-- This CHANGELOG.md file
-- Enhanced template with generic placeholders instead of hardcoded paths
-- Example projects for multiple frameworks
+_No unreleased changes yet._
 
-### Changed
-- Template `project-environment.md` now uses generic placeholders
-- Improved documentation structure
+---
+
+## [1.0.1] - 2025-10-05
 
 ### Fixed
-- Template file no longer contains project-specific paths
+- **Installer messaging clarity** ([#2](https://github.com/u00dxk2/cursor-kooi-env-docs/pull/2)): Changed "Installation complete!" to "Template files installed successfully!" to prevent users from thinking they're done when they still need to create `project-environment.md`
+- **Git commit guidance**: Added explicit warnings in installers, quick-prompt.txt, and template README to prevent confusion about committing the `.cursor/` directory
+  - Fixed ambiguous wording that led AI agents to suggest gitignoring `.cursor/` or treating it as partially tracked
+  - Now explicitly states: "Commit the ENTIRE .cursor/ directory to Git. Do NOT add it to .gitignore."
+
+### Changed
+- Installer success message is now more accurate about completion status
+- Git commit instructions emphasize committing ALL `.cursor/` files, not just `project-environment.md`
 
 ---
 
@@ -93,6 +95,7 @@ irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.
 
 ## Version History
 
+- **1.0.1** (2025-10-05) - Bug fix release (installer messaging, git guidance)
 - **1.0.0** (2025-10-04) - Initial public release
 - **Unreleased** - Current development version
 
@@ -112,6 +115,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this 
 
 ---
 
-[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/releases/tag/v1.0.0
 
