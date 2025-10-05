@@ -2,6 +2,9 @@
 
 This directory contains documentation and rules that help AI assistants work more effectively with this project.
 
+> **⚠️ IMPORTANT:** This entire directory should be committed to Git and shared with your team.  
+> **Do NOT add `.cursor/` to `.gitignore`** - it contains project documentation, not personal preferences.
+
 ## 📁 Files Overview
 
 ### Documentation
