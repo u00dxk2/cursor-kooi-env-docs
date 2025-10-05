@@ -101,7 +101,7 @@ chmod +x .cursor/check-env-docs.sh 2>/dev/null || true
 chmod +x .cursor/validate-install.sh 2>/dev/null || true
 
 echo ""
-echo -e "${GREEN}✅ Installation complete!${NC}"
+echo -e "${GREEN}✅ Template files installed successfully!${NC}"
 echo ""
 
 # Show summary
@@ -115,7 +115,11 @@ if [ ${#installed_files[@]} -gt 0 ] || [ ${#skipped_files[@]} -gt 0 ]; then
     echo ""
 fi
 
-echo -e "${BLUE}📝 Next steps:${NC}"
+echo -e "${RED}⚠️  IMPORTANT: Installation requires one more critical step!${NC}"
+echo -e "${YELLOW}You must create the project-environment.md file to complete setup.${NC}"
+echo ""
+
+echo -e "${BLUE}📝 Next steps to complete installation:${NC}"
 echo "1. View the quick prompt:"
 echo -e "   ${YELLOW}cat .cursor/quick-prompt.txt${NC}"
 echo ""
