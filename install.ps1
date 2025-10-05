@@ -83,7 +83,7 @@ if ($failedDownloads -gt 0) {
     exit 1
 }
 
-Write-Host "`n✅ Installation complete!" -ForegroundColor Green
+Write-Host "`n✅ Template files installed successfully!" -ForegroundColor Green
 Write-Host ""
 
 # Show summary
@@ -100,7 +100,10 @@ if ($installedFiles.Count -gt 0 -or $skippedFiles.Count -gt 0) {
     Write-Host ""
 }
 
-Write-Host "📝 Next steps:" -ForegroundColor Cyan
+Write-Host "⚠️  IMPORTANT: Installation requires one more critical step!" -ForegroundColor Red
+Write-Host "You must create the project-environment.md file to complete setup.`n" -ForegroundColor Yellow
+
+Write-Host "📝 Next steps to complete installation:" -ForegroundColor Cyan
 Write-Host "1. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
