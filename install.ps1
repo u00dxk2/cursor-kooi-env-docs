@@ -1,6 +1,7 @@
 # Cursor Environment Docs System - Installer (Windows)
 # https://github.com/u00dxk2/cursor-kooi-env-docs
 # Version: 1.0.1
+# Updated: 2025-10-05
 
 # Parse command line arguments
 $forceInstall = $args -contains "--force"
