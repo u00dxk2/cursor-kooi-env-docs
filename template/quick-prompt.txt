@@ -44,7 +44,15 @@ When starting a new session:
 3. Update this doc when you discover environment changes
 ```
 
-After creating it, commit the file to the repository so it's preserved for future sessions.
+After creating it, commit ALL .cursor/ files to the repository:
+
+```bash
+git add .cursor/
+git commit -m "feat: Add environment documentation system"
+```
+
+⚠️ IMPORTANT: Commit the ENTIRE .cursor/ directory to Git. Do NOT add it to .gitignore.
+This directory contains shared project documentation that benefits all team members.
 
 ================================================================================
 

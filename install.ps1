@@ -109,9 +109,12 @@ Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "2. Open this project with Cursor"
 Write-Host "3. Ask Cursor to create .cursor\project-environment.md using the prompt"
-Write-Host "4. Commit the files:"
+Write-Host "4. Commit ALL .cursor/ files to Git:"
 Write-Host "   git add .cursor\" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "   ⚠️  IMPORTANT: Commit the ENTIRE .cursor\ directory." -ForegroundColor Yellow
+Write-Host "   Do NOT add .cursor\ to .gitignore - it's shared team documentation!" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "📊 Check documentation status anytime:" -ForegroundColor Cyan
 Write-Host "   .\.cursor\check-env-docs.ps1" -ForegroundColor Yellow
