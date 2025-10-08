@@ -1,7 +1,7 @@
 # Check Environment Documentation Staleness
-# Run this script to see if .cursor/project-environment.md needs review
+# Run this script to see if .cursor/project-environment.mdc needs review
 
-$envDocPath = ".cursor/project-environment.md"
+$envDocPath = ".cursor/project-environment.mdc"
 $warningDays = 7
 $criticalDays = 14
 

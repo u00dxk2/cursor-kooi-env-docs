@@ -95,14 +95,14 @@ bash install.sh --force  # Overwrites everything
 
 Add `--update` mode that:
 - Intelligently updates system files
-- Never touches user-created files (project-environment.md)
+- Never touches user-created files (project-environment.mdc)
 - Shows changelog of what's new
 - Offers to merge changes
 
 ## Files That Need Protection
 
 ### USER FILES (never overwrite):
-- ❌ `.cursor/project-environment.md` - User's documentation
+- ❌ `.cursor/project-environment.mdc` - User's documentation
 - ❌ Any files not in our template
 
 ### SYSTEM FILES (ask before overwriting):

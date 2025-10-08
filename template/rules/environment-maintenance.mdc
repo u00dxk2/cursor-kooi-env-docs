@@ -7,12 +7,12 @@ description: Instructions for keeping project environment documentation current
 
 ## Purpose
 
-Keep `.cursor/project-environment.md` accurate and up-to-date so AI assistants have current context about the development environment.
+Keep `.cursor/project-environment.mdc` accurate and up-to-date so AI assistants have current context about the development environment.
 
 ## When to Check
 
 **At Every Session Start (highest priority):**
-- Read `.cursor/project-environment.md` immediately
+- Read `.cursor/project-environment.mdc` immediately
 - Check the "Last Updated" date
 - Offer to review and update if stale (>7 days = review, >14 days = urgent)
 
@@ -59,7 +59,7 @@ When updating the timestamp:
 ## Offer Format
 
 When offering to review (if stale):
-> "I noticed the project environment documentation hasn't been updated in X days. Would you like me to review and update `.cursor/project-environment.md` to ensure it's current?"
+> "I noticed the project environment documentation hasn't been updated in X days. Would you like me to review and update `.cursor/project-environment.mdc` to ensure it's current?"
 
 ## What NOT to Do
 

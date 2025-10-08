@@ -58,7 +58,7 @@ The installation scripts (`install.ps1`, `install.sh`):
 
 ### Don't Commit Secrets
 
-**⚠️ Important:** The `.cursor/project-environment.md` file may contain:
+**⚠️ Important:** The `.cursor/project-environment.mdc` file may contain:
 - Environment variable names
 - Command examples
 - Directory paths

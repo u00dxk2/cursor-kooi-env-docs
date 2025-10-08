@@ -46,7 +46,7 @@ check_optional_file() {
 
 # 1. Check required files
 echo -e "${CYAN}[Required Files]${NC}"
-check_file_exists ".cursor/project-environment.md" "project-environment.md"
+check_file_exists ".cursor/project-environment.mdc" "project-environment.mdc"
 check_file_exists ".cursor/rules/environment-maintenance.mdc" "environment-maintenance.mdc"
 
 # 2. Check optional but recommended files
@@ -56,11 +56,11 @@ check_optional_file ".cursor/check-env-docs.ps1" "check-env-docs.ps1"
 check_optional_file ".cursor/check-env-docs.sh" "check-env-docs.sh"
 check_optional_file ".cursor/README.md" "README.md"
 
-# 3. Validate project-environment.md format
+# 3. Validate project-environment.mdc format
 echo -e "\n${CYAN}[Document Format]${NC}"
 
-if [ -f ".cursor/project-environment.md" ]; then
-    content=$(cat .cursor/project-environment.md)
+if [ -f ".cursor/project-environment.mdc" ]; then
+    content=$(cat .cursor/project-environment.mdc)
     
     # Check for Last Updated (using grep -E for cross-platform compatibility)
     if echo "$content" | grep -qE 'Last Updated:.*[0-9]{4}-[0-9]{2}-[0-9]{2}'; then

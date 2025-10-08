@@ -19,7 +19,7 @@ def index():
     return jsonify({
         'message': 'Welcome to the Python Flask example!',
         'docs': 'This project uses Cursor Environment Docs',
-        'tip': 'Check .cursor/project-environment.md for environment details'
+        'tip': 'Check .cursor/project-environment.mdc for environment details'
     })
 
 
@@ -45,7 +45,7 @@ def env_info():
 if __name__ == '__main__':
     port = app.config['PORT']
     print(f"🚀 Server running on http://localhost:{port}")
-    print("📚 Environment docs: .cursor/project-environment.md")
+    print("📚 Environment docs: .cursor/project-environment.mdc")
     print("🔍 Check staleness: ./.cursor/check-env-docs.sh (or .ps1)")
     
     app.run(

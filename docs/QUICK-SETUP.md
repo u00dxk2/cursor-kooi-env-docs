@@ -45,7 +45,7 @@ Open with Cursor and paste prompt from quick-prompt.txt
 ## 📋 Files You Need
 
 ### Required:
-- ✅ `.cursor/project-environment.md` (AI generates this)
+- ✅ `.cursor/project-environment.mdc` (AI generates this)
 - ✅ `.cursor/rules/environment-maintenance.mdc` (copy from here)
 
 ### Helpful:
@@ -76,7 +76,7 @@ Copy-Item ".cursor\quick-prompt.txt", ".cursor\rules\environment-maintenance.mdc
 cp .cursor/{quick-prompt.txt,check-env-docs.sh} .cursor/rules/environment-maintenance.mdc /path/to/other-project/.cursor/
 ```
 
-Then have AI generate the `project-environment.md` file.
+Then have AI generate the `project-environment.mdc` file.
 
 **Done!** 🎉
 

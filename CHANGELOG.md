@@ -16,14 +16,14 @@ _No unreleased changes yet._
 ## [1.0.1] - 2025-10-05
 
 ### Fixed
-- **Installer messaging clarity** ([#2](https://github.com/u00dxk2/cursor-kooi-env-docs/pull/2)): Changed "Installation complete!" to "Template files installed successfully!" to prevent users from thinking they're done when they still need to create `project-environment.md`
+- **Installer messaging clarity** ([#2](https://github.com/u00dxk2/cursor-kooi-env-docs/pull/2)): Changed "Installation complete!" to "Template files installed successfully!" to prevent users from thinking they're done when they still need to create `project-environment.mdc`
 - **Git commit guidance**: Added explicit warnings in installers, quick-prompt.txt, and template README to prevent confusion about committing the `.cursor/` directory
   - Fixed ambiguous wording that led AI agents to suggest gitignoring `.cursor/` or treating it as partially tracked
   - Now explicitly states: "Commit the ENTIRE .cursor/ directory to Git. Do NOT add it to .gitignore."
 
 ### Changed
 - Installer success message is now more accurate about completion status
-- Git commit instructions emphasize committing ALL `.cursor/` files, not just `project-environment.md`
+- Git commit instructions emphasize committing ALL `.cursor/` files, not just `project-environment.mdc`
 
 ---
 
@@ -33,7 +33,7 @@ _No unreleased changes yet._
 - Initial release of Cursor Environment Docs system
 - One-line installers for Windows (PowerShell) and Unix/Linux (Bash)
 - Template files for environment documentation
-- `project-environment.md` template for AI assistants
+- `project-environment.mdc` template for AI assistants
 - `quick-prompt.txt` for rapid documentation generation
 - `check-env-docs` scripts (PowerShell and Bash) for staleness checking
 - `environment-maintenance.mdc` rule file for AI assistant behavior

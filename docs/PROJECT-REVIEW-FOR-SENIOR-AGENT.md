@@ -76,7 +76,7 @@ An auto-maintaining documentation system that:
 - `README.md` - System overview
 
 #### 2. Documentation System
-**Core File:** `project-environment.md` (AI-generated per project)
+**Core File:** `project-environment.mdc` (AI-generated per project)
 
 **Contents:**
 - Directory structure with absolute paths
@@ -116,7 +116,7 @@ An auto-maintaining documentation system that:
 **Each Contains:**
 - Complete working application
 - Full `.cursor/` directory setup
-- Comprehensive `project-environment.md` (400-500 lines)
+- Comprehensive `project-environment.mdc` (400-500 lines)
 - README explaining the example
 - All necessary config files
 
@@ -138,7 +138,7 @@ An auto-maintaining documentation system that:
 ### Templates
 
 **Directory:** `template/`
-- `project-environment.md` - Generic template (fixed from hardcoded version)
+- `project-environment.mdc` - Generic template (fixed from hardcoded version)
 - `quick-prompt.txt` - Copy-paste prompt for AI
 - `check-env-docs.ps1/.sh` - Staleness checkers
 - `validate-install.ps1/.sh` - Installation validators

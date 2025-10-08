@@ -5,7 +5,7 @@ This is a complete example of a Python/Flask project using the Cursor Environmen
 ## What This Example Shows
 
 - ✅ Proper `.cursor/` directory structure for Python projects
-- ✅ Real `project-environment.md` for a Flask application
+- ✅ Real `project-environment.mdc` for a Flask application
 - ✅ Shell-specific command examples (Unix and Windows)
 - ✅ pip/venv package management documentation
 - ✅ Common Python development gotchas
@@ -17,7 +17,7 @@ This is a complete example of a Python/Flask project using the Cursor Environmen
 ```
 python-flask/
 ├── .cursor/                    # Environment docs system
-│   ├── project-environment.md  # Complete Python/Flask environment docs
+│   ├── project-environment.mdc # Complete Python/Flask environment docs
 │   ├── quick-prompt.txt
 │   ├── check-env-docs.sh
 │   ├── check-env-docs.ps1
@@ -68,7 +68,7 @@ python-flask/
 
 ## What's Documented
 
-The `.cursor/project-environment.md` file demonstrates how to document:
+The `.cursor/project-environment.mdc` file demonstrates how to document:
 
 - **Virtual environment** setup and activation
 - **Shell differences** (PowerShell vs Bash) for Python
@@ -90,11 +90,11 @@ Copy the `.cursor/` directory to your own Python project:
 cp -r examples/python-flask/.cursor /path/to/your-project/
 ```
 
-Then customize `project-environment.md` for your specific setup.
+Then customize `project-environment.mdc` for your specific setup.
 
 ### Option 2: Use as Reference
 
-Open `.cursor/project-environment.md` to see how Python-specific documentation should look.
+Open `.cursor/project-environment.mdc` to see how Python-specific documentation should look.
 
 ### Option 3: Generate Your Own
 

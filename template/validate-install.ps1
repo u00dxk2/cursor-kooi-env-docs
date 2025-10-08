@@ -34,7 +34,7 @@ function Test-OptionalFile {
 
 # 1. Check required files
 Write-Host "[Required Files]" -ForegroundColor Cyan
-Test-FileExists ".cursor/project-environment.md" "project-environment.md"
+Test-FileExists ".cursor/project-environment.mdc" "project-environment.mdc"
 Test-FileExists ".cursor/rules/environment-maintenance.mdc" "environment-maintenance.mdc"
 
 # 2. Check optional but recommended files
@@ -44,11 +44,11 @@ Test-OptionalFile ".cursor/check-env-docs.ps1" "check-env-docs.ps1"
 Test-OptionalFile ".cursor/check-env-docs.sh" "check-env-docs.sh"
 Test-OptionalFile ".cursor/README.md" "README.md"
 
-# 3. Validate project-environment.md format
+# 3. Validate project-environment.mdc format
 Write-Host "`n[Document Format]" -ForegroundColor Cyan
 
-if (Test-Path ".cursor/project-environment.md") {
-    $content = Get-Content ".cursor/project-environment.md" -Raw
+if (Test-Path ".cursor/project-environment.mdc") {
+    $content = Get-Content ".cursor/project-environment.mdc" -Raw
     
     # Check for Last Updated
     if ($content -match '>\s*\*\*Last Updated:\*\*\s*\d{4}-\d{2}-\d{2}') {

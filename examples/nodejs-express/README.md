@@ -5,7 +5,7 @@ This is a complete example of a Node.js/Express project using the Cursor Environ
 ## What This Example Shows
 
 - ✅ Proper `.cursor/` directory structure
-- ✅ Real `project-environment.md` for a Node.js project
+- ✅ Real `project-environment.mdc` for a Node.js project
 - ✅ Shell-specific command examples (both Unix and Windows)
 - ✅ npm package management documentation
 - ✅ Common Node.js development gotchas
@@ -17,7 +17,7 @@ This is a complete example of a Node.js/Express project using the Cursor Environ
 ```
 nodejs-express/
 ├── .cursor/                    # Environment docs system
-│   ├── project-environment.md  # Complete Node.js environment docs
+│   ├── project-environment.mdc # Complete Node.js environment docs
 │   ├── quick-prompt.txt
 │   ├── check-env-docs.sh
 │   ├── check-env-docs.ps1
@@ -54,7 +54,7 @@ nodejs-express/
 
 ## What's Documented
 
-The `.cursor/project-environment.md` file demonstrates how to document:
+The `.cursor/project-environment.mdc` file demonstrates how to document:
 
 - **Directory structure** with absolute paths
 - **Shell differences** (PowerShell vs Bash)
@@ -76,11 +76,11 @@ Copy the `.cursor/` directory to your own Node.js project:
 cp -r examples/nodejs-express/.cursor /path/to/your-project/
 ```
 
-Then customize `project-environment.md` for your specific setup.
+Then customize `project-environment.mdc` for your specific setup.
 
 ### Option 2: Use as Reference
 
-Open `.cursor/project-environment.md` to see:
+Open `.cursor/project-environment.mdc` to see:
 - What information to include
 - How to format it
 - Examples of good documentation

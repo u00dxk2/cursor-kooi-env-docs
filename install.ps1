@@ -103,14 +103,14 @@ if ($installedFiles.Count -gt 0 -or $skippedFiles.Count -gt 0) {
 }
 
 Write-Host "⚠️  IMPORTANT: Installation requires one more critical step!" -ForegroundColor Red
-Write-Host "You must create the project-environment.md file to complete setup.`n" -ForegroundColor Yellow
+Write-Host "You must create the project-environment.mdc file to complete setup.`n" -ForegroundColor Yellow
 
 Write-Host "📝 Next steps to complete installation:" -ForegroundColor Cyan
 Write-Host "1. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "2. Open this project with Cursor"
-Write-Host "3. Ask Cursor to create .cursor\project-environment.md using the prompt"
+Write-Host "3. Ask Cursor to create .cursor\project-environment.mdc using the prompt"
 Write-Host "4. Commit ALL .cursor/ files to Git:"
 Write-Host "   git add .cursor\" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow

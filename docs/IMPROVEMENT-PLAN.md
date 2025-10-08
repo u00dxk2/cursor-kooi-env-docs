@@ -41,9 +41,9 @@ This document outlines the comprehensive improvement plan for cursor-kooi-env-do
 **Goal:** Fix blocking issues that affect credibility and functionality
 
 #### 1.1 Fix Template File
-- **Issue:** `template/project-environment.md` contains hardcoded paths from "decomposer" project
+- **Issue:** `template/project-environment.mdc` contains hardcoded paths from "decomposer" project
 - **Solution:** Create generic placeholder template or remove file entirely (meant to be AI-generated)
-- **Files:** `template/project-environment.md`
+- **Files:** `template/project-environment.mdc`
 
 #### 1.2 Create CONTRIBUTING.md
 - **Issue:** README references missing file
@@ -67,7 +67,7 @@ This document outlines the comprehensive improvement plan for cursor-kooi-env-do
   ```
   examples/nodejs-express/
   ├── .cursor/
-  │   ├── project-environment.md (real example)
+  │   ├── project-environment.mdc (real example)
   │   ├── quick-prompt.txt
   │   ├── check-env-docs.sh
   │   ├── check-env-docs.ps1
@@ -300,7 +300,7 @@ cursor-kooi-env-docs/
 │   ├── validate-install.sh (new)
 │   ├── uninstall.ps1 (new)
 │   ├── uninstall.sh (new)
-│   ├── project-environment.md (fixed)
+│   ├── project-environment.mdc (fixed)
 │   ├── quick-prompt.txt
 │   ├── env-docs.config.json (new)
 │   ├── README.md

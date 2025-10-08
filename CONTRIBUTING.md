@@ -98,7 +98,7 @@ One of the most valuable contributions! We need examples for various tech stacks
 ```
 examples/[framework-name]/
 ├── .cursor/
-│   ├── project-environment.md  # Complete, realistic example
+│   ├── project-environment.mdc # Complete, realistic example
 │   ├── quick-prompt.txt
 │   ├── check-env-docs.sh
 │   ├── check-env-docs.ps1
@@ -396,7 +396,7 @@ bash /path/to/install.sh  # Should warn but allow continuation
 **Check script testing:**
 ```bash
 # Test current status (< 7 days)
-# Manually set date to today in project-environment.md
+# Manually set date to today in project-environment.mdc
 ./.cursor/check-env-docs.sh
 
 # Test warning status (7-13 days)
@@ -408,7 +408,7 @@ bash /path/to/install.sh  # Should warn but allow continuation
 ./.cursor/check-env-docs.sh
 
 # Test missing file
-rm .cursor/project-environment.md
+rm .cursor/project-environment.mdc
 ./.cursor/check-env-docs.sh
 ```
 

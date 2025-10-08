@@ -58,7 +58,7 @@ cp "$source/README.md" "$dest/"  # optional
 Open your target project in Cursor and paste this prompt:
 
 ```
-Please create a `.cursor/project-environment.md` file documenting this development environment. Include:
+Please create a `.cursor/project-environment.mdc` file documenting this development environment. Include:
 
 1. **Directory Structure** - Absolute project root path and path format (Windows/Unix)
 
@@ -167,7 +167,7 @@ Create a **project template** repository:
        ├── check-env-docs.ps1
        ├── rules/
        │   └── environment-maintenance.mdc
-       └── project-environment.md (template version)
+       └── project-environment.mdc (template version)
    ```
 
 3. **When starting a new project:**
@@ -180,7 +180,7 @@ Create a **project template** repository:
    rm -rf .git
    git init
    
-   # Update project-environment.md for this specific project
+   # Update project-environment.mdc for this specific project
    # (or have AI regenerate it)
    
    # Start building your project
@@ -204,7 +204,7 @@ cursor-env-docs init
 
 After setup, verify everything works:
 
-- [ ] `.cursor/project-environment.md` exists with current date
+- [ ] `.cursor/project-environment.mdc` exists with current date
 - [ ] `.cursor/rules/environment-maintenance.mdc` exists
 - [ ] Check script runs without errors
 - [ ] Cursor reads the doc at session start
@@ -258,7 +258,7 @@ After setup, verify everything works:
 
 **"Check script fails"**
 - Make sure you're running from project root
-- Check that `.cursor/project-environment.md` exists
+- Check that `.cursor/project-environment.mdc` exists
 - Verify the "Last Updated" line format matches the regex
 
 **"Doc is always marked as current even when old"**
@@ -272,5 +272,5 @@ After setup, verify everything works:
 - **Full guide:** `.cursor/create-environment-docs-prompt.md`
 - **Quick prompt:** `.cursor/quick-prompt.txt`  
 - **AI rules:** `.cursor/rules/environment-maintenance.mdc`
-- **This project's example:** `.cursor/project-environment.md`
+- **This project's example:** `.cursor/project-environment.mdc`
 

@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to the Node.js Express example!',
     docs: 'This project uses Cursor Environment Docs',
-    tip: 'Check .cursor/project-environment.md for environment details'
+    tip: 'Check .cursor/project-environment.mdc for environment details'
   });
 });
 
@@ -32,7 +32,7 @@ app.get('/env', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📚 Environment docs: .cursor/project-environment.md`);
+  console.log(`📚 Environment docs: .cursor/project-environment.mdc`);
   console.log(`🔍 Check staleness: ./.cursor/check-env-docs.sh (or .ps1)`);
 });
 

@@ -23,7 +23,7 @@ This document summarizes all the improvements made to the Cursor Environment Doc
 **Solution:** Created generic, placeholder-based template
 
 **Files Modified:**
-- `template/project-environment.md` - Now generic and reusable
+- `template/project-environment.mdc` - Now generic and reusable
 
 **Impact:** Template can be used by any project without modification
 
@@ -61,7 +61,7 @@ This document summarizes all the improvements made to the Cursor Environment Doc
 - `package.json` - Working Node.js project
 - `src/index.js` - Functional Express server
 - `.gitignore` - Proper exclusions
-- `.cursor/project-environment.md` - Comprehensive Node.js env docs (400+ lines)
+- `.cursor/project-environment.mdc` - Comprehensive Node.js env docs (400+ lines)
 - `.cursor/README.md` - Example-specific guidance
 - `.cursor/quick-prompt.txt` - Template prompt
 - `.cursor/check-env-docs.ps1` - PowerShell checker
@@ -73,7 +73,7 @@ This document summarizes all the improvements made to the Cursor Environment Doc
 - `requirements.txt` - Python dependencies
 - `app/app.py` - Functional Flask application
 - `.gitignore` - Python-specific exclusions
-- `.cursor/project-environment.md` - Comprehensive Python/Flask env docs (500+ lines)
+- `.cursor/project-environment.mdc` - Comprehensive Python/Flask env docs (500+ lines)
 - `.cursor/README.md` - Example-specific guidance
 - Complete `.cursor/` structure (same as Node.js)
 
@@ -262,7 +262,7 @@ cursor-kooi-env-docs/
 │       ├── requirements.txt
 │       └── README.md
 ├── template/
-│   ├── project-environment.md    ✅ FIXED - Generic template
+│   ├── project-environment.mdc   ✅ FIXED - Generic template
 │   ├── validate-install.ps1      ✅ NEW - Validation script
 │   ├── validate-install.sh       ✅ NEW - Validation script
 │   ├── check-env-docs.ps1        ✅ Existing

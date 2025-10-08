@@ -55,7 +55,7 @@ After installation:
 1. Open your project with an AI assistant
 2. Ask it to create the environment documentation:
    ```
-   Create .cursor/project-environment.md following the template in .cursor/quick-prompt.txt
+   Create .cursor/project-environment.mdc following the template in .cursor/quick-prompt.txt
    ```
 3. Commit the files:
    ```bash
@@ -105,7 +105,7 @@ The system captures:
 ### Automatic Updates (The Smart Way)
 
 **Every new Cursor conversation:**
-1. ✅ AI reads `.cursor/project-environment.md` immediately
+1. ✅ AI reads `.cursor/project-environment.mdc` immediately
 2. ✅ Checks "Last Updated" date automatically
 3. ✅ Offers to review and update if stale
 
@@ -139,7 +139,7 @@ After installation, your project will have:
 ```
 your-project/
 └── .cursor/
-    ├── project-environment.md      # Your project's environment docs (AI-generated)
+    ├── project-environment.mdc     # Your project's environment docs (AI-generated)
     ├── quick-prompt.txt            # Template for AI to use
     ├── check-env-docs.sh/.ps1      # Staleness checker
     ├── README.md                   # System overview
@@ -149,7 +149,7 @@ your-project/
 
 ## 🤝 Team Collaboration
 
-**Multi-platform teams?** No problem! The `.cursor/project-environment.md` file should document ALL team members' platforms:
+**Multi-platform teams?** No problem! The `.cursor/project-environment.mdc` file should document ALL team members' platforms:
 
 ```markdown
 ## Shell Environment
@@ -195,7 +195,7 @@ See the `/examples` directory for complete implementations:
 ### Basic Workflow
 
 1. **Setup** (once): Run installer in your project
-2. **Generate** (once): Have AI create project-environment.md
+2. **Generate** (once): Have AI create project-environment.mdc
 3. **Use**: AI automatically reads it in every session
 4. **Update**: AI offers to update when stale
 
@@ -208,7 +208,7 @@ See the `/examples` directory for complete implementations:
 - No manual work required - it just works!
 
 **Using with Other AI Tools:**
-While designed for Cursor, you can manually share the `project-environment.md` file with other AI assistants (Claude, ChatGPT, etc.), but automatic date checking and maintenance won't work.
+While designed for Cursor, you can manually share the `project-environment.mdc` file with other AI assistants (Claude, ChatGPT, etc.), but automatic date checking and maintenance won't work.
 
 ### Validation
 
@@ -230,7 +230,7 @@ This checks:
 
 ### Customization
 
-Edit `.cursor/project-environment.md` to:
+Edit `.cursor/project-environment.mdc` to:
 - Change review frequency (default: 7 days)
 - Add project-specific sections
 - Document unique gotchas

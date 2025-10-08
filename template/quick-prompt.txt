@@ -1,7 +1,7 @@
 COPY-PASTE THIS TO ANOTHER AI ASSISTANT:
 ================================================================================
 
-Please create a `.cursor/project-environment.md` file documenting this development environment. Include:
+Please create a `.cursor/project-environment.mdc` file documenting this development environment. Include:
 
 1. **Directory Structure** - Absolute project root path and path format (Windows/Unix)
 

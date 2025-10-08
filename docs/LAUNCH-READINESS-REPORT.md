@@ -95,7 +95,7 @@ bash install.sh --force
 ```
 
 **Why This Was Critical:**
-- Original implementation only checked `project-environment.md` (which users create later)
+- Original implementation only checked `project-environment.mdc` (which users create later)
 - Would silently overwrite `README.md`, `check-env-docs.sh`, and other files
 - No backup, no warning, no undo
 - Could destroy customized scripts or rules
@@ -170,7 +170,7 @@ files automatically. This is a Cursor behavior that varies by version.
 If the AI doesn't mention checking the documentation after 7 days, manually remind it:
 
 ```
-Please check .cursor/project-environment.md and let me know if it needs updating 
+Please check .cursor/project-environment.mdc and let me know if it needs updating 
 (check the Last Updated date).
 ```
 ```
@@ -220,7 +220,7 @@ Please check .cursor/project-environment.md and let me know if it needs updating
 
 ### 5. Secret Handling Warnings
 
-**Issue:** Users might accidentally include API keys or secrets in `project-environment.md`, which gets committed to git and sent to AI providers.
+**Issue:** Users might accidentally include API keys or secrets in `project-environment.mdc`, which gets committed to git and sent to AI providers.
 
 **Impact:** High - Potential security vulnerability if users misunderstand
 
@@ -238,7 +238,7 @@ Please check .cursor/project-environment.md and let me know if it needs updating
 ```markdown
 **❌ NEVER store actual secret values in the documentation!**
 
-The `project-environment.md` file is:
+The `project-environment.mdc` file is:
 - Committed to git (visible to all team members)
 - Read by Cursor and sent to AI model providers (OpenAI, Anthropic, etc.)
 - Potentially included in AI conversation logs

@@ -8,7 +8,7 @@ This directory contains documentation and rules that help AI assistants work mor
 ## 📁 Files Overview
 
 ### Documentation
-- **`project-environment.md`** - Current environment setup, shell syntax, common commands, tech stack
+- **`project-environment.mdc`** - Current environment setup, shell syntax, common commands, tech stack
   - 🔄 Auto-checked by AI at session start
   - 📅 Review every 7 days
   - ✅ Update when environment changes
@@ -27,7 +27,7 @@ This directory contains documentation and rules that help AI assistants work mor
 ## 🔄 How It Works
 
 ### Automatic Updates
-1. **At Session Start:** AI checks `project-environment.md` "Last Updated" date
+1. **At Session Start:** AI checks `project-environment.mdc` "Last Updated" date
 2. **If >7 days old:** AI offers to review and update
 3. **If >14 days old:** AI strongly recommends immediate review
 4. **During Work:** AI updates when discovering environment changes
@@ -78,14 +78,14 @@ To set up environment docs on another project:
 ## 📊 Maintenance Log Location
 
 View recent changes to environment docs:
-- Open `project-environment.md`
+- Open `project-environment.mdc`
 - See "Maintenance Log" table at the top
 - Shows date, change description, and who updated it
 
 ## 🤖 For AI Assistants
 
 When starting a new session:
-1. Read `project-environment.md` 
+1. Read `project-environment.mdc` 
 2. Check the "Last Updated" date
 3. Follow instructions in `rules/environment-maintenance.mdc`
 4. Update docs when you discover environment changes

@@ -117,7 +117,7 @@ if [ ${#installed_files[@]} -gt 0 ] || [ ${#skipped_files[@]} -gt 0 ]; then
 fi
 
 echo -e "${RED}⚠️  IMPORTANT: Installation requires one more critical step!${NC}"
-echo -e "${YELLOW}You must create the project-environment.md file to complete setup.${NC}"
+echo -e "${YELLOW}You must create the project-environment.mdc file to complete setup.${NC}"
 echo ""
 
 echo -e "${BLUE}📝 Next steps to complete installation:${NC}"
@@ -125,7 +125,7 @@ echo "1. View the quick prompt:"
 echo -e "   ${YELLOW}cat .cursor/quick-prompt.txt${NC}"
 echo ""
 echo "2. Open this project with Cursor"
-echo "3. Ask Cursor to create .cursor/project-environment.md using the prompt"
+echo "3. Ask Cursor to create .cursor/project-environment.mdc using the prompt"
 echo "4. Commit ALL .cursor/ files to Git:"
 echo -e "   ${YELLOW}git add .cursor/${NC}"
 echo -e "   ${YELLOW}git commit -m 'feat: Add environment documentation system'${NC}"
