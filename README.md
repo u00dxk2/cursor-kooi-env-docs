@@ -20,24 +20,24 @@ Stop wasting time explaining your environment setup to Cursor in every conversat
 
 **macOS/Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.ps1 | iex
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 | iex
 ```
 
-> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.0.1/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
+> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.1.0/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
 
 > **⚠️ Existing .cursor/ Setup:** The installer **preserves existing files** by default. If you have an existing `.cursor/` directory, only missing files will be added. To overwrite everything (clean reinstall), download the installer and run with `--force` flag:
 > ```bash
 > # Unix/Mac
-> curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.sh -o install.sh
+> curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh -o install.sh
 > bash install.sh --force
 > 
 > # Windows
-> irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.ps1 -OutFile install.ps1
+> irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 -OutFile install.ps1
 > .\install.ps1 --force
 > ```
 
@@ -55,7 +55,7 @@ After installation:
 1. Open your project with an AI assistant
 2. Ask it to create the environment documentation:
    ```
-   Create .cursor/project-environment.md following the template in .cursor/quick-prompt.txt
+   Create .cursor/rules/project-environment.mdc following the template in .cursor/quick-prompt.txt
    ```
 3. Commit the files:
    ```bash
@@ -105,7 +105,7 @@ The system captures:
 ### Automatic Updates (The Smart Way)
 
 **Every new Cursor conversation:**
-1. ✅ AI reads `.cursor/project-environment.md` immediately
+1. ✅ AI automatically loads `.cursor/rules/project-environment.mdc` at session start
 2. ✅ Checks "Last Updated" date automatically
 3. ✅ Offers to review and update if stale
 
@@ -139,17 +139,18 @@ After installation, your project will have:
 ```
 your-project/
 └── .cursor/
-    ├── project-environment.md      # Your project's environment docs (AI-generated)
     ├── quick-prompt.txt            # Template for AI to use
     ├── check-env-docs.sh/.ps1      # Staleness checker
+    ├── validate-install.sh/.ps1    # Installation validator
     ├── README.md                   # System overview
     └── rules/
+        ├── project-environment.mdc      # Your project's environment docs (AI-generated)
         └── environment-maintenance.mdc  # AI behavior rules
 ```
 
 ## 🤝 Team Collaboration
 
-**Multi-platform teams?** No problem! The `.cursor/project-environment.md` file should document ALL team members' platforms:
+**Multi-platform teams?** No problem! The `.cursor/rules/project-environment.mdc` file should document ALL team members' platforms:
 
 ```markdown
 ## Shell Environment
@@ -195,8 +196,8 @@ See the `/examples` directory for complete implementations:
 ### Basic Workflow
 
 1. **Setup** (once): Run installer in your project
-2. **Generate** (once): Have AI create project-environment.md
-3. **Use**: AI automatically reads it in every session
+2. **Generate** (once): Have AI create project-environment.mdc
+3. **Use**: AI automatically loads it at every session start
 4. **Update**: AI offers to update when stale
 
 ### How Cursor Uses It
@@ -208,7 +209,7 @@ See the `/examples` directory for complete implementations:
 - No manual work required - it just works!
 
 **Using with Other AI Tools:**
-While designed for Cursor, you can manually share the `project-environment.md` file with other AI assistants (Claude, ChatGPT, etc.), but automatic date checking and maintenance won't work.
+While designed for Cursor, you can manually share the `project-environment.mdc` file with other AI assistants (Claude, ChatGPT, etc.), but automatic date checking and maintenance won't work.
 
 ### Validation
 
@@ -230,7 +231,7 @@ This checks:
 
 ### Customization
 
-Edit `.cursor/project-environment.md` to:
+Edit `.cursor/rules/project-environment.mdc` to:
 - Change review frequency (default: 7 days)
 - Add project-specific sections
 - Document unique gotchas
@@ -285,7 +286,9 @@ If this tool helps your workflow:
 
 ## 🗺️ Roadmap
 
-### ✅ Completed (v1.0.0)
+### ✅ Completed (v1.1.0)
+- [x] ⭐ Guaranteed auto-loading with `.mdc` format and `alwaysApply: true`
+- [x] ⭐ Migrated to Cursor's official rule system
 - [x] Basic system with auto-updates
 - [x] Staleness checker script
 - [x] Unix/Windows installers
@@ -294,6 +297,7 @@ If this tool helps your workflow:
 - [x] Validation scripts
 - [x] Contributing guidelines
 - [x] CHANGELOG
+- [x] Migration guide for v1.0.x users
 
 ### 🔄 In Progress
 - [ ] GitHub Actions CI/CD

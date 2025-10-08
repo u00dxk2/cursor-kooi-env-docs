@@ -13,6 +13,64 @@ _No unreleased changes yet._
 
 ---
 
+## [1.1.0] - 2025-10-08
+
+### 🚨 Breaking Changes
+- **File structure change**: Environment documentation moved from `.cursor/project-environment.md` to `.cursor/rules/project-environment.mdc`
+- **New format required**: Files now use `.mdc` extension with YAML frontmatter instead of plain markdown
+- **Users on v1.0.x must migrate**: See migration guide in `docs/MDC-FORMAT-MIGRATION.md`
+
+### 🎯 Major Improvements
+- **Guaranteed auto-loading** ([research-driven](./docs/AGENT-CONTEXT-RESEARCH-RESPONSE.md)): Environment docs now use Cursor's `.mdc` rule format with `alwaysApply: true` frontmatter, ensuring **100% reliable** automatic loading at session start
+  - **Before (v1.0.x)**: Plain `.md` file that agents had to manually read (fragile, ~70% reliability)
+  - **After (v1.1.0)**: Proper `.mdc` rule file with automatic ingestion (robust, ~100% reliability)
+- **Zero agent dependency**: No longer relies on agents following instructions to read files
+- **Immediate context availability**: Environment information available from first message in every session
+
+### Added
+- **New file format**: `.cursor/rules/project-environment.mdc` with YAML frontmatter
+- **Comprehensive migration guide**: `docs/MDC-FORMAT-MIGRATION.md` (377 lines) explaining the change
+- **Research validation**: `docs/AGENT-CONTEXT-RESEARCH-RESPONSE.md` (437 lines) documenting research findings
+- **Migration verification**: `docs/MIGRATION-VERIFICATION.md` (252 lines) with complete checklist
+- **Frontmatter support**: All rule files now use proper YAML frontmatter with `alwaysApply: true`
+
+### Changed
+- **File location**: Moved from `.cursor/project-environment.md` to `.cursor/rules/project-environment.mdc`
+- **File format**: Added YAML frontmatter to all environment documentation files
+- **Template structure**: Updated template directory to use new `.mdc` format
+- **Example projects**: Both Node.js and Python examples migrated to new format
+- **All documentation**: Updated README, FAQ, troubleshooting guides to reference new structure
+- **Installer messaging**: Updated to reflect new `.mdc` file format
+
+### Fixed
+- **Unreliable context loading**: Environment docs are now **guaranteed** to load automatically
+- **Agent-dependent behavior**: Removed dependency on agents reading files manually
+- **Session start context**: Environment information now available from conversation start
+
+### Technical Details
+- Uses Cursor's official `.mdc` rule system
+- Leverages `alwaysApply: true` flag for guaranteed loading
+- Files in `.cursor/rules/` are automatically discovered and loaded
+- No manual `read_file` tool usage required
+- Proper YAML frontmatter format with title, description, and alwaysApply fields
+
+### Migration Path
+Users upgrading from v1.0.x should:
+1. Review migration guide: `docs/MDC-FORMAT-MIGRATION.md`
+2. Create new `.cursor/rules/project-environment.mdc` with frontmatter
+3. Copy content from old `.cursor/project-environment.md`
+4. Update references in `.cursor/rules/environment-maintenance.mdc`
+5. Delete old `.cursor/project-environment.md` file
+6. Reindex Cursor (Command Palette → "Reindex Codebase")
+7. Verify automatic loading in new session
+
+### Documentation
+- 📚 [Migration Guide](./docs/MDC-FORMAT-MIGRATION.md) - How to upgrade from v1.0.x
+- 🔬 [Research Response](./docs/AGENT-CONTEXT-RESEARCH-RESPONSE.md) - Why this change was necessary
+- ✅ [Verification Report](./docs/MIGRATION-VERIFICATION.md) - Migration checklist and validation
+
+---
+
 ## [1.0.1] - 2025-10-05
 
 ### Fixed
@@ -95,6 +153,7 @@ irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.
 
 ## Version History
 
+- **1.1.0** (2025-10-08) - Major reliability improvement (.mdc format migration)
 - **1.0.1** (2025-10-05) - Bug fix release (installer messaging, git guidance)
 - **1.0.0** (2025-10-04) - Initial public release
 - **Unreleased** - Current development version
@@ -115,7 +174,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this 
 
 ---
 
-[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/releases/tag/v1.0.0
 

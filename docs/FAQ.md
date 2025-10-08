@@ -49,7 +49,7 @@ README.md is for humans and focuses on "what" and "why". Environment docs are fo
 - Cursor automatically checks the "Last Updated" date
 - Cursor automatically applies the maintenance rules
 
-**Manual use with other tools:** You can share the `project-environment.md` file with other AI assistants (Claude, ChatGPT, etc.) by uploading or pasting it, but the automatic date checking and update system won't work. You'd need to manually remind them to check and update.
+**Manual use with other tools:** You can share the `project-environment.mdc` file with other AI assistants (Claude, ChatGPT, etc.) by uploading or pasting it, but the automatic date checking and update system won't work. You'd need to manually remind them to check and update.
 
 ### Why is this Cursor-specific?
 
@@ -65,12 +65,12 @@ Cursor has built-in support for reading the `.cursor/` directory and applying ru
 
 macOS/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh | bash
 ```
 
 Windows PowerShell:
 ```powershell
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.ps1 | iex
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 | iex
 ```
 
 **Manual install:**
@@ -108,7 +108,7 @@ All are plain text files that work anywhere.
 - Constant overwrites → frustration
 
 **The Solution (do it right):**
-Document all platforms side-by-side in `.cursor/project-environment.md`:
+Document all platforms side-by-side in `.cursor/rules/project-environment.mdc`:
 
 ```markdown
 ## Shell Environment
@@ -184,13 +184,13 @@ Existing files will be preserved (use --force to overwrite)
 **Need a clean reinstall?** Use the `--force` flag:
 ```bash
 # Download installer first
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh -o install.sh
 
 # Run with --force to overwrite everything
 bash install.sh --force
 
 # Or PowerShell:
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/install.ps1 -OutFile install.ps1
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 -OutFile install.ps1
 .\install.ps1 --force
 ```
 
@@ -232,7 +232,7 @@ Remove-Item -Recurse .cursor  # PowerShell
 After installation:
 1. Open project with your AI assistant
 2. Paste the content from `.cursor/quick-prompt.txt`
-3. AI generates `project-environment.md` specific to your project
+3. AI generates `project-environment.mdc` specific to your project
 4. Review and commit: `git add .cursor && git commit -m "feat: add environment docs"`
 
 ### How often should I update the docs?
@@ -259,7 +259,7 @@ You can also run the check script manually: `.cursor/check-env-docs.sh` (or `.ps
 
 ### Can I customize the review frequency?
 
-Yes! In `project-environment.md`, change:
+Yes! In `project-environment.mdc`, change:
 ```markdown
 > **Review Frequency:** Check every 7 days
 ```
@@ -274,7 +274,7 @@ Update to `3 days`, `14 days`, or whatever suits your project.
 
 **❌ NEVER store actual secret values in the documentation!**
 
-The `project-environment.md` file is:
+The `project-environment.mdc` file is:
 - Committed to git (visible to all team members)
 - Read by Cursor and sent to AI model providers (OpenAI, Anthropic, etc.)
 - Potentially included in AI conversation logs
@@ -341,7 +341,7 @@ Required `.env` variables:
 ### What data does this system send to AI providers?
 
 **What gets sent:**
-- Contents of `.cursor/project-environment.md` (your environment docs)
+- Contents of `.cursor/rules/project-environment.mdc` (your environment docs)
 - Contents of `.cursor/rules/*.mdc` (behavior rules for AI)
 
 **What does NOT get sent:**
@@ -465,7 +465,7 @@ Run from PowerShell, not Command Prompt.
 
 **Error:**
 ```
-ERROR: Environment documentation not found at .cursor/project-environment.md
+ERROR: Environment documentation not found at .cursor/rules/project-environment.mdc
 ```
 
 **Solution:**
@@ -486,7 +486,7 @@ If you must change it, update all paths in scripts and documentation.
 
 ### Can I add custom sections to the docs?
 
-**Absolutely!** The `project-environment.md` is YOUR documentation. Add sections for:
+**Absolutely!** The `project-environment.mdc` is YOUR documentation. Add sections for:
 - Deployment procedures
 - Database migration steps
 - API integration notes
@@ -503,7 +503,7 @@ If you must change it, update all paths in scripts and documentation.
 
 ### Can I create templates for specific frameworks?
 
-**Yes!** See `template/project-environment.md` for the generic template. You can create framework-specific templates:
+**Yes!** See `template/rules/project-environment.mdc` for the generic template. You can create framework-specific templates:
 - `template-nextjs.md`
 - `template-django.md`
 - `template-rust.md`
@@ -528,7 +528,7 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines. Ways to help:
 **Please do!** We need examples for more frameworks. See `examples/` directory for structure. Requirements:
 - Complete `.cursor/` directory
 - Working minimal code example
-- Comprehensive `project-environment.md`
+- Comprehensive `project-environment.mdc`
 - Clear README explaining the example
 
 ### How do I report bugs?
