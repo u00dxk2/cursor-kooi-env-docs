@@ -90,7 +90,7 @@ irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.0.1/instal
 .\install.ps1 --force
 ```
 
-⚠️ **Warning:** `--force` will overwrite **all** files in `.cursor/`, including your `project-environment.md`. Back it up first if it contains important documentation!
+⚠️ **Warning:** `--force` will overwrite **all** files in `.cursor/`, including your `project-environment.mdc`. Back it up first if it contains important documentation!
 
 ---
 
@@ -359,7 +359,7 @@ Create a `.gitattributes` file in your project root:
 
 **2. Document Both Shells**
 
-In your `project-environment.md`, include examples for both shells:
+In your `project-environment.mdc`, include examples for both shells:
 
 ```markdown
 ## Common Commands
@@ -472,7 +472,7 @@ Last Updated: 2025-10-04
 If the AI doesn't mention checking the documentation after 7 days, manually remind it:
 
 ```
-Please check .cursor/project-environment.md and let me know if it needs updating (check the Last Updated date).
+Please check .cursor/rules/project-environment.mdc and let me know if it needs updating (check the Last Updated date).
 ```
 
 You can also explicitly reference the rule:
@@ -491,11 +491,12 @@ Please follow the maintenance rule in .cursor/rules/environment-maintenance.mdc
 **5. File not in expected location**
 ```bash
 # Must be at:
-.cursor/project-environment.md
+.cursor/rules/project-environment.mdc
 
 # Not:
-.cursor/docs/project-environment.md
-cursor/project-environment.md
+.cursor/project-environment.md (old location)
+.cursor/docs/project-environment.mdc
+cursor/rules/project-environment.mdc
 ```
 
 ---
@@ -512,7 +513,7 @@ cursor/project-environment.md
 ```bash
 ls -la .cursor/
 # Should show:
-# - project-environment.md
+# - rules/project-environment.mdc
 # - rules/environment-maintenance.mdc
 ```
 
@@ -537,7 +538,7 @@ pwd
 **This tool is designed specifically for Cursor.** The automatic date checking and maintenance system relies on Cursor's built-in support for the `.cursor/` directory and `.mdc` rule files.
 
 **If you want to use the documentation with other AI tools:**
-- You'll need to manually upload or paste the `project-environment.md` file each session
+- You'll need to manually upload or paste the `project-environment.mdc` file each session
 - The automatic "check if >7 days old" feature won't work
 - You'll need to manually remind the AI to check and update the documentation
 - It becomes a static reference document rather than an auto-maintaining system
@@ -570,8 +571,8 @@ git push
 - Scripts and rules should be shared
 
 **What's in `.cursor/` that should be shared:**
-- `project-environment.md` - Project documentation
-- `rules/*.mdc` - AI behavior rules
+- `rules/project-environment.mdc` - Project documentation
+- `rules/environment-maintenance.mdc` - AI behavior rules
 - `check-env-docs.ps1/.sh` - Utility scripts
 - `validate-install.ps1/.sh` - Validation scripts
 - `quick-prompt.txt` - Template
@@ -782,7 +783,7 @@ WARNING: Could not find 'Last Updated' date in the document
 
 **Symptoms:**
 ```
-ERROR: Environment documentation not found at .cursor/project-environment.md
+ERROR: Environment documentation not found at .cursor/rules/project-environment.mdc
 ```
 
 **Solution:**
@@ -795,12 +796,12 @@ You need to generate it. Two options:
 cat .cursor/quick-prompt.txt
 
 # Copy and paste to your AI assistant
-# AI will generate project-environment.md
+# AI will generate project-environment.mdc
 ```
 
 **Option 2: Copy template**
 ```bash
-cp template/project-environment.md .cursor/project-environment.md
+cp template/rules/project-environment.mdc .cursor/rules/project-environment.mdc
 # Edit to match your project
 ```
 
@@ -816,7 +817,7 @@ Even after updating, status shows CRITICAL
 **1. Date not actually updated**
 ```bash
 # Check the file
-head -10 .cursor/project-environment.md
+head -10 .cursor/rules/project-environment.mdc
 # Should show today's date
 ```
 
@@ -829,7 +830,7 @@ Must be `YYYY-MM-DD` (ISO 8601)
 **3. Cached file content**
 ```bash
 # Force re-read
-cat .cursor/project-environment.md | grep "Last Updated"
+cat .cursor/rules/project-environment.mdc | grep "Last Updated"
 ```
 
 ---
@@ -838,7 +839,7 @@ cat .cursor/project-environment.md | grep "Last Updated"
 
 ### Check Basics
 1. ✅ Are you in the project root directory?
-2. ✅ Does `.cursor/project-environment.md` exist?
+2. ✅ Does `.cursor/rules/project-environment.mdc` exist?
 3. ✅ Does `.cursor/rules/environment-maintenance.mdc` exist?
 4. ✅ Is the "Last Updated" format correct?
 5. ✅ Have you restarted your AI session?

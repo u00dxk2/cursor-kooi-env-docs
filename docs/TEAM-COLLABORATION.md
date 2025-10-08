@@ -8,7 +8,7 @@ Best practices for using Cursor Environment Docs across multi-platform teams.
 
 ### Core Principle
 
-**The `.cursor/project-environment.md` file is a SHARED team reference that documents ALL team members' environments, not just one person's.**
+**The `.cursor/rules/project-environment.mdc` file is a SHARED team reference that documents ALL team members' environments, not just one person's.**
 
 Think of it like a README for AI assistants - it should cover:
 - ✅ Windows developers' setup
@@ -105,14 +105,14 @@ export NODE_ENV=development
 
 **First person (any platform):**
 1. Run installer
-2. Create initial `project-environment.md`
+2. Create initial `project-environment.mdc`
 3. Document THEIR platform
 4. **Note in doc:** "Other platforms TBD - please add your setup!"
 5. Commit and push
 
 **Second person (different platform):**
 1. Pull latest code
-2. Open `.cursor/project-environment.md`
+2. Open `.cursor/rules/project-environment.mdc`
 3. **ADD** their platform's commands (don't replace!)
 4. Update team setup section to list both platforms
 5. Commit and push
@@ -194,7 +194,7 @@ BACKEND_PORT=5000
 ### Review Process
 
 **Recommended:**
-1. Updates to `.cursor/project-environment.md` should be in PRs (not direct commits)
+1. Updates to `.cursor/rules/project-environment.mdc` should be in PRs (not direct commits)
 2. At least one person from a DIFFERENT platform should review
 3. Ensures cross-platform documentation stays accurate
 
@@ -322,7 +322,7 @@ export NODE_ENV=production && npm run build
 
 ## 📋 Quick Reference: What Goes Where
 
-### `.cursor/project-environment.md` (SHARED - All Platforms)
+### `.cursor/rules/project-environment.mdc` (SHARED - All Platforms)
 ✅ Commands for ALL platforms
 ✅ Environment variables for ALL platforms
 ✅ Gotchas for ALL platforms
@@ -353,7 +353,7 @@ export NODE_ENV=production && npm run build
 - Bob: Windows 11, PowerShell 7
 - Carol: Ubuntu 22.04, Bash
 
-### Their `.cursor/project-environment.md`:
+### Their `.cursor/rules/project-environment.mdc`:
 
 ```markdown
 # Project Environment Documentation
