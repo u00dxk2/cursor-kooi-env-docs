@@ -1,0 +1,525 @@
+---
+title: Python Flask Environment Context
+description: Environment setup, virtual environments, dependencies, and workflows for this Python/Flask project
+alwaysApply: true
+---
+
+# Python + Flask Project Environment
+
+> **Last Updated:** 2025-10-08  
+> **Review Frequency:** Check every conversation  
+> **Next Review:** 2025-10-15
+
+This document provides environment context for AI assistants working with this Python/Flask project.
+
+## 📋 Maintenance Log
+
+| Date | Change | Updated By |
+|------|--------|------------|
+| 2025-10-04 | Initial environment documentation | AI Assistant |
+| 2025-10-08 | Converted to .mdc format for automatic ingestion | AI Assistant |
+
+---
+
+## 1. Directory Structure
+
+**Project Root:** `/path/to/your/python-flask` (Unix) or `C:\path\to\your\python-flask` (Windows)
+
+```
+python-flask/
+├── .cursor/                    # Environment documentation system
+│   └── rules/
+│       ├── project-environment.mdc  # This file
+│       └── environment-maintenance.mdc
+├── app/
+│   └── app.py                 # Flask application entry point
+├── venv/                      # Virtual environment (git-ignored)
+├── requirements.txt           # Python dependencies
+├── .env                       # Environment variables (git-ignored)
+├── .env.example               # Environment variable template
+├── .gitignore                 # Git ignore rules
+└── README.md                  # Project documentation
+```
+
+**Important:**
+- `venv/` directory is git-ignored (can be 100s of MB)
+- Always activate virtual environment before running commands
+- `.env` contains secrets - never commit it
+
+---
+
+## 2. Shell Environment & Virtual Environment
+
+**Shell Type:** Varies by platform
+- **Unix/macOS:** Bash or Zsh
+- **Windows:** PowerShell or Command Prompt
+
+### Critical: Virtual Environment Activation
+
+#### Unix/macOS (Bash/Zsh)
+
+```bash
+# Create virtual environment (once)
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+# You'll see (venv) prefix in prompt:
+# (venv) user@host:~/python-flask$
+
+# Deactivate when done
+deactivate
+```
+
+#### Windows PowerShell
+
+```powershell
+# Create virtual environment (once)
+python -m venv venv
+
+# Activate virtual environment
+.\venv\Scripts\Activate.ps1
+
+# If execution policy error, run once:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# You'll see (venv) prefix:
+# (venv) PS C:\python-flask>
+
+# Deactivate when done
+deactivate
+```
+
+#### Windows Command Prompt
+
+```cmd
+# Create virtual environment (once)
+python -m venv venv
+
+# Activate
+venv\Scripts\activate.bat
+
+# Deactivate
+deactivate
+```
+
+### Shell Syntax Differences
+
+#### PowerShell (Windows)
+
+❌ **DON'T USE:** Bash-style command chaining
+```powershell
+source venv/bin/activate && python app/app.py  # FAILS
+```
+
+✅ **DO USE:** PowerShell syntax
+```powershell
+.\venv\Scripts\Activate.ps1; python app/app.py
+```
+
+#### Bash/Zsh (Unix/macOS)
+
+✅ **Standard Unix conventions:**
+```bash
+source venv/bin/activate && python app/app.py  # Works
+export FLASK_ENV=development    # Set env var
+```
+
+---
+
+## 3. Common Commands
+
+### Virtual Environment Management
+
+```bash
+# Create new virtual environment
+python3 -m venv venv  # Unix
+python -m venv venv   # Windows
+
+# Activate (do this EVERY time you start work)
+source venv/bin/activate      # Unix/macOS
+.\venv\Scripts\Activate.ps1   # Windows PowerShell
+
+# Verify activation (should show path inside venv/)
+which python     # Unix/macOS
+Get-Command python  # PowerShell
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Update requirements.txt after installing packages
+pip freeze > requirements.txt
+
+# Deactivate
+deactivate
+```
+
+### Python Package Management
+
+```bash
+# Install a package
+pip install flask
+pip install requests
+
+# Install specific version
+pip install flask==3.0.0
+
+# Uninstall a package
+pip uninstall flask
+
+# List installed packages
+pip list
+
+# Show package details
+pip show flask
+
+# Check for outdated packages
+pip list --outdated
+
+# Upgrade a package
+pip install --upgrade flask
+```
+
+### Running the Application
+
+```bash
+# Method 1: Direct execution
+python app/app.py
+
+# Method 2: Using Flask CLI
+export FLASK_APP=app/app.py  # Unix
+$env:FLASK_APP="app/app.py"  # PowerShell
+flask run
+
+# With development mode
+export FLASK_ENV=development  # Unix
+$env:FLASK_ENV="development"  # PowerShell
+flask run
+
+# Specify host and port
+flask run --host=0.0.0.0 --port=5000
+```
+
+### Git Workflow
+
+```bash
+# Check status
+git status
+
+# Stage changes
+git add .
+git add app/app.py requirements.txt
+
+# Commit
+git commit -m "feat: add health check endpoint"
+
+# Push
+git push origin main
+```
+
+---
+
+## 4. Tech Stack
+
+### Core Technologies
+- **Python:** 3.8+ (recommend 3.10+)
+- **Framework:** Flask 3.0+
+- **Package Manager:** pip
+
+### Key Dependencies
+- **Flask** - Web framework
+- **python-dotenv** - Environment variable management
+
+### Development Dependencies (Optional)
+- **pytest** - Testing framework
+- **flake8** - Linting
+- **black** - Code formatting
+
+### External Services
+*(None in this simple example)*
+
+### Required Environment Variables
+See `.env.example` for template:
+- `FLASK_APP` - Application entry point (app/app.py)
+- `FLASK_ENV` - Environment mode (development/production)
+- `PORT` - Server port (default: 5000)
+
+---
+
+## 5. Environment Gotchas
+
+### ❌ Common Mistakes to Avoid
+
+**Mistake #1: Forgetting to Activate Virtual Environment**
+- **Problem:** `ModuleNotFoundError: No module named 'flask'` even after `pip install`
+- **Solution:** Always activate venv first: `source venv/bin/activate`
+- **Check:** Run `which python` - should show path inside `venv/` directory
+
+**Mistake #2: Using Global Python Instead of venv Python**
+- **Problem:** Packages installed globally, not in project
+- **Solution:** See (venv) prefix in your prompt before running commands
+
+**Mistake #3: Committing venv/ Directory**
+- **Problem:** Repo becomes huge (100s of MB), non-portable
+- **Solution:** Ensure `.gitignore` includes `venv/`
+
+**Mistake #4: python vs python3 Confusion**
+- **Problem:** Wrong Python version used
+- **Solution:** 
+  - On macOS/Linux: Use `python3` to create venv
+  - Inside venv: Both `python` and `python3` work (both point to venv Python)
+
+**Mistake #5: pip vs pip3 Confusion**
+- **Problem:** Installing to wrong Python version
+- **Solution:** Inside venv, both `pip` and `pip3` work correctly
+
+**Mistake #6: Port Already in Use**
+- **Problem:** `OSError: [Errno 48] Address already in use`
+- **Solution:**
+  ```bash
+  # Find process using port 5000
+  lsof -i :5000  # Unix/macOS
+  netstat -ano | findstr :5000  # Windows
+  
+  # Kill process or change PORT in .env
+  ```
+
+**Mistake #7: Import Errors**
+- **Problem:** `ImportError: cannot import name 'X'`
+- **Causes:** 
+  - Circular imports
+  - Incorrect PYTHONPATH
+  - Missing `__init__.py` in package directories
+- **Solution:** Check import paths, module structure
+
+**Mistake #8: Missing .env File**
+- **Problem:** App uses unexpected defaults
+- **Solution:** Copy `.env.example` to `.env` and configure
+
+### Platform-Specific Issues
+
+**Windows:**
+- PowerShell execution policy may block venv activation
+  - Fix: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Line endings: Git may convert LF to CRLF
+  - Fix: `git config --global core.autocrlf true`
+
+**macOS:**
+- May need to install Command Line Tools: `xcode-select --install`
+- Python 3 not default - must use `python3`
+
+**Linux:**
+- May need to install python3-venv: `sudo apt install python3-venv`
+- May need python3-dev for some packages: `sudo apt install python3-dev`
+
+---
+
+## 6. Development Workflow
+
+### First Time Setup
+
+1. **Clone repository**
+   ```bash
+   git clone <repository-url>
+   cd python-flask
+   ```
+
+2. **Create virtual environment**
+   ```bash
+   python3 -m venv venv  # Unix/macOS
+   python -m venv venv   # Windows
+   ```
+
+3. **Activate virtual environment**
+   ```bash
+   source venv/bin/activate      # Unix/macOS
+   .\venv\Scripts\Activate.ps1   # Windows PowerShell
+   ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Configure environment**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your values
+   ```
+
+6. **Run application**
+   ```bash
+   python app/app.py
+   ```
+
+7. **Visit app**
+   - Open browser to http://localhost:5000
+
+### Daily Development Workflow
+
+```bash
+# 1. Activate virtual environment
+source venv/bin/activate  # Unix/macOS
+.\venv\Scripts\Activate.ps1  # Windows
+
+# 2. Start development server
+python app/app.py
+
+# 3. Make code changes
+# Flask auto-reloads in development mode
+
+# 4. Test changes
+curl http://localhost:5000
+curl http://localhost:5000/health
+
+# 5. Deactivate when done
+deactivate
+```
+
+### Adding New Dependencies
+
+```bash
+# Activate venv first!
+source venv/bin/activate
+
+# Install package
+pip install requests
+
+# Update requirements.txt
+pip freeze > requirements.txt
+
+# Commit both code and requirements
+git add app/ requirements.txt
+git commit -m "feat: add HTTP requests feature"
+```
+
+### Troubleshooting
+
+```bash
+# Check Python version
+python --version
+
+# Check if venv is activated
+which python  # Should show path in venv/
+echo $VIRTUAL_ENV  # Should show venv path
+
+# Recreate virtual environment
+deactivate
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Check installed packages
+pip list
+
+# Verify Flask installation
+python -c "import flask; print(flask.__version__)"
+```
+
+---
+
+## 7. IDE/Editor Setup
+
+### Recommended Extensions (VS Code)
+- **Python** (Microsoft) - Python language support
+- **Pylance** - Fast Python language server
+- **Python Debugger** - Debugging support
+- **autoDocstring** - Generate docstrings
+- **Black Formatter** - Code formatting
+
+### Configuration
+- **Interpreter:** Select venv Python (Command Palette → "Python: Select Interpreter")
+- **Linting:** Enable flake8 or pylint
+- **Formatting:** Enable Black formatter
+- **Tab size:** 4 spaces (PEP 8 standard)
+
+### VS Code Settings
+```json
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "editor.formatOnSave": true
+}
+```
+
+---
+
+## 8. Testing
+
+*(Not implemented in basic example)*
+
+If adding tests:
+```bash
+# Install pytest
+pip install pytest
+
+# Run tests
+pytest
+
+# Run with coverage
+pip install pytest-cov
+pytest --cov=app
+
+# Run specific test file
+pytest tests/test_app.py
+```
+
+---
+
+## 9. Additional Resources
+
+### Related Documentation
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [Python Documentation](https://docs.python.org/)
+- [pip Documentation](https://pip.pypa.io/)
+- [Virtual Environments Guide](https://docs.python.org/3/tutorial/venv.html)
+
+### Project Links
+- Environment docs system: `.cursor/README.md`
+- AI maintenance rules: `.cursor/rules/environment-maintenance.mdc`
+
+---
+
+## 🔄 When to Update This Document
+
+### Update Immediately When:
+- ✅ Python version requirements change
+- ✅ New dependencies added to requirements.txt
+- ✅ New environment variables required
+- ✅ Virtual environment setup changes
+- ✅ Development workflow changes
+- ✅ New gotcha or common mistake discovered
+
+### Review Periodically:
+- 📅 Every 7 days to check for drift
+- 📅 Before major releases
+- 📅 After dependency upgrades
+
+---
+
+## 🤖 AI Assistant Instructions
+
+**This file is automatically loaded at session start due to `alwaysApply: true` in the frontmatter.**
+
+**When starting a new session:**
+1. **Check Staleness:** Look at "Last Updated" date
+   - If >7 days old: Offer to review and update
+   - If >14 days old: Strongly recommend immediate review
+2. **During work:** Update when discovering environment changes
+3. **Add entries** to Maintenance Log when making changes
+
+### Update Process
+1. Review recent requirements.txt changes
+2. Check if documented commands are still correct
+3. Update relevant sections
+4. Update "Last Updated" and "Next Review" dates
+5. Add Maintenance Log entry
+6. Commit with message like: `docs: update environment docs`
+
+---
+
+**Generated using:** [Cursor Environment Docs System](https://github.com/u00dxk2/cursor-kooi-env-docs)

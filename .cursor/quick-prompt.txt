@@ -1,7 +1,38 @@
 COPY-PASTE THIS TO ANOTHER AI ASSISTANT:
 ================================================================================
 
-Please create a `.cursor/project-environment.md` file documenting this development environment. Include:
+Please create a `.cursor/rules/project-environment.mdc` file documenting this development environment.
+
+**IMPORTANT:** This should be a Cursor rule file (`.mdc`) with YAML frontmatter:
+
+```markdown
+---
+title: Project Environment Context
+description: Core project environment information - shell, paths, tech stack, and development workflow
+alwaysApply: true
+---
+
+# Project Environment Documentation
+
+> **Last Updated:** YYYY-MM-DD  
+> **Review Frequency:** Check every conversation  
+> **Next Review:** YYYY-MM-DD
+
+## 📋 Maintenance Log
+| Date | Change | Updated By |
+|------|--------|------------|
+| YYYY-MM-DD | Initial creation | AI Assistant |
+
+[... rest of content ...]
+```
+
+**Why `.mdc` format?**
+- ✅ Automatically loaded at session start (no need for agents to manually read it)
+- ✅ Uses `alwaysApply: true` flag to ensure every conversation has this context
+- ✅ Proper Cursor rule format that's always ingested
+- ❌ Plain `.md` files in `.cursor/` are NOT automatically loaded
+
+**Include these sections:**
 
 1. **Directory Structure** - Absolute project root path and path format (Windows/Unix)
 
@@ -25,26 +56,47 @@ Optional: API keys needed (no values!), external services, IDE recommendations, 
 
 Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practical.
 
-**IMPORTANT: Add maintenance tracking at the top:**
-```
-> **Last Updated:** YYYY-MM-DD  
-> **Review Frequency:** Check every 7 days  
-> **Next Review:** YYYY-MM-DD
-
-## 📋 Maintenance Log
-| Date | Change | Updated By |
-```
-
-**Add AI instructions at the bottom:**
-```
+**IMPORTANT: Add AI instructions at the bottom:**
+```markdown
 ## 🤖 AI Assistant Instructions
-When starting a new session:
-1. Check the "Last Updated" date at the top
-2. If >7 days old, offer to review and update
-3. Update this doc when you discover environment changes
+
+**This file is automatically loaded at session start due to `alwaysApply: true` in the frontmatter.**
+
+**When starting a new session:**
+1. **Check Staleness:** Look at "Last Updated" date
+   - If >7 days old: Offer to review and update
+   - If >14 days old: Strongly recommend immediate review
+2. **During Development:** Update this doc immediately when discovering gotchas
+3. **Update Process:** Edit sections, update dates, add maintenance log entry
+4. **Maintenance Frequency:** Check every conversation start (automatic)
 ```
 
-After creating it, commit the file to the repository so it's preserved for future sessions.
+After creating it, commit ALL .cursor/ files to the repository:
+
+```bash
+git add .cursor/
+git commit -m "feat: Add environment documentation system"
+```
+
+⚠️ IMPORTANT: Commit the ENTIRE .cursor/ directory to Git. Do NOT add it to .gitignore.
+This directory contains shared project documentation that benefits all team members.
 
 ================================================================================
 
+WHY THIS NEW FORMAT?
+
+According to Cursor's documentation and community research:
+- Only `.mdc` files in `.cursor/rules/` are automatically loaded as rules
+- Plain `.md` files are NOT automatically ingested into AI context
+- The `alwaysApply: true` frontmatter flag ensures the rule loads in every session
+- This guarantees agents have project context from the very first message
+
+The old approach (`.md` file + rule that tells agent to read it) was fragile because:
+- Depended on agent actually reading and following the maintenance rule
+- Required manual file reading via tools
+- Could be skipped if agent didn't prioritize the instruction
+
+The new approach (`.mdc` with `alwaysApply: true`) is robust because:
+- Cursor automatically loads it into every conversation
+- No dependency on agent behavior or initiative
+- Guaranteed context from session start
