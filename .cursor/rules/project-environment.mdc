@@ -6,9 +6,9 @@ alwaysApply: true
 
 # Project Environment Documentation
 
-> **Last Updated:** 2025-10-04  
+> **Last Updated:** 2025-10-10  
 > **Review Frequency:** Check every conversation, update when environment changes  
-> **Next Review:** 2025-10-11
+> **Next Review:** 2025-10-17
 
 ## 📋 Maintenance Log
 
@@ -16,6 +16,7 @@ alwaysApply: true
 |------|--------|------------|
 | 2025-10-04 | Initial documentation for cursor-kooi-env-docs repository | AI Assistant |
 | 2025-10-08 | Converted to .mdc format for automatic ingestion | AI Assistant |
+| 2025-10-10 | Enabled branch protection rulesets and added CODEOWNERS | AI Assistant |
 
 ---
 
@@ -304,29 +305,55 @@ irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.
 
 ## 🚀 Development Workflow
 
+**⚠️ Branch Protection Enabled:** Direct pushes to `main` are blocked. All changes must go through pull requests.
+
 ### Making Documentation Changes
 
-1. **Edit files** (docs/, README.md, etc.)
-2. **Preview locally** (Cursor's markdown preview or GitHub preview)
-3. **Commit with semantic commit message:**
+1. **Create a feature branch:**
+   ```bash
+   git checkout -b docs/improve-troubleshooting
+   ```
+
+2. **Edit files** (docs/, README.md, etc.)
+
+3. **Preview locally** (Cursor's markdown preview or GitHub preview)
+
+4. **Commit with semantic commit message:**
    ```bash
    git add -A
    git commit -m "docs: Add troubleshooting for X"
-   git push origin main
+   git push origin docs/improve-troubleshooting
    ```
+
+5. **Create Pull Request on GitHub:**
+   - Go to repository on GitHub
+   - Click "Compare & pull request"
+   - Wait for CI tests to pass
+   - Merge the PR
 
 ### Making Installer Changes
 
-1. **Edit script** (`install.ps1` or `install.sh`)
-2. **Test from GitHub** (not locally - see gotchas!)
-3. **Commit and push:**
+1. **Create a feature branch:**
+   ```bash
+   git checkout -b fix/installer-error-handling
+   ```
+
+2. **Edit script** (`install.ps1` or `install.sh`)
+
+3. **Commit and push to feature branch:**
    ```bash
    git add install.ps1 install.sh
    git commit -m "fix: Improve error handling in installer"
-   git push origin main
+   git push origin fix/installer-error-handling
    ```
-4. **Wait 30 seconds** for GitHub cache
-5. **Test in a different project:**
+
+4. **Create Pull Request:**
+   - Go to GitHub and create PR
+   - CI will automatically test the installer
+   - Once tests pass, merge the PR
+
+5. **After merging, test from main:**
+   - Wait 30 seconds for GitHub cache
    ```powershell
    cd ..\test-project
    irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex

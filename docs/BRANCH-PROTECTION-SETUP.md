@@ -1,5 +1,9 @@
 # Branch Protection Setup Guide
 
+> **✅ Status: COMPLETED** (2025-10-10)  
+> This repository now has branch protection enabled using GitHub Rulesets.  
+> This guide is kept for reference and for users who want to implement similar protection in their own repositories.
+
 This guide helps you configure branch protection rules on GitHub to keep the `main` branch stable and secure.
 
 ---
