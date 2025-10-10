@@ -1,0 +1,31 @@
+# Code Owners for cursor-kooi-env-docs
+#
+# These owners will be automatically requested for review when someone opens a PR
+# that modifies files matching the patterns below.
+#
+# Learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: Require review for all changes
+* @u00dxk2
+
+# Critical Security Files: Installer scripts
+# These files are executed by users with the one-line installer
+/install.sh @u00dxk2
+/install.ps1 @u00dxk2
+
+# Template Files: Deployed to user projects
+# Changes here affect all new installations
+/template/ @u00dxk2
+/template/rules/ @u00dxk2
+
+# Example Projects: Used as references
+# Should be complete and working
+/examples/ @u00dxk2
+
+# Security and Contributing Documentation
+/SECURITY.md @u00dxk2
+/CONTRIBUTING.md @u00dxk2
+
+# GitHub Workflows: Automated testing
+/.github/workflows/ @u00dxk2
+

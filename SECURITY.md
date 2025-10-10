@@ -146,11 +146,17 @@ The `.cursor/` directory contains instructions for Cursor AI. These files:
 We follow these practices to keep the project secure:
 
 - ✅ **Two-factor authentication** enabled on GitHub
-- ✅ **Branch protection** on main branch (prevents force-push, requires review)
-- ✅ **Signed commits** (in progress)
-- ✅ **Dependabot alerts** enabled (for future dependencies)
-- ✅ **Code review** for all pull requests
+- ✅ **Branch protection** enabled with rulesets:
+  - Requires pull requests for all changes (no direct commits to main)
+  - Requires "Report Test Results" status check to pass
+  - Blocks force pushes and branch deletions
+  - Requires linear history (no merge commits)
+  - Rules apply even to repository administrators
+- ✅ **CODEOWNERS file** - Automatically requests review from maintainer
+- ✅ **Automated testing** via GitHub Actions on all PRs
+- ✅ **Code review** required for all pull requests
 - ✅ **No third-party dependencies** in core scripts (reduces supply chain risk)
+- ✅ **Signed commits** (in progress)
 
 ---
 

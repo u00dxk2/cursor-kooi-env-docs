@@ -289,10 +289,18 @@ Relates to #456
 
 ### Review Process
 
-1. **Maintainer reviews** your PR (usually within 3-7 days)
-2. **Address feedback** if requested
-3. **Approval**: Maintainer approves and merges
-4. **Celebration**: Your contribution is live! 🎉
+1. **Automatic review request**: Our CODEOWNERS file automatically requests review from the maintainer
+2. **Maintainer reviews** your PR (usually within 3-7 days)
+3. **Automated tests run**: CI tests verify your changes work correctly
+4. **Address feedback** if requested
+5. **Approval**: Maintainer approves after tests pass and review is complete
+6. **Merge**: Your changes are merged to main
+7. **Celebration**: Your contribution is live! 🎉
+
+**Note:** All PRs require:
+- ✅ Passing CI tests (installer validation)
+- ✅ Maintainer approval
+- ✅ No force-pushes or deleted files
 
 ---
 
