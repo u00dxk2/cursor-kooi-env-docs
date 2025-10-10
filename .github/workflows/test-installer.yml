@@ -3,18 +3,8 @@ name: Test Installer
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'install.sh'
-      - 'install.ps1'
-      - 'template/**'
-      - '.github/workflows/test-installer.yml'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'install.sh'
-      - 'install.ps1'
-      - 'template/**'
-      - '.github/workflows/test-installer.yml'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
