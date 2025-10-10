@@ -243,6 +243,8 @@ See the [FAQ](./docs/FAQ.md) for common customization questions.
 
 Contributions welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+**Security:** This project uses branch protection, automated testing, and CODEOWNERS for secure collaboration. All contributions require PR review and passing CI tests.
+
 Ways to contribute:
 - 📚 Add examples for more frameworks
 - 🐛 Report bugs or issues
