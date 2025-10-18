@@ -13,6 +13,39 @@ _No unreleased changes yet._
 
 ---
 
+## [1.0.1] - 2025-10-18
+
+### 🐛 Bug Fixes
+- **Fixed quick-prompt workflow**: Prevented `.cursor/extensions/` from being staged during setup
+  - Quick-prompt instructions now provide **specific file list** instead of "commit ALL .cursor/ files"
+  - Added `.gitignore` entries to exclude IDE-managed files (extensions, ide_state.json, workspace_state.db)
+  - Updated template/README.md with clear "Version Control Guidelines" (✅ commit / ❌ don't commit)
+  
+### 📚 Documentation
+- **Added comprehensive analysis**: `docs/QUICK-PROMPT-IMPROVEMENT-ANALYSIS.md` (347 lines)
+  - Root cause analysis of extension staging issue
+  - Detailed testing plan for future validation
+  - Priority-based implementation roadmap
+- **Added implementation summary**: `docs/IMPLEMENTATION-SUMMARY-QUICK-PROMPT-FIX.md`
+
+### Impact
+- Users will no longer accidentally stage 600+ IDE extension files
+- Clean git workflow with no confusing line ending warnings
+- Clear documentation prevents future issues
+
+### Files Changed
+```
+.gitignore                                |   5 +
+docs/QUICK-PROMPT-IMPROVEMENT-ANALYSIS.md | 347 +++++++++++++++
+template/.gitignore                       |  23 ++
+template/README.md                        |  31 ++-
+template/quick-prompt.txt                 |  18 +-
+```
+
+**⚡ Immediately available**: This fix is available on `main` branch - installer pulls latest template files automatically.
+
+---
+
 ## [1.1.0] - 2025-10-08
 
 ### 🚨 Breaking Changes
