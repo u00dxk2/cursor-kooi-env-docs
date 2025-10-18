@@ -71,15 +71,27 @@ Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practic
 4. **Maintenance Frequency:** Check every conversation start (automatic)
 ```
 
-After creating it, commit ALL .cursor/ files to the repository:
+After creating it, commit the .cursor/ documentation files to the repository:
 
 ```bash
+# Recommended approach - add specific files:
+git add .cursor/rules/ .cursor/*.ps1 .cursor/*.sh .cursor/README.md
+git commit -m "feat: Add environment documentation system"
+
+# Or add all, but ensure .gitignore excludes extensions:
 git add .cursor/
 git commit -m "feat: Add environment documentation system"
 ```
 
-⚠️ IMPORTANT: Commit the ENTIRE .cursor/ directory to Git. Do NOT add it to .gitignore.
-This directory contains shared project documentation that benefits all team members.
+⚠️ **IMPORTANT:** Commit the .cursor/ **documentation files** (rules, scripts, README.md) to Git. 
+These are shared project documentation that benefit all team members.
+
+**Do NOT commit:**
+- `.cursor/extensions/` - IDE-managed extensions (auto-created by Cursor)
+- `.cursor/ide_state.json` - User-specific IDE state
+- `.cursor/quick-prompt.txt` - Optional (your local template copy)
+
+💡 **Tip:** Add `.cursor/extensions/` to your `.gitignore` if it doesn't already exclude it.
 
 ================================================================================
 

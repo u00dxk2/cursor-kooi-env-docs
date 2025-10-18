@@ -2,8 +2,9 @@
 
 This directory contains documentation and rules that help AI assistants work more effectively with this project.
 
-> **⚠️ IMPORTANT:** This entire directory should be committed to Git and shared with your team.  
-> **Do NOT add `.cursor/` to `.gitignore`** - it contains project documentation, not personal preferences.
+> **⚠️ IMPORTANT:** The **documentation files** in this directory should be committed to Git and shared with your team.  
+> **Do NOT add `.cursor/rules/` or documentation files to `.gitignore`** - they benefit all team members.  
+> **DO add `.cursor/extensions/` and IDE state files to `.gitignore`** - see Version Control Guidelines below.
 
 ## 📁 Files Overview
 
@@ -21,6 +22,32 @@ This directory contains documentation and rules that help AI assistants work mor
 ### Utilities
 - **`check-env-docs.ps1`** / **`check-env-docs.sh`** - Scripts to check if environment docs are stale
 - **`validate-install.ps1`** / **`validate-install.sh`** - Scripts to validate the installation
+
+### Version Control Guidelines
+
+**✅ Commit these files:**
+- `rules/project-environment.mdc` - Environment documentation
+- `rules/environment-maintenance.mdc` - Maintenance instructions
+- `check-env-docs.ps1` / `check-env-docs.sh` - Staleness check scripts
+- `validate-install.ps1` / `validate-install.sh` - Validation scripts
+- `README.md` - This file
+
+**❌ Do NOT commit (add to `.gitignore`):**
+- `extensions/` - IDE-managed extensions (hundreds of MB, auto-downloaded)
+- `ide_state.json` - User-specific IDE state
+- `workspace_state.db` - User-specific workspace state
+- `quick-prompt.txt` - Optional (your copy of the template from root)
+
+**Why?** Documentation files are **project-wide** and benefit all team members. IDE state and extensions are **user-specific** and should not be shared.
+
+**Recommendation:** Add this to your project's `.gitignore`:
+```gitignore
+# Cursor IDE (exclude auto-managed files)
+.cursor/extensions/
+.cursor/ide_state.json
+.cursor/workspace_state.db
+.cursor/quick-prompt.txt
+```
 
 ## 🔄 How It Works
 
