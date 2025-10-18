@@ -36,7 +36,7 @@ sudo yum install curl          # RHEL/CentOS
 brew install curl              # macOS
 
 # Or use wget instead
-wget -O- https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh | bash
+wget -O- https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh | bash
 ```
 
 **For Windows (not PowerShell):**
@@ -57,7 +57,7 @@ wget -O- https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/i
 
 **Example:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh | bash
 
 # Output:
 ⚠️  Existing .cursor/ setup detected
@@ -82,11 +82,11 @@ Existing files will be preserved (use --force to overwrite)
 **How to use --force:**
 ```bash
 # Unix/Mac
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh -o install.sh
 bash install.sh --force
 
 # Windows
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 -OutFile install.ps1
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.ps1 -OutFile install.ps1
 .\install.ps1 --force
 ```
 

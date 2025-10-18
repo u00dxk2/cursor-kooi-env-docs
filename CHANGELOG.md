@@ -13,7 +13,7 @@ _No unreleased changes yet._
 
 ---
 
-## [1.0.1] - 2025-10-18
+## [1.1.1] - 2025-10-18
 
 ### 🐛 Bug Fixes
 - **Fixed quick-prompt workflow**: Prevented `.cursor/extensions/` from being staged during setup

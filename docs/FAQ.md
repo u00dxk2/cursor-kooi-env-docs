@@ -65,12 +65,12 @@ Cursor has built-in support for reading the `.cursor/` directory and applying ru
 
 macOS/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh | bash
 ```
 
 Windows PowerShell:
 ```powershell
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.0/install.ps1 | iex
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.ps1 | iex
 ```
 
 **Manual install:**
