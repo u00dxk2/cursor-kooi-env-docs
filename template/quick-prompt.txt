@@ -73,13 +73,29 @@ Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practic
 
 After creating it, commit the .cursor/ documentation files to the repository:
 
+**⚠️ BEFORE COMMITTING - Ensure you're in the project root directory:**
+
 ```bash
-# Recommended approach - add specific files:
-git add .cursor/rules/ .cursor/*.ps1 .cursor/*.sh .cursor/README.md
+# PowerShell:
+pwd   # Check current directory - should be your project root
+
+# If not in project root, navigate there first:
+cd "C:\path\to\your\project"
+```
+
+**Commit commands (platform-specific):**
+
+```bash
+# PowerShell (Windows) - note: .sh files may not exist, that's OK:
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1
 git commit -m "feat: Add environment documentation system"
 
-# Or add all, but ensure .gitignore excludes extensions:
-git add .cursor/
+# Or use the safer directory-based approach:
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1 2>$null; git add .cursor/
+git commit -m "feat: Add environment documentation system"
+
+# Bash/Zsh (Unix/Mac):
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1 .cursor/*.sh
 git commit -m "feat: Add environment documentation system"
 ```
 
@@ -91,7 +107,10 @@ These are shared project documentation that benefit all team members.
 - `.cursor/ide_state.json` - User-specific IDE state
 - `.cursor/quick-prompt.txt` - Optional (your local template copy)
 
-💡 **Tip:** Add `.cursor/extensions/` to your `.gitignore` if it doesn't already exclude it.
+💡 **Tips:** 
+- Add `.cursor/extensions/` and `.cursor/ide_state.json` to your `.gitignore`
+- Ignore git warnings about Windows special directories (Recent/, SendTo/, etc.) - these are normal
+- On Windows-only projects, `.sh` scripts won't exist - that's expected!
 
 ================================================================================
 

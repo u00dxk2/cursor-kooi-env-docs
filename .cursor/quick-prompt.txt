@@ -71,10 +71,31 @@ Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practic
 4. **Maintenance Frequency:** Check every conversation start (automatic)
 ```
 
-After creating it, commit ALL .cursor/ files to the repository:
+After creating it, commit the .cursor/ documentation files to the repository:
+
+**⚠️ BEFORE COMMITTING - Ensure you're in the project root directory:**
 
 ```bash
-git add .cursor/
+# PowerShell:
+pwd   # Check current directory - should be your project root
+
+# If not in project root, navigate there first:
+cd "C:\path\to\your\project"
+```
+
+**Commit commands (platform-specific):**
+
+```bash
+# PowerShell (Windows) - note: .sh files may not exist, that's OK:
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1
+git commit -m "feat: Add environment documentation system"
+
+# Or use the safer directory-based approach:
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1 2>$null; git add .cursor/
+git commit -m "feat: Add environment documentation system"
+
+# Bash/Zsh (Unix/Mac):
+git add .cursor/rules/ .cursor/README.md .cursor/*.ps1 .cursor/*.sh
 git commit -m "feat: Add environment documentation system"
 ```
 

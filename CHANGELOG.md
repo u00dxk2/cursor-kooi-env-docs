@@ -9,7 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_No unreleased changes yet._
+### 🐛 Bug Fixes
+- **Fixed git workflow confusion in quick-prompt**: Based on real-world usage feedback from Quick Byte project installation
+  - Added explicit "check directory first" step with `pwd` command before git operations
+  - Split commit commands by platform (PowerShell vs Bash/Zsh) to avoid missing file errors
+  - Added note that `.sh` files won't exist on Windows-only projects (prevents `fatal: pathspec '.cursor/*.sh' did not match any files`)
+  - Added safer fallback approach: `git add .cursor/rules/ .cursor/README.md .cursor/*.ps1 2>$null; git add .cursor/`
+  
+### 📚 Documentation
+- **Improved installer messaging**: Added step to verify user is in project root (not home directory)
+- **Added troubleshooting tips**: 
+  - Clarified that git warnings about Windows special directories (Recent/, SendTo/) are normal and can be ignored
+  - Explained that missing .sh files on Windows is expected behavior
+  
+### Impact
+- Users will avoid "wrong directory" errors that require troubleshooting
+- Clear platform-specific git commands prevent missing file errors
+- Reduced confusion around cross-platform file availability
+
+### Files Changed
+```
+.cursor/quick-prompt.txt     |  28 +++-
+template/quick-prompt.txt     |  28 +++-
+install.ps1                   |   9 ++--
+```
 
 ---
 

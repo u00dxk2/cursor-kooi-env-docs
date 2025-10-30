@@ -109,13 +109,17 @@ Write-Host "📝 Next steps to complete installation:" -ForegroundColor Cyan
 Write-Host "1. View the quick prompt:"
 Write-Host "   Get-Content .cursor\quick-prompt.txt" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "2. Open this project with Cursor"
-Write-Host "3. Ask Cursor to create .cursor\rules\project-environment.mdc using the prompt"
-Write-Host "4. Commit ALL .cursor/ files to Git:"
-Write-Host "   git add .cursor\" -ForegroundColor Yellow
+Write-Host "2. Ensure you're in your PROJECT ROOT directory (not home directory):"
+Write-Host "   pwd   # Should show your project path" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "3. Open this project with Cursor"
+Write-Host "4. Ask Cursor to create .cursor\rules\project-environment.mdc using the prompt"
+Write-Host "5. Commit documentation files to Git (see quick-prompt.txt for platform-specific commands):"
+Write-Host "   git add .cursor\rules\ .cursor\README.md .cursor\*.ps1" -ForegroundColor Yellow
 Write-Host "   git commit -m 'feat: Add environment documentation system'" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "   ⚠️  IMPORTANT: Commit the ENTIRE .cursor\ directory." -ForegroundColor Yellow
+Write-Host "   💡 Note: .sh files don't exist on Windows-only projects - that's normal!" -ForegroundColor Cyan
+Write-Host "   ⚠️  IMPORTANT: Commit the .cursor\ documentation files." -ForegroundColor Yellow
 Write-Host "   Do NOT add .cursor\ to .gitignore - it's shared team documentation!" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "📊 Check documentation status anytime:" -ForegroundColor Cyan
