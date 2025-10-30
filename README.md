@@ -20,24 +20,24 @@ Stop wasting time explaining your environment setup to Cursor in every conversat
 
 **macOS/Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.ps1 | iex
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
 ```
 
-> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/v1.1.1/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
+> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
 
 > **⚠️ Existing .cursor/ Setup:** The installer **preserves existing files** by default. If you have an existing `.cursor/` directory, only missing files will be added. To overwrite everything (clean reinstall), download the installer and run with `--force` flag:
 > ```bash
 > # Unix/Mac
-> curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.sh -o install.sh
+> curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.sh -o install.sh
 > bash install.sh --force
 > 
 > # Windows
-> irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/v1.1.1/install.ps1 -OutFile install.ps1
+> irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 -OutFile install.ps1
 > .\install.ps1 --force
 > ```
 

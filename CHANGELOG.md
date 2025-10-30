@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+_No unreleased changes yet._
+
+---
+
+## [1.1.2] - 2025-10-30
+
 ### 🐛 Bug Fixes
 - **Fixed git workflow confusion in quick-prompt**: Based on real-world usage feedback from Quick Byte project installation
   - Added explicit "check directory first" step with `pwd` command before git operations
@@ -21,18 +27,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Added troubleshooting tips**: 
   - Clarified that git warnings about Windows special directories (Recent/, SendTo/) are normal and can be ignored
   - Explained that missing .sh files on Windows is expected behavior
+- **Removed version numbers from installation commands**: All documentation now uses `main` branch URLs for simpler maintenance
   
 ### Impact
 - Users will avoid "wrong directory" errors that require troubleshooting
 - Clear platform-specific git commands prevent missing file errors
 - Reduced confusion around cross-platform file availability
+- Installation instructions stay current automatically (no version number to update)
 
 ### Files Changed
 ```
-.cursor/quick-prompt.txt     |  28 +++-
-template/quick-prompt.txt     |  28 +++-
-install.ps1                   |   9 ++--
+README.md                         |   6 +-
+docs/FAQ.md                       |   6 +-
+docs/TROUBLESHOOTING.md          |   6 +-
+.cursor/quick-prompt.txt         |  28 +++-
+template/quick-prompt.txt         |  28 +++-
+install.ps1                       |   9 ++--
+docs/QUICK-BYTE-INSTALLATION-FEEDBACK.md | 266 new file
 ```
+
+**⚡ Immediately available**: This fix is available on `main` branch - installer pulls latest template files automatically.
 
 ---
 
@@ -230,7 +244,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this 
 
 ---
 
-[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.1...v1.1.2
+[1.1.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/releases/tag/v1.0.0
