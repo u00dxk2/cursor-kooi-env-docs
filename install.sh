@@ -1,7 +1,7 @@
 #!/bin/bash
 # Cursor Environment Docs System - Installer
 # https://github.com/u00dxk2/cursor-kooi-env-docs
-# Version: 1.0.1
+# Version: 1.1.3
 
 set -e
 

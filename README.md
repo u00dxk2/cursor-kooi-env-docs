@@ -105,9 +105,10 @@ The system captures:
 ### Automatic Updates (The Smart Way)
 
 **Every new Cursor conversation:**
-1. ✅ AI automatically loads `.cursor/rules/project-environment.mdc` at session start
-2. ✅ Checks "Last Updated" date automatically
-3. ✅ Offers to review and update if stale
+1. ✅ AI automatically loads `.cursor/rules/project-environment.mdc` (Passive Context)
+2. ✅ AI loads `.cursor/rules/environment-maintenance.mdc` (Active Rule)
+3. ✅ The Rule checks the Context's "Last Updated" date
+4. ✅ Offers to review and update if stale
 
 **During development:**
 - ✅ AI updates **in real-time** when discovering changes:

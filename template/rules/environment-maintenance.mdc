@@ -1,6 +1,7 @@
 ---
-title: Environment Documentation Maintenance
-description: Instructions for keeping project environment documentation current
+description: Standards for maintaining the project-environment.mdc file
+globs: ["**/*.{md,mdc}", ".cursor/rules/*"]
+alwaysApply: true
 ---
 
 # Environment Documentation Maintenance Rule

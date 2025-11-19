@@ -13,6 +13,27 @@ _No unreleased changes yet._
 
 ---
 
+## [1.2.0] - 2025-11-19
+
+### 🎯 Major Architecture Improvement
+- **Separation of Concerns**: Split environment documentation into "Passive Context" (Data) and "Active Rules" (Logic)
+  - `.cursor/rules/project-environment.mdc`: Now serves as pure context/data source
+  - `.cursor/rules/environment-maintenance.mdc`: Now acts as the active agent rule with `alwaysApply: true`
+- **Optimized Rule Anatomy**: Added proper `globs` and `description` metadata to maintenance rules
+- **Zero-Token Waste**: Removed duplicate "AI Instructions" blocks that were previously in both files
+
+### 🧹 Cleanups
+- **Refactored Templates**: Updated `quick-prompt.txt` and template files to reflect the new architecture
+- **Updated Validators**: `validate-install` scripts now check for the new "Passive/Active" structure instead of looking for duplicate instruction blocks
+- **Documentation**: Updated README.md to explain the "Active Rule / Passive Context" pattern
+
+### Impact
+- **Zero-Shot Reliability**: System no longer relies on AI reading instructions from data files
+- **Better Performance**: Reduced token usage by eliminating redundant instructions
+- **Cleaner Architecture**: Aligns with "Agentic" best practices for separating context from behavior
+
+---
+
 ## [1.1.2] - 2025-10-30
 
 ### 🐛 Bug Fixes

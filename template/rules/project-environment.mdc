@@ -340,41 +340,6 @@ npm update
 
 ---
 
-## 🤖 AI Assistant Instructions
-
-**This file is automatically loaded at session start due to `alwaysApply: true` in the frontmatter.**
-
-**When starting a new session:**
-
-1. **Check Staleness:**
-   - Look at "Last Updated" date at top of this file
-   - If **>7 days old**: Offer to review and update
-   - If **>14 days old**: Strongly recommend immediate review
-
-2. **During Development:**
-   - Update this doc **immediately** when discovering:
-     - New gotchas or quirks
-     - Changed workflows
-     - New dependencies or services
-     - Path or shell issues
-     - Build or deployment changes
-
-3. **Update Process:**
-   - Edit relevant sections
-   - Update "Last Updated" to current date
-   - Update "Next Review" to +7 days
-   - Add entry to Maintenance Log table
-   - Commit with descriptive message
-
-4. **Maintenance Frequency:**
-   - Check: Every conversation start (automatic via alwaysApply)
-   - Update: When changes discovered (real-time)
-   - Review: If >7 days since last update
-
-**Remember:** This documentation makes YOU (the AI) more effective across all future conversations about this project!
-
----
-
 **Generated using:** [Cursor Environment Docs System](https://github.com/u00dxk2/cursor-kooi-env-docs)
 
 **End of Documentation** • Last Updated: [DATE] • Next Review: [DATE + 7 days]

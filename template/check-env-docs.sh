@@ -2,7 +2,7 @@
 # Check Environment Documentation Staleness
 # Run this script to see if .cursor/project-environment.md needs review
 
-ENV_DOC_PATH=".cursor/project-environment.md"
+ENV_DOC_PATH=".cursor/rules/project-environment.mdc"
 WARNING_DAYS=7
 CRITICAL_DAYS=14
 

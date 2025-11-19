@@ -56,20 +56,7 @@ Optional: API keys needed (no values!), external services, IDE recommendations, 
 
 Use ✅/❌ to show correct vs incorrect approaches. Keep it concise but practical.
 
-**IMPORTANT: Add AI instructions at the bottom:**
-```markdown
-## 🤖 AI Assistant Instructions
-
-**This file is automatically loaded at session start due to `alwaysApply: true` in the frontmatter.**
-
-**When starting a new session:**
-1. **Check Staleness:** Look at "Last Updated" date
-   - If >7 days old: Offer to review and update
-   - If >14 days old: Strongly recommend immediate review
-2. **During Development:** Update this doc immediately when discovering gotchas
-3. **Update Process:** Edit sections, update dates, add maintenance log entry
-4. **Maintenance Frequency:** Check every conversation start (automatic)
-```
+**IMPORTANT: Ensure `.cursor/rules/environment-maintenance.mdc` is also present to handle automatic updates.**
 
 After creating it, commit the .cursor/ documentation files to the repository:
 
