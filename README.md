@@ -28,7 +28,9 @@ curl -fsSL https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/i
 irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
 ```
 
-> **Security Note:** The installer downloads and runs scripts from GitHub. You can [review the installer script](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh) before running. It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
+> **Compatibility Note:** Works in **Windows PowerShell 5.1+** and **PowerShell 7+**.
+
+> **Security Note:** The installer downloads and runs scripts from GitHub. You can review the installer scripts before running: [Windows installer](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.ps1), [Unix/macOS installer](https://github.com/u00dxk2/cursor-kooi-env-docs/blob/main/install.sh). It only creates a `.cursor/` directory in your current project—no system-level changes, no admin/root privileges required.
 
 > **⚠️ Existing .cursor/ Setup:** The installer **preserves existing files** by default. If you have an existing `.cursor/` directory, only missing files will be added. To overwrite everything (clean reinstall), download the installer and run with `--force` flag:
 > ```bash
@@ -63,6 +65,8 @@ After installation:
    git commit -m "feat: Add environment documentation system"
    git push
    ```
+
+   If your folder is **not a git repo** (or you don't have git installed), you can skip this step. Git is recommended for team sharing/versioning, but not required for local use.
 
 **Important:** Commit the entire `.cursor/` directory! This is shared project documentation, not personal IDE settings. Your team needs these files.
 
