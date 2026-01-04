@@ -174,28 +174,38 @@ Unexpected token ')' in expression or statement.
 ```
 
 **Root Cause:**
-The PowerShell script may have Unix line endings (LF) instead of Windows line endings (CRLF), causing parsing errors.
+This can happen on **Windows PowerShell 5.1** when a downloaded `.ps1` file contains **non-ASCII characters** (emoji/checkmarks) and is served as **UTF-8 without BOM**. PowerShell 5.1 may interpret the file using the system ANSI codepage, corrupting characters into `�` and triggering parser errors.
+
+In older releases, this could also be caused by incorrect line endings (LF vs CRLF), but encoding/emoji was the most common culprit for "random" parser failures after downloading from GitHub.
 
 **Solutions:**
 
-**Option 1: Just skip it** (Recommended)
-- The validation script is a **troubleshooting tool**, not required for normal operation
-- If the installer completed successfully and files exist, you're good to go!
-- Validation is only useful if you suspect something went wrong
+**Option 1: Update to the latest scripts (recommended)**
+- Re-run installation with `--force` to refresh `.cursor/*.ps1` from the latest release (these scripts are now **ASCII-only** for PS5.1 compatibility).
 
-**Option 2: Fix line endings manually**
 ```powershell
-# Convert line endings
+irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 -OutFile install.ps1
+.\install.ps1 --force
+```
+
+**Option 2: Fix encoding manually (if you can't update right now)**
+- This removes corrupted characters by re-saving the file as plain ASCII.
+
+```powershell
+$content = Get-Content .\.cursor\validate-install.ps1 -Raw
+# Re-save as ASCII to avoid PS5.1 encoding issues
+Set-Content .\.cursor\validate-install.ps1 -Value $content -Encoding Ascii
+```
+
+**Option 3: (Less common) Fix line endings manually**
+```powershell
 $content = Get-Content .\.cursor\validate-install.ps1 -Raw
 $content = $content -replace "`r?`n", "`r`n"
 Set-Content .\.cursor\validate-install.ps1 -Value $content -NoNewline
 ```
 
-**Option 3: Re-download after line ending fix**
-Wait for the next release (post-v1.0.0) which includes `.gitattributes` to enforce correct line endings.
-
 **Prevention:**
-This is fixed in versions after v1.0.0 with proper `.gitattributes` configuration.
+Current versions ship PowerShell scripts using **ASCII-only output** so they work reliably in both Windows PowerShell 5.1 and PowerShell 7+.
 
 ---
 

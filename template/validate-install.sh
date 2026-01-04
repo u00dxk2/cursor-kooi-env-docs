@@ -4,6 +4,12 @@
 
 set -e
 
+# Resolve paths relative to the script location so this works even when invoked from another directory.
+# This script lives in: <project>/.cursor/validate-install.sh
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CURSOR_DIR="$SCRIPT_DIR"
+PROJECT_ROOT="$(cd "$CURSOR_DIR/.." && pwd)"
+
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -46,21 +52,22 @@ check_optional_file() {
 
 # 1. Check required files
 echo -e "${CYAN}[Required Files]${NC}"
-check_file_exists ".cursor/rules/project-environment.mdc" "project-environment.mdc"
-check_file_exists ".cursor/rules/environment-maintenance.mdc" "environment-maintenance.mdc"
+check_file_exists "$CURSOR_DIR/rules/project-environment.mdc" "project-environment.mdc"
+check_file_exists "$CURSOR_DIR/rules/environment-maintenance.mdc" "environment-maintenance.mdc"
 
 # 2. Check optional but recommended files
 echo -e "\n${CYAN}[Recommended Files]${NC}"
-check_optional_file ".cursor/quick-prompt.txt" "quick-prompt.txt"
-check_optional_file ".cursor/check-env-docs.ps1" "check-env-docs.ps1"
-check_optional_file ".cursor/check-env-docs.sh" "check-env-docs.sh"
-check_optional_file ".cursor/README.md" "README.md"
+check_optional_file "$CURSOR_DIR/quick-prompt.txt" "quick-prompt.txt"
+check_optional_file "$CURSOR_DIR/check-env-docs.ps1" "check-env-docs.ps1"
+check_optional_file "$CURSOR_DIR/check-env-docs.sh" "check-env-docs.sh"
+check_optional_file "$CURSOR_DIR/README.md" "README.md"
 
 # 3. Validate project-environment.mdc format
 echo -e "\n${CYAN}[Document Format]${NC}"
 
 if [ -f ".cursor/rules/project-environment.mdc" ]; then
-    content=$(cat .cursor/rules/project-environment.mdc)
+if [ -f "$CURSOR_DIR/rules/project-environment.mdc" ]; then
+    content=$(cat "$CURSOR_DIR/rules/project-environment.mdc")
     
     # Check for Last Updated (using grep -E for cross-platform compatibility)
     if echo "$content" | grep -qE 'Last Updated:.*[0-9]{4}-[0-9]{2}-[0-9]{2}'; then
@@ -121,11 +128,11 @@ fi
 # 4. Check git integration
 echo -e "\n${CYAN}[Git Integration]${NC}"
 
-if [ -d ".git" ]; then
+if [ -d "$PROJECT_ROOT/.git" ]; then
     echo -e "  ${GREEN}✓${NC} Git repository detected"
     
     # Check if .cursor/ is tracked
-    if git ls-files .cursor/ >/dev/null 2>&1 && [ -n "$(git ls-files .cursor/)" ]; then
+    if git -C "$PROJECT_ROOT" ls-files .cursor/ >/dev/null 2>&1 && [ -n "$(git -C "$PROJECT_ROOT" ls-files .cursor/)" ]; then
         echo -e "  ${GREEN}✓${NC} .cursor/ directory is in git repository"
     else
         echo -e "  ${YELLOW}⚠${NC} .cursor/ directory not tracked by git"

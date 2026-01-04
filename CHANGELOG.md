@@ -9,7 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_No unreleased changes yet._
+### 🐛 Bug Fixes
+- **PowerShell 5.1 compatibility**: Removed non-ASCII/emoji output from shipped `.ps1` scripts so they run reliably when downloaded from GitHub raw.
+- **Non-git folders supported**: Windows installer no longer prompts interactively when `.git` is missing; git is treated as optional and recommended for sharing/versioning.
+- **Validation improvements**: `validate-install.ps1` now:
+  - Works without git installed (warns instead of failing)
+  - Avoids PowerShell 7-only `&&` in printed guidance
+  - Better distinguishes: “git missing” vs “not a git repo” vs “.cursor not tracked/ignored”
 
 ---
 

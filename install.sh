@@ -1,7 +1,7 @@
 #!/bin/bash
 # Cursor Environment Docs System - Installer
 # https://github.com/u00dxk2/cursor-kooi-env-docs
-# Version: 1.1.3
+# Version: 1.1.4
 
 set -e
 
@@ -20,16 +20,12 @@ fi
 echo -e "${BLUE}🚀 Installing Cursor Environment Docs System...${NC}"
 echo ""
 
-# Check if in a git repo (warning, not error)
+# Git is optional. We warn if it looks like you're not in a git repository root, but we do not block installation.
+# (This script is often run via pipe-to-bash, where interactive prompts can hang.)
 if [ ! -d ".git" ]; then
-    echo -e "${YELLOW}⚠️  Warning: Not in a git repository root${NC}"
-    echo "This tool works best in the root of a git project."
-    read -p "Continue anyway? (y/n) " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Installation cancelled."
-        exit 1
-    fi
+    echo -e "${YELLOW}⚠️  Warning: Not in a git repository root (.git not found in current directory)${NC}"
+    echo -e "${YELLOW}    This system works best when committed to version control, but it can still be used locally.${NC}"
+    echo -e "${YELLOW}    Tip: If you want git here later, run: git init${NC}"
 fi
 
 # Create .cursor directory structure
@@ -126,7 +122,7 @@ echo -e "   ${YELLOW}cat .cursor/quick-prompt.txt${NC}"
 echo ""
 echo "2. Open this project with Cursor"
 echo "3. Ask Cursor to create .cursor/rules/project-environment.mdc using the prompt"
-echo "4. Commit ALL .cursor/ files to Git:"
+echo "4. (Optional) Commit .cursor/ to git (recommended for teams):"
 echo -e "   ${YELLOW}git add .cursor/${NC}"
 echo -e "   ${YELLOW}git commit -m 'feat: Add environment documentation system'${NC}"
 echo ""

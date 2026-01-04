@@ -6,9 +6,9 @@ alwaysApply: true
 
 # Project Environment Documentation
 
-> **Last Updated:** 2025-10-10  
+> **Last Updated:** 2026-01-04  
 > **Review Frequency:** Check every conversation, update when environment changes  
-> **Next Review:** 2025-10-17
+> **Next Review:** 2026-01-11
 
 ## 📋 Maintenance Log
 
@@ -17,6 +17,7 @@ alwaysApply: true
 | 2025-10-04 | Initial documentation for cursor-kooi-env-docs repository | AI Assistant |
 | 2025-10-08 | Converted to .mdc format for automatic ingestion | AI Assistant |
 | 2025-10-10 | Enabled branch protection rulesets and added CODEOWNERS | AI Assistant |
+| 2026-01-04 | Fixed PowerShell 5.1 compatibility: remove non-ASCII from shipped .ps1 and avoid interactive git prompt | AI Assistant |
 
 ---
 
@@ -53,8 +54,9 @@ cursor-kooi-env-docs/
 │   ├── nodejs-express/
 │   └── python-flask/
 ├── template/                     # Template files for installer
-│   ├── project-environment.md
-│   ├── rules/environment-maintenance.mdc
+│   ├── rules/
+│   │   ├── project-environment.mdc
+│   │   └── environment-maintenance.mdc
 │   ├── check-env-docs.ps1 / .sh
 │   ├── validate-install.ps1 / .sh
 │   ├── quick-prompt.txt
@@ -220,7 +222,15 @@ Unexpected token ')' in expression or statement.
 Get-Content .\install.ps1 -Raw | Select-String "`r`n"  # Should match (CRLF)
 ```
 
-### 2. Local vs GitHub Installer Testing
+### 2. PowerShell 5.1 Encoding (Non-ASCII Can Break Downloaded Scripts)
+
+**Problem:** Windows PowerShell 5.1 can misinterpret downloaded `.ps1` files that contain **emoji / non-ASCII** characters (often served as UTF-8 without BOM). This can corrupt characters into `�` and trigger parser errors.
+
+**Solution:**
+- ✅ Keep shipped `.ps1` scripts **ASCII-only** (no emoji/checkmarks)
+- ✅ If you hit parser errors after download, re-run the installer with `--force` to refresh scripts
+
+### 3. Local vs GitHub Installer Testing
 
 **Local Testing:**
 - ❌ Running `.\install.ps1` locally may fail if line endings are mixed
@@ -241,7 +251,7 @@ git push origin main
 irm https://raw.githubusercontent.com/u00dxk2/cursor-kooi-env-docs/main/install.ps1 | iex
 ```
 
-### 3. PowerShell Command Chaining
+### 4. PowerShell Command Chaining
 
 **Issue:** PowerShell's `&&` operator requires PowerShell 7+, but we support 5.1+
 
@@ -258,7 +268,7 @@ git add -A
 git commit -m "msg"
 ```
 
-### 4. Path Quoting
+### 5. Path Quoting
 
 **Windows paths with spaces:**
 ```powershell
@@ -508,4 +518,4 @@ Create a self-updating documentation system that keeps Cursor AI assistants info
 
 ---
 
-**End of Documentation** • Last Updated: 2025-10-08 • Next Review: 2025-10-15
+**End of Documentation** • Last Updated: 2026-01-04 • Next Review: 2026-01-11

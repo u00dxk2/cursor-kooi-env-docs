@@ -1,7 +1,8 @@
 # Check Environment Documentation Staleness
-# Run this script to see if .cursor/project-environment.md needs review
+# Run this script to see if .cursor/rules/project-environment.mdc needs review
 
-$envDocPath = ".cursor/project-environment.md"
+$cursorDir = $PSScriptRoot
+$envDocPath = Join-Path $cursorDir "rules\\project-environment.mdc"
 $warningDays = 7
 $criticalDays = 14
 

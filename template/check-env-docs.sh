@@ -1,8 +1,9 @@
 #!/bin/bash
 # Check Environment Documentation Staleness
-# Run this script to see if .cursor/project-environment.md needs review
+# Run this script to see if .cursor/rules/project-environment.mdc needs review
 
-ENV_DOC_PATH=".cursor/rules/project-environment.mdc"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ENV_DOC_PATH="$SCRIPT_DIR/rules/project-environment.mdc"
 WARNING_DAYS=7
 CRITICAL_DAYS=14
 
