@@ -9,12 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+_No unreleased changes yet._
+
+---
+
+## [1.2.1] - 2026-01-05
+
 ### 🐛 Bug Fixes
 - **PowerShell 5.1 compatibility**: Removed non-ASCII/emoji output from shipped `.ps1` scripts so they run reliably when downloaded from GitHub raw.
-- **Non-git folders supported**: Windows installer no longer prompts interactively when `.git` is missing; git is treated as optional and recommended for sharing/versioning.
-- **Validation improvements**: `validate-install.ps1` now:
-  - Works without git installed (warns instead of failing)
-  - Avoids PowerShell 7-only `&&` in printed guidance
+- **Non-git folders supported**: Installers no longer prompt interactively when `.git` is missing; git is treated as optional and recommended for sharing/versioning.
+- **Validation improvements**:
+  - Validators and staleness checkers resolve paths relative to the script location (works regardless of current working directory)
+  - `validate-install.ps1` works without git installed (warns instead of failing)
+  - Printed PowerShell guidance avoids PowerShell 7-only `&&`
   - Better distinguishes: “git missing” vs “not a git repo” vs “.cursor not tracked/ignored”
 
 ---
@@ -271,7 +278,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this 
 
 ---
 
-[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.2...HEAD
+[Unreleased]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/u00dxk2/cursor-kooi-env-docs/compare/v1.0.1...v1.1.0
