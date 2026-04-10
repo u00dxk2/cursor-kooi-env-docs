@@ -1,6 +1,19 @@
 # Cursor Environment Docs 📚
 
-> Auto-updating environment documentation that keeps Cursor smart about your project.
+> **⚠️ DEPRECATED — This project is no longer maintained.**
+>
+> The problem this project solved — persistent project context across AI coding sessions — is now handled natively by modern AI coding tools:
+>
+> - **[Claude Code](https://claude.ai/code)** has built-in `CLAUDE.md` project files, persistent memory, and skills/hooks
+> - **Cursor** improved its built-in rules system (`.cursor/rules/`) significantly since this project was created
+>
+> This repository is archived for historical reference. No further updates will be made.
+>
+> **If you're looking for project context solutions today**, use your AI tool's native support (e.g., create a `CLAUDE.md` at your project root for Claude Code).
+
+---
+
+*Original description: Auto-updating environment documentation that keeps Cursor smart about your project.*
 
 Stop wasting time explaining your environment setup to Cursor in every conversation. This system automatically maintains fresh documentation about your development environment, ensuring Cursor always has the context it needs.
 
