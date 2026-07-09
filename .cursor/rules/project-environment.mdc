@@ -25,7 +25,7 @@ alwaysApply: true
 
 **Absolute Project Root:**
 ```
-C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs
+C:\dev\skylark\cursor-kooi-env-docs
 ```
 
 **Path Format:** Windows (backslashes in shell, forward slashes in Git)
@@ -273,10 +273,10 @@ git commit -m "msg"
 **Windows paths with spaces:**
 ```powershell
 # ✅ Correct - use quotes
-cd "C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs"
+cd "C:\dev\skylark\cursor-kooi-env-docs"
 
 # ❌ Wrong - breaks on spaces
-cd C:\Users\david\Documents\Skylark Creations\Local\cursor-kooi-env-docs
+cd C:\dev\skylark\cursor-kooi-env-docs
 ```
 
 ### 5. Testing in Another Project
